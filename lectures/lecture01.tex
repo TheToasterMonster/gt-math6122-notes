@@ -1,0 +1,161 @@
+\chapter{Jan.~7 --- Motivation for Algebraic Number Theory}
+
+\section{Motivation: Fermat's Last Theorem}
+
+\begin{theorem}[Fermat's last theorem\footnote{This problem was finally resolved by Wiles-Taylor in 1995.}]
+  $x^n + y^n = z^n$
+  has no nonzero integer solutions when $n \ge 3$.
+\end{theorem}
+
+\begin{remark}
+  The $n = 3$ case was likely solved by Fermat, and
+  Euler and Gauss had work for $n = 4$. Thus we will
+  assume
+  $n \ge 5$. We can also assume $n$ is prime, since
+  if $n = pm$, then we can equivalently consider
+  \[
+    (x^m)^p + (y^m)^p = (z^m)^p.
+  \]
+  So let $p \ge 5$ be prime. Let
+  $\zeta = \zeta_p$ be a primitive $p$th root of $1$.
+  Then consider
+  \[
+    x^p + y^p = (x + y) (x + \zeta y) (x + \zeta^2 y) \dots (x + \zeta^{p-1} y) = z^p.
+  \]
+  Note that $x + \zeta^j y \in \Z[\zeta] \subseteq \C$.
+  Let us pretend for the moment that $\Z[\zeta]$ is
+  a UFD.\footnote{It is far from it, and this is likely the mistake that Fermat originally made.}
+  One can check that
+  \[
+    \gcd(x + \zeta^j y, x + \zeta^k y) = 1
+  \]
+  whenever $j \ne k$. If $\Z[\zeta]$ were a UFD, then
+  we could conclude that
+  \[
+    x + y \zeta = u \alpha^p
+  \]
+  for some $u \in \Z[\zeta]^\times$ and
+  $\alpha \in \Z[\zeta]$.\footnote{In a UFD, if a product of relatively prime elements is a $p$th power, then each factor must itself be a $p$th power.}
+  For the sake of illustration, suppose $u = \pm \zeta^j$
+  for some $j$.
+  Then
+  \[
+    \alpha = a_0 + a_1 \zeta + \dots + a_{p - 2} \zeta^{p - 2}
+  \]
+  for $a_i \in \Z$. This gives
+  \[
+    \alpha^p = a_0 + a_1 + \dots + a_{p - 2} \pmod{p},
+  \]
+  using Fermat's little theorem, $\zeta^p = 1$,
+  and the binomial theorem. So
+  $\alpha^p = a \text{ (mod $p$)}$ with $z \in \Z$,
+  and
+  \[
+    x + y \zeta = \pm a \zeta^j \pmod{p}
+  \]
+  for some $0 \le j \le p - 1$. Note that
+  $\zeta^p = -(1 + \zeta + \dots + \zeta^{p - 2})$,
+  and one can check as an exercise that this implies
+  $p | x$ or $p | y$. This would have proved the
+  ``first case'' of Fermat's last theorem.
+\end{remark}
+
+\begin{remark}
+  However, Kummer (c.~1850) observed that $\Z[\zeta]$ is
+  rarely a UFD (in fact, $\Z[\zeta]$ is a UFD if and
+  only if $p \le 19$).\footnote{Kummer made the first real progress on Fermat's last theorem in quite a while.} Also, when
+  $p \ge 5$, the unit group of $\Z[\zeta]$ is
+  always infinite (so that $\Z[\zeta]^\times \ne \{\pm \zeta^j\}$).
+\end{remark}
+
+\begin{theorem}[Kummer]
+  Fermat's last theorem holds for all ``regular'' primes.\footnote{A prime $p$ is \emph{regular} if $p$ does not divide the order of the \emph{ideal class group} of $\Z[\zeta]$.}
+\end{theorem}
+
+\begin{remark}
+  The first irregular prime is $37$, so Kummer's method
+  works for $3 \le n \le 36$.
+\end{remark}
+
+\section{Algebraic Integers}
+
+\begin{remark}
+  To resolve these issues,
+  Kummer realized that one can replace elements
+  of $\Z[\zeta]$ by ``ideal elements.'' Later on,
+  Dedekind look at Kummer's work and introduced
+  the modern notion of an ideal. We will be working
+  towards the \emph{unique factorization of ideals into
+  prime ideals} in certain cases.
+\end{remark}
+
+\begin{remark}
+  We will work at the level of generality of Dedekind
+  rings (as opposed to just number rings). This is
+  because there is an analogue of such a unique
+  factorization of ideals
+  for function fields of curves in algebraic geometry,
+  and this framework is general enough to capture
+  both cases.
+\end{remark}
+
+\begin{definition}
+  Let $K / \Q$ be a finite extension (i.e. a \emph{number field}).
+  Then $\alpha \in K$ is an \emph{algebraic integer}
+  if there exists a monic polynomial $f \in \Z[x]$
+  such that $f(\alpha) = 0$.
+\end{definition}
+
+\begin{theorem}
+  Let $A \subseteq B$ be rings and let $b \in B$.
+  Then the following are equivalent:
+  \begin{enumerate}
+    \item $b$ is integral over $A$ (i.e. there exists
+      a monic $f \in A[x]$ such that $f(b) = 0$).
+    \item $A[b]$ is a finitely generated $A$-module.\footnote{Here $A[b]$ is the smallest subring of $B$ containing $A$ and $b$, so $A[b] = \{a_0 + a_1 b + a_2 b^2 + \dots + a_k b_k : a_i \in A\}$.}
+    \item $A[b]$ is contained in a subring $C \subseteq B$
+      which is finitely generated as an $A$-module.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  $(1 \Rightarrow 2)$ This implication is standard, one
+  only needs powers up to $\deg f$ since $f(b) = 0$.
+
+  $(2 \Rightarrow 3)$ This implication is clear
+  since $A[b]$ itself satisfies the desired conditions.
+
+  $(3 \Rightarrow 1)$ The idea is to argue via
+  determinants and use the Cayley-Hamilton theorem for
+  modules.
+\end{proof}
+
+\begin{corollary}
+  Integrality is transitive, i.e. if $B$ is integral
+  over $A$ and $C$ is integral over $B$, then $C$ is
+  integral over $A$.\footnote{We say that $B$ is \emph{integral over $A$} if every $b \in B$ is integral over $A$.}
+\end{corollary}
+
+\begin{proof}
+  A finitely generated module over a finitely
+  generated module is finitely generated.
+\end{proof}
+
+\begin{corollary}
+  If $\alpha, \beta$ are integral over $A$, then
+  $\alpha \pm \beta, \alpha \beta$ are also integral
+  over $A$.
+\end{corollary}
+
+\begin{proof}
+  This is because
+  $\alpha \pm \beta, \alpha \beta \subseteq C = A[\alpha][\beta]$.
+\end{proof}
+
+\begin{theorem}
+  The set of all algebraic integers in $K$ (denoted
+  $\mathcal{O}_K$) forms a
+  subring of $K$.\footnote{This theorem is not obvious: Given $f(\alpha) = 0$ and
+  $g(\beta) = 0$, one must find a polynomial $h$ such
+  that $h(\alpha + \beta) = 0$.}
+\end{theorem}
