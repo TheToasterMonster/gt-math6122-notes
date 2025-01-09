@@ -1,0 +1,319 @@
+\chapter{Jan.~9 --- Algebraic Integers and Dedekind Domains}
+
+\section{More on Algebraic Integers}
+\begin{prop}
+  Suppose $\alpha, \beta \in \overline{\Z} \subseteq \C$,
+  then
+  $\alpha + \beta, \alpha \beta \in \overline{\Z}$.\footnote{Here $\overline{\Z}$ is the set of algebraic integers.}
+\end{prop}
+
+\begin{proof}
+  First, note that every algebraic integer is an
+  eigenvalue of some integer matrix (e.g. take the
+  companion matrix for the minimal polynomial).
+  So take linear maps $T_\alpha : V_\alpha \ to V_\alpha$
+  and $T_\beta : V_\beta \to V_\beta$ which have
+  $\alpha$ and $\beta$ as eigenvalues, respectively.
+  Then one can check that the map on the direct sum
+  \[
+    T_\alpha \oplus T_\beta : V_\alpha \oplus V_\beta \to V_\alpha \oplus V_\beta
+  \]
+  has $\alpha + \beta$ as an eigenvalue. Similarly,
+  by looking at the map on the tensor product
+  \[
+    T_\alpha \otimes T_\beta : V_\alpha \otimes V_\beta \to V_\alpha \otimes V_\beta
+  \]
+  has $\alpha \beta$ as an eigenvalue. Hence we see
+  that
+  $\alpha + \beta, \alpha \beta \in \overline{\Z}$ as
+  well.
+\end{proof}
+
+\begin{remark}
+  This is a constructive proof of what we showed via
+  finitely generated modules last time.
+\end{remark}
+
+\begin{lemma}
+  Let $\alpha \in K$ be an algebraic number. Then
+  $\alpha$ is an algebraic integer, i.e.
+  $\alpha \in \mathcal{O}_K$, if and only if the
+  minimal polynomial of $\alpha$ over $\Q$, call it
+  $f_\alpha \in \Q[x]$, has integer coefficients.
+\end{lemma}
+
+\begin{proof}
+  $(\Leftarrow)$ This direction is clear by the
+  definition of an algebraic integer.
+
+  $(\Rightarrow)$ We need to show that if
+  $\alpha \in \mathcal{O}_K$, then $f_\alpha \in \Z[x]$.
+  By assumption, there exists some monic integer
+  polynomial $h \in \Z[x]$ such that $h(\alpha) = 0$.
+  From this, we know that $f_\alpha | h$ in
+  $\Q[x]$.\footnote{Note that it suffices to show that $f_\alpha | h$ in $\Z[x]$, so from here, a suitable version of Gauss's lemma immediately implies the desired result.}
+  Let $\alpha_1, \dots, \alpha_n$ be the roots of
+  $f_\alpha$ with $\alpha_1 = \alpha$. Since
+  $f_\alpha | h$, we know that
+  $h(\alpha_i) = 0$ for every $i$, so $h \in \Z[x]$
+  implies that $\alpha_i \in \overline{\Z}$ for each $i$.
+  Thus the coefficients of $f_\alpha$ are elementary
+  symmetric functions of the $\alpha_i$,\footnote{These operations preserve the notion of being an algebraic integer.} so
+  \[
+    f_\alpha \in (\overline{Z} \cap \Q)[x].
+  \]
+  Thus it suffices to show that $\overline{\Z} \cap \Q = \Z$ to conclude the result.
+  For this, suppose $r / s \in \Q$ is the root of
+  \[
+    x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0 \in \Z[x].
+  \]
+  We can assume $(r, s) = 1$ without loss of generality.\footnote{Here we write $(r, s)$ to denote $\gcd(r, s)$.}
+  Plugging in, we obtain
+  \[
+    (r / s)^n + a_{n-1} (r / s)^{n-1} + \dots + a_1 (r / s) + a_0 = 0.
+  \]
+  Clearly denominators by multiplying by $s^n$, we
+  obtain
+  \[
+    r^n + a_{n - 1} sr^{n - 1} + \dots + a_1 s^{n - 1} r + a_0 s^n = 0
+  \]
+  The right-hand side is divisible by $s$ and every
+  term on the left-hand side except $r^n$ is divisible
+  by $s$, so we must have $s | r^n$. Since $(r, s) = 1$,
+  this implies that $s = \pm 1$, i.e. $r / s \in \Z$.
+\end{proof}
+
+\begin{example}
+  For $K = \Q$, we have $\mathcal{O}_K = \Z$. This
+  follows from the previous lemma since
+  the minimal polynomial of $a \in \Q$ is $x - a$, which
+  has integer coefficients precisely when $a \in \Z$.
+\end{example}
+
+\begin{example}
+  Let $K = \Q(\sqrt{d})$, i.e. $K$ is \emph{quadratic number field}.
+  Clearly $\Z[\sqrt{d}] \subseteq \mathcal{O}_K$,
+  but this is not always an equality. For example,
+  \[
+    \phi = \frac{1 + \sqrt{5}}{2} \notin \Z[\sqrt{5}],
+  \]
+  but $x^2 - x - 1$ has $\phi$ as a root.
+\end{example}
+
+\begin{exercise}
+  Let $d$ be a square-free integer and
+  $K = \Q(\sqrt{d})$. Show that
+  \[
+    \mathcal{O}_K =
+    \begin{cases}
+      \Z[\sqrt{d}] & \text{if $d \equiv 2, 3 \Pmod{4}$}, \\
+      \Z[(1 + \sqrt{d}) / 2] & \text{if $d \equiv 1 \Pmod{4}$}.
+    \end{cases}
+  \]
+\end{exercise}
+
+\begin{definition}
+  Let $S$ be a ring.
+  If $R \subseteq S$ is a subring, then we say that
+  $R$ is \emph{integrally closed} in $S$ if whenever
+  $\alpha \in S$ is integral over $R$, then
+  $\alpha \in R$.
+\end{definition}
+
+\begin{remark}
+  Recall that for a domain $R$, its \emph{field of fractions} $K$ is the
+  localization
+  \[
+    K = S^{-1} R
+  \]
+  where $S = R \setminus \{0\}$. There is a natural
+  embedding of $R$ into $K$ via $r \mapsto r / 1$.
+\end{remark}
+
+\begin{lemma}
+  The fraction field of $\mathcal{O}_K$ is $K$. More
+  precisely, for every $\alpha \in K$, there exists
+  $m \in \Z$, $m \ne 0$, such that $m\alpha \in \mathcal{O}_K$.
+\end{lemma}
+
+\begin{proof}
+  Since $\alpha$ is algebraic, there exists some monic
+  polynomial $f_\alpha \in \Q[x]$ such that
+  $f_\alpha(\alpha)$. By clearing denominators, there
+  exists $m \in \Z$ such that $mf_\alpha \in \Z[x]$.
+  So we have
+  \[
+    m \alpha^n + b_{n - 1} \alpha^{n - 1} + \dots + b_1 \alpha + b_0 = 0,
+  \]
+  and multiplying by $m^{n - 1}$ on both sides, we obtain
+  \[
+    m^n \alpha^n + m^{n - 1} b_{n - 1} \alpha^{n - 1} + \dots + m^{n - 1} b_1 \alpha + m^{n - 1} b_0 = 0,
+  \]
+  which implies
+  \[
+    (m\alpha)^n + b_{n - 1} (m\alpha)^{n - 1} + \dots + m^{n - 2} b_1 (m\alpha) + m^{n - 1} b_0 = 0.
+  \]
+  This shows that $m\alpha$ is integral, i.e.
+  $m\alpha \in \mathcal{O}_K$.
+\end{proof}
+
+\begin{theorem}
+  The ring of integers $\mathcal{O}_K$ is
+  integrally closed (in its fraction field).
+\end{theorem}
+
+\begin{proof}
+  Transitivity of integrality implies that $\mathcal{O}_K$
+  is integrally closed in $K$. The theorem then
+  follows from the fact that $K$ is the fraction field
+  of $\mathcal{O}_K$.
+\end{proof}
+
+\begin{remark}
+  The theorem says that (it implies the second equality)
+  \[
+    \mathcal{O}_K
+    = \{\alpha \in K \mid \text{$\alpha$ is integral over $\Z$}\}
+    = \{\alpha \in K \mid \text{$\alpha$ is integral over $\mathcal{O}_K$}\}.
+  \]
+\end{remark}
+
+\section{Dedekind Domains}
+
+\begin{definition}
+  A \emph{Dedekind domain} is a Noetherian
+  integrally closed domain of dimension $1$.
+\end{definition}
+
+\begin{remark}
+  Recall that all rings in this class are commutative
+  and have a $1$. A dimension $1$ domain is a domain
+  which is not a field and every nonzero prime ideal
+  is maximal. In general, the dimension of a ring $R$
+  is the maximum length of a chain of prime ideals
+  of the form
+  \[
+    \mathfrak{p}_0 \subsetneq \mathfrak{p}_1 \subsetneq \dots \subsetneq \mathfrak{p}_n.
+  \]
+  In dimension $1$, this corresponds to
+  $(0) \subsetneq \mathfrak{p}$ being the maximum
+  chain for every nonzero prime
+  ideal $\mathfrak{p}$, which is equivalent to the
+  other definition.
+\end{remark}
+
+\begin{remark}
+  Our goal will be to show that $\mathcal{O}_K$ is a
+  Dedekind domain.
+\end{remark}
+
+\begin{definition}
+  Let $k$ be either $\Q$ or $\R$ and
+  $V$ be a finite-dimensional $k$-vector
+  space. A \emph{complete lattice} in $V$ is a
+  discrete additive subgroup $\Lambda$ of $V$ which
+  spans $V$, where discrete means that any
+  bounded subset of $\Lambda$ is finite (equivalent to
+  being discrete in the sense of topology).
+\end{definition}
+
+\begin{prop}
+  Let $V$ be as above (dimension $n$ over $k$) and
+  $\Lambda \subseteq V$ an additive subgroup which
+  spans $V$. Then the following are equivalent:
+  \begin{enumerate}
+    \item $\Lambda$ is discrete.
+    \item $\Lambda$ is generated by $n$ elements.
+    \item $\Lambda \cong \Z^n$ as $\Z$-modules.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  $(2 \Leftrightarrow 3)$ This follows by the structure
+  theorem.
+
+  $(1 \Rightarrow 2)$ Suppose $\Lambda$ is discrete, and
+  let $x_1, \dots, x_n \in \Lambda$ be a basis for $V$.
+  Let $\Lambda_0$ be the $\Z$-module which is
+  spanned by $x_1, \dots, x_n$. We claim that
+  $\Lambda / \Lambda_0$ is finite, which implies that
+  $\Lambda$ is also generated by $n$ elements (exercise).
+  To see the claim, we note that there exists
+  $M > 0$ such that if
+  $x = \sum \lambda_i x_i \in \Lambda$ with
+  $\lambda_i \in k$ and all $|\lambda_i| < 1 / M$,
+  then $x = 0$. This is standard and follows from
+  all norms being equivalent in a finite-dimensional
+  vector space and the assumption that $\Lambda$ is
+  discrete.
+
+  Now let $y_1, y_2, \dots$ be coset representatives
+  for $\Lambda / \Lambda_0$. Without loss of generality
+  (by translating in the coset),
+  assume each $y_i \in C$, where $C$ is the unit cube.
+  Cover $C$ by $M^n$ boxes of the form
+  \[
+    \frac{m_i}{M} \le \lambda_i < \frac{m_i + 1}{M}
+  \]
+  with $m_i \in \Z$ and $0 \le m_i < M$. We must have
+  $|\Lambda / \Lambda_0| \le M^n$, since otherwise
+  we end up with two $y_i \ne y_j$ in the same box by the
+  pigeonhole principle, and
+  $y_i - y_j \in C[1 / M] \cap \Lambda = \{0\}$ leads
+  to a contradiction.
+
+  $(2 \Rightarrow 1)$ This proof is to be finished next
+  class.
+\end{proof}
+
+\begin{theorem}
+  If $I$ is a nonzero ideal in a number ring
+  $\mathcal{O}_K$, then $\mathcal{O}_K / I$ is finite.
+\end{theorem}
+
+\begin{proof}
+  The strategy is to show that if $[K : \Q] = n$, then
+  $\mathcal{O}_K \cong \Z^n$ and $I \cong \Z^n$
+  as $\Z$-modules. This will imply that
+  $\mathcal{O}_K / I$ is finite, which follows from
+  the proof of the structure theorem. In fact, we will
+  show the that $I$ and $\mathcal{O}_K$
+  are lattices in $K \cong \Q^n \subseteq \R^n$.
+  Note
+  that it suffices to show that $\mathcal{O}_K$ is
+  a lattice, since it immediately follows that
+  $I \subseteq \mathcal{O}_K$ is also discrete, hence
+  also a lattice as $I$ is an additive subgroup.
+
+  The proof is to be finished next class.
+\end{proof}
+
+\begin{corollary}
+  A number ring $\mathcal{O}_K$ is Noetherian.
+\end{corollary}
+
+\begin{proof}
+  Suppose that we have an ascending chain of ideals
+  \[
+    I = I_0 \subseteq I_1 \subseteq I_2 \subseteq \dots.
+  \]
+  Suppose without loss of generality that $I_0 \ne 0$.
+  Since $\mathcal{O}_K / I$ is finite, by an isomorphism
+  theorem we see that there are only finitely many ideals
+  in $\mathcal{O}_K$ containing $I$. This implies that
+  the chain must eventually stabilize, i.e. that
+  $\mathcal{O}_K$ is Noetherian.
+\end{proof}
+
+\begin{corollary}
+  A number ring $\mathcal{O}_K$ is 1-dimensional.
+\end{corollary}
+
+\begin{proof}
+  Verify as an exercise that $\mathcal{O}_K$ is not
+  a field.
+  Let $\mathfrak{p}$ be a nonzero prime ideal, so that
+  $\mathcal{O}_K / \mathfrak{p}$ is a finite domain,
+  hence a field. This implies that $\mathfrak{p}$ is
+  maximal, so $\mathcal{O}_K$ is 1-dimensional.
+\end{proof}
