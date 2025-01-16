@@ -1,0 +1,316 @@
+\chapter{Jan.~16 --- Ideal Class Group}
+
+\section{Unique Factorization of Ideals, Continued}
+The following is a corollary of Proposition
+\ref{prop:dedekind}:
+
+\begin{corollary}
+  If $R$ is Dedekind and
+  $\p \ne 0$ is a prime ideal, then
+  $\p^{-1} \p = R = (1)$.
+\end{corollary}
+
+\begin{proof}
+  First note that we have $\p \subseteq \p^{-1} \p \subseteq R$
+  since $R \subseteq \p^{-1}$ by the definition
+  of $\p^{-1}$. Furthermore, $\p^{-1}$ is an
+  $R$-submodule of $K$, so $\p^{-1} \p$ is an
+  $R$-submodule of $R$, i.e. an ideal of $R$. Also,
+  by Proposition \ref{prop:dedekind},
+  $\p^{-1} \p \ne \p$. Now $R$ being $1$-dimensional
+  implies that $\p$ is maximal, so we must have
+  $\p^{-1} \p = R$.
+\end{proof}
+
+\begin{prop}
+  A Dedekind domain $R$ admits unique factorization
+  of ideals into prime ideals.
+\end{prop}
+
+\begin{proof}
+  For uniqueness, suppose that
+  $I = \p_1 \cdots \p_r = \q_1 \cdots \q_s$.
+  Then $\q_1 \dots \q_s \subseteq \p_1$, so we must
+  have some $\q_i \subseteq \p_1$. Without loss
+  of generality, assume $\q_1 \subseteq \p_1$, so
+  that $\q_1 = \p_1$. Now multiplying by
+  $\p_1^{-1}$, we get
+  \[
+    \p_2 \dots \p_r = \q_2 \dots \q_s.
+  \]
+  Proceeding by induction finishes the proof for
+  uniqueness.
+
+  Now we argue for existence. Let $\Sigma$ be the set
+  of all proper ideals of $R$ which cannot be written
+  as a product of prime ideals. If $\Sigma$ is
+  nonempty, then the Noetherian property of $R$ implies
+  that $\Sigma$ has a maximal element $J$. Then
+  $J \subsetneq \p$ for some maximal ideal $\p$, which
+  is equivalently a nonzero prime ideal since
+  $R$ is one-dimensional. Since
+  $R \subseteq \p^{-1}$, we have the chain of inclusions
+  \[
+    J \subsetneq J \p^{-1} \subsetneq \p \p^{-1} = R.
+  \]
+  Since $J$ was maximal in $\Sigma$, we must have
+  $J \p^{-1} \notin \Sigma$, so we can write
+  $J \p^{-1} = \p_1 \p_2 \dots \p_r$.
+  But then we have $J = \p \p_1 \p_2 \dots \p_r$
+  which is a contradiction with $J \in \Sigma$.
+\end{proof}
+
+\section{Ideal Class Group}
+
+\begin{prop}
+  In a Dedekind ring $R$, to contain is to divide,
+  i.e. $I \subseteq J$ if and only if $J | I$.\footnote{We say that $J$ \emph{divides} $I$, written $J | I$, if $I = J J'$ for some ideal $J'$.}
+\end{prop}
+
+\begin{proof}
+  $(\Rightarrow)$ If $I \subseteq J$, then
+  $I J^{-1} \subseteq J J^{-1} = R$.\footnote{Note that we have technically only proved this property for prime ideals, but any ideals factors as prime ideals and we can argue via this factorization.} Then $J' = IJ^{-1}$
+  is an ideal and satisfies $I = J J'$.
+
+  $(\Leftarrow)$ This is the easier direction, verify
+  this as an exercise.
+\end{proof}
+
+\begin{definition}
+  Let $R$ be an integral domain.
+  A \emph{fractional ideal} of $R$ is an $R$-submodule
+  $J$ of $K$ such that $aJ$ is an ideal for some
+  $a \in R$.
+\end{definition}
+
+\begin{exercise}
+  If $I \subseteq R$ is an ideal, then show that
+  $I^{-1}$ is a fractional ideal.
+\end{exercise}
+
+\begin{exercise}
+  If $J$ is an $R$-submodule of $K$, then show that
+  $J$ is a fractional ideal if and only if $J$ is
+  finitely generated as an $R$-module.
+\end{exercise}
+
+\begin{exercise}
+  Show that set of nonzero fractional ideals in a
+  Dedekind domain $R$ forms a group under multiplication.
+\end{exercise}
+
+\begin{remark}
+  In fact, one can actually show that
+  \[
+    I(R) = \{\text{nonzero fractional ideals}\}
+    = \{\p_1^{k_1} \p_2^{k_2} \dots \p_r^{k_r} \mid k_i \in \Z\}.
+  \]
+  Due to unique factorization, this is actually the
+  free abelian group on the set of nonzero prime ideals.
+  We can also define
+  \[
+    P(R) = \{\text{principal fractional ideals}\}
+    = \{aR \mid a \in K\}.
+  \]
+\end{remark}
+
+\begin{definition}
+  The \emph{ideal class group} of a Dedekind domain $R$
+  is 
+  the quotient $\Cl(R) = I(R) / P(R)$.
+\end{definition}
+
+\begin{exercise}
+  Show that $\Cl(R)$ is also the equivalence classes
+  of ideals under $\sim$, where $I \sim J$ if
+  there exist $a, b \in R$ such that $aI = bJ$.
+\end{exercise}
+
+\begin{remark}
+  As a shorthand, we may write the class group of
+  a number field $K$ to mean $\Cl(\mathcal{O}_K)$.
+\end{remark}
+
+\begin{remark}
+  Our goal now will be to show that if $R = \OO_K$
+  and $[K : \Q] < \infty$, then $\Cl(R)$ is finite.
+  The key tool will be the norm
+  $N : \{\text{ideals of R}\} \to \N$, where
+  $\N$ contains $0$.
+\end{remark}
+
+\begin{definition}
+  We define the \emph{norm} of an ideal $I \subseteq R$
+  to be $N(I) = |R/I|$.
+\end{definition}
+
+\begin{remark}
+  To prove the finiteness of $\Cl(R)$ when $R$ is a
+  Dedekind domain,
+  we will need to show the following properties of the
+  norm $N$:
+  \begin{itemize}
+    \item $N((\alpha)) = N^{K}_\Q(\alpha)$.
+    \item $N(IJ) = N(I) N(J)$.
+  \end{itemize}
+  Then, we will proceed to show the following:
+  \begin{itemize}
+    \item There exists $M \ge 0$ such that
+      $\{\text{ideals } I \mid N(I) \le M\}$ is finite.
+    \item Letting $\nu(I) = \min_{\alpha \in I} \{N(I) / N(\alpha)\}$,
+      there exists $M$ such that
+      $\nu(I) \le M$ for every $I$.
+      Moreover, $\nu(I) = 1$ if and only if
+      $I$ is principal.
+      Note that
+      $\nu(I) \in \Z$ by the multiplicative property
+      of $N$.
+  \end{itemize}
+\end{remark}
+
+\section{Discriminants}
+
+\begin{definition}
+  Let $L / K$ be a finite separable field extension,
+  where $[L : K] = n$.
+  Fix a Galois closure $M$ of $L / K$, so there are
+  $n$ distinct embeddings
+  $\sigma_1, \dots, \sigma_n : L \to M$ fixing $K$. The
+  \emph{norm} of $\alpha \in L$ is
+  \[
+    N^L_{K} = \sigma_1(\alpha) \dots \sigma_n(\alpha) \in K.
+  \]
+  Now let $\alpha_1, \dots, \alpha_n \in L$.
+  The \emph{discriminant} of $\alpha_1, \dots, \alpha_n$
+  is
+  \[
+    \Delta(\alpha_1, \dots, \alpha_n) = \det
+    \begin{bmatrix}
+      \sigma_1(\alpha_1) & \cdots & \sigma_1(\alpha_n) \\
+      \vdots & \ddots & \vdots \\
+      \sigma_n(\alpha_1) & \cdots & \sigma_n(\alpha_n)
+    \end{bmatrix}^2 = (\det T)^2.
+  \]
+\end{definition}
+
+\begin{lemma}
+  For $\alpha_1, \dots, \alpha_n \in L$,
+  the discriminant
+  $\Delta(\alpha_1, \dots, \alpha_n) \in K$
+  and is nonzero if and
+  only if $\alpha_1, \dots, \alpha_n$ form a basis
+  for $L / K$.
+\end{lemma}
+
+\begin{proof}
+  $(\Rightarrow)$ One can show the contrapositive
+  that if $\alpha_1, \dots, \alpha_n$ are linearly
+  dependent, then $\Delta = 0$.
+
+  $(\Leftarrow)$ Let $\alpha_1, \dots, \alpha_n$
+  be a basis for $L / K$.
+  By the primitive element theorem, there exists
+  $\theta \in L$ such that $L = K(\theta)$, so
+  that $1, \theta, \theta^2, \dots, \theta^{n - 1}$
+  form a basis for $L / K$. Then we have
+  \[
+    \begin{bmatrix}
+      \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n
+    \end{bmatrix}
+    = M
+    \begin{bmatrix}
+      1 \\ \theta \\ \vdots \\ \theta^{n - 1}
+    \end{bmatrix}
+  \]
+  for some matrix $M \in M_{n \times n}(K)$.
+  This implies that
+  \[
+    \begin{bmatrix}
+      \sigma_i(\alpha_1) \\ \sigma_i(\alpha_2) \\ \vdots \\ \sigma_i(\alpha_n)
+    \end{bmatrix}
+    = M
+    \begin{bmatrix}
+      1 \\ \sigma_i(\theta) \\ \vdots \\ \sigma_i(\theta)^{n - 1}
+    \end{bmatrix}.
+  \]
+  Thus if we define
+  \[
+    T' =
+    \begin{bmatrix}
+      \sigma_1(1) & \cdots & \sigma_1(\theta^{n - 1}) \\
+      \vdots & \ddots & \vdots \\
+      \sigma_n(1) & \cdots & \sigma_n(\theta^{n - 1})
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \sigma_1(1) & \cdots & \sigma_1(\theta)^{n - 1} \\
+      \vdots & \ddots & \vdots \\
+      \sigma_n(1) & \cdots & \sigma_n(\theta)^{n - 1}
+    \end{bmatrix}
+  \]
+  and $\Delta' = (\det T')^2$, then
+  $T = T' M^t$ implies $\Delta = \Delta' (\det M)^2$.
+  Now $T'$ is a Vandermonde matrix, so
+  \[
+    (\det T')^2 = \prod_{i \ne j} (\sigma_i(\theta) - \sigma_j(\theta)) \ne 0.
+  \]
+  We can also see that $\Delta' = (\det T')^2 \in K^\times$
+  and $(\det M)^2 \in K^\times$, so
+  $\Delta \in K^\times$ as well.
+\end{proof}
+
+\begin{theorem}
+  Let $K$ be a number field and $\alpha \in \OO_K$.
+  Then $N((\alpha)) = N(\alpha)$.
+\end{theorem}
+
+\begin{proof}
+  Let $\omega_1, \dots, \omega_n$ be a $\Z$-basis for
+  $\OO_K$, and let
+  $\alpha_i = \alpha \omega_i$. Then
+  $\alpha_1, \dots, \alpha_n$ is a $\Z$-basis for
+  $\mathfrak{a} = (\alpha)$. Thus we may write
+  \[
+    \begin{bmatrix}
+      \alpha_1 \\ \vdots \\ \alpha_n
+    \end{bmatrix}
+    = A
+    \begin{bmatrix}
+      \omega_1 \\ \vdots \\ \omega_n
+    \end{bmatrix}
+  \]
+  for some matrix $A \in M_{n \times n}(\Z)$.
+  Now the theory of finitely generated modules over
+  a PID implies that $N(\mathfrak{a}) = |{\det A}|$. (This
+  is because we have two free $\Z$-modules of
+  rank $n$: $\mathcal{O}_K$ and $\mathfrak{a} \subseteq \OO_K$. So if $A \sim A'$ where $A' = \diag(d_1, \dots, d_n)$ is in Smith normal form, then
+  $|\OO_K / \mathfrak{a}| = |(\Z / d_1) \times \dots \times (\Z / d_n)|$, so we see that
+  $N(\mathfrak{a}) = |\OO_K / \mathfrak{a}| = |d_1 \dots d_n| = |{\det A'}| = |{\det A}|$.)
+  Thus we have
+  \[
+    \Delta(\alpha_1, \dots, \alpha_n)
+    = (\det A)^2 = \Delta(\omega_1, \dots, \omega_n).
+  \]
+  But we also have that
+  \begin{align*}
+    \Delta(\alpha_1, \dots, \alpha_n)
+    = \Delta(\alpha \omega_1, \dots, \alpha \omega_n)
+    &= \det
+    \begin{bmatrix}
+      \sigma_1(\alpha \omega_1) & \cdots \sigma_1(\alpha \omega_n) \\
+      \vdots & \ddots & \vdots \\
+      \sigma_n(\alpha \omega_1) & \cdots \sigma_n(\alpha \omega_n)
+    \end{bmatrix}^2 \\
+    &= \underbrace{(\sigma_1(\alpha) \dots \sigma_n(\alpha))^2}_{N(\alpha)^2} \Delta(\omega_1, \dots, \omega_n).
+  \end{align*}
+  This shows that $N(\mathfrak{a})^2 = (\det A)^2 = N(\alpha)^2$,
+  so that $N(\mathfrak{a}) = N(\alpha)$
+  since these values are positive.
+\end{proof}
+
+\begin{remark}
+  Next time, we will show that
+  $N(IJ) = N(I) N(J)$, which will eventually
+  allow us to prove that the class group
+  $\Cl(\OO_K)$ is finite.
+\end{remark}
