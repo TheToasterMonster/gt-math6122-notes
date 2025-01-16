@@ -117,7 +117,8 @@ The following is a corollary of Proposition
 \begin{definition}
   The \emph{ideal class group} of a Dedekind domain $R$
   is 
-  the quotient $\Cl(R) = I(R) / P(R)$.
+  the quotient $\Cl(R) = I(R) / P(R)$.\footnote{As a shorthand, we may write the class group of
+  a number field $K$ to mean $\Cl(\mathcal{O}_K)$.}
 \end{definition}
 
 \begin{exercise}
@@ -126,10 +127,6 @@ The following is a corollary of Proposition
   there exist $a, b \in R$ such that $aI = bJ$.
 \end{exercise}
 
-\begin{remark}
-  As a shorthand, we may write the class group of
-  a number field $K$ to mean $\Cl(\mathcal{O}_K)$.
-\end{remark}
 
 \begin{remark}
   Our goal now will be to show that if $R = \OO_K$
@@ -145,8 +142,8 @@ The following is a corollary of Proposition
 \end{definition}
 
 \begin{remark}
-  To prove the finiteness of $\Cl(R)$ when $R$ is a
-  Dedekind domain,
+  To prove the finiteness of $\Cl(\OO_K)$ where
+  $K$ is a number field,
   we will need to show the following properties of the
   norm $N$:
   \begin{itemize}
@@ -215,22 +212,23 @@ The following is a corollary of Proposition
   form a basis for $L / K$. Then we have
   \[
     \begin{bmatrix}
-      \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n
+      \alpha_1 \\ \vdots \\ \alpha_n
     \end{bmatrix}
     = M
     \begin{bmatrix}
-      1 \\ \theta \\ \vdots \\ \theta^{n - 1}
+      1 \\ \vdots \\ \theta^{n - 1}
     \end{bmatrix}
   \]
-  for some matrix $M \in M_{n \times n}(K)$.
+  for some matrix $M \in M_{n \times n}(K)$ with
+  $\det M \ne 0$.
   This implies that
   \[
     \begin{bmatrix}
-      \sigma_i(\alpha_1) \\ \sigma_i(\alpha_2) \\ \vdots \\ \sigma_i(\alpha_n)
+      \sigma_i(\alpha_1)  \\ \vdots \\ \sigma_i(\alpha_n)
     \end{bmatrix}
     = M
     \begin{bmatrix}
-      1 \\ \sigma_i(\theta) \\ \vdots \\ \sigma_i(\theta)^{n - 1}
+      1 \\ \vdots \\ \sigma_i(\theta^{n - 1})
     \end{bmatrix}.
   \]
   Thus if we define
@@ -254,7 +252,7 @@ The following is a corollary of Proposition
   \[
     (\det T')^2 = \prod_{i \ne j} (\sigma_i(\theta) - \sigma_j(\theta)) \ne 0.
   \]
-  We can also see that $\Delta' = (\det T')^2 \in K^\times$
+  We can also see $\Delta' = (\det T')^2 \in K^\times$ (via Galois theory)
   and $(\det M)^2 \in K^\times$, so
   $\Delta \in K^\times$ as well.
 \end{proof}
@@ -289,28 +287,22 @@ The following is a corollary of Proposition
   Thus we have
   \[
     \Delta(\alpha_1, \dots, \alpha_n)
-    = (\det A)^2 = \Delta(\omega_1, \dots, \omega_n).
+    = (\det A)^2 \Delta(\omega_1, \dots, \omega_n).
   \]
-  But we also have that
+  But we can also see that
   \begin{align*}
     \Delta(\alpha_1, \dots, \alpha_n)
     = \Delta(\alpha \omega_1, \dots, \alpha \omega_n)
     &= \det
     \begin{bmatrix}
-      \sigma_1(\alpha \omega_1) & \cdots \sigma_1(\alpha \omega_n) \\
+      \sigma_1(\alpha \omega_1) & \cdots & \sigma_1(\alpha \omega_n) \\
       \vdots & \ddots & \vdots \\
-      \sigma_n(\alpha \omega_1) & \cdots \sigma_n(\alpha \omega_n)
+      \sigma_n(\alpha \omega_1) & \cdots & \sigma_n(\alpha \omega_n)
     \end{bmatrix}^2 \\
-    &= \underbrace{(\sigma_1(\alpha) \dots \sigma_n(\alpha))^2}_{N(\alpha)^2} \Delta(\omega_1, \dots, \omega_n).
+    &= (\sigma_1(\alpha) \dots \sigma_n(\alpha))^2 \Delta(\omega_1, \dots, \omega_n)
+    = N(\alpha)^2 \Delta(\omega_1, \dots, \omega_n).
   \end{align*}
   This shows that $N(\mathfrak{a})^2 = (\det A)^2 = N(\alpha)^2$,
   so that $N(\mathfrak{a}) = N(\alpha)$
   since these values are positive.
 \end{proof}
-
-\begin{remark}
-  Next time, we will show that
-  $N(IJ) = N(I) N(J)$, which will eventually
-  allow us to prove that the class group
-  $\Cl(\OO_K)$ is finite.
-\end{remark}
