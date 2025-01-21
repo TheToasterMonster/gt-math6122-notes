@@ -1,0 +1,337 @@
+\chapter{Jan.~21 --- Finiteness of the Class Group}
+
+\section{Multiplicativity of the Norm}
+
+\begin{theorem}
+  If $I, J \subseteq \OO_K$ are ideals, then
+  $N(IJ) = N(I) N(J)$.
+\end{theorem}
+
+\begin{proof}
+  First observe that if $\p, \q \subseteq \OO_K$ are
+  relatively prime ideals (i.e. $\p + \q = (1)$), then
+  \[
+    \OO_K / \p \q \cong \OO_K / \p \oplus \OO_K / \q
+  \]
+  by the Chinese remainder theorem, from which
+  the result immediately follows. One can also
+  show that if $\p \ne \q$, then
+  $\p^s$ and $\q^t$ are relatively prime for every
+  $s, t$. Thus by unique factorization of $I, J$ into
+  prime ideals,
+  it is enough to prove the result $N(\p^m) = (N(\p))^m$
+  for a prime ideal $\p$.
+
+  To do this, observe that we have the chain of inclusions
+  \[
+    \OO_K \supsetneq \p \supsetneq \p^2 \dots \supsetneq \p^m,
+  \]
+  and it suffices to show that $[\p^k : \p^{k + 1}] = N(\p)$
+  for each $0 \le k < m$. We will show the
+  stronger result that $\OO_K / \p \cong \p^k / \p^{k + 1}$
+  as abelian groups. To do this, pick
+  $\gamma \in \p^k \setminus \p^{k + 1}$ (note
+  that $\p^k \ne \p^{k + 1}$ by unique factorization)
+  and define $\phi : \OO_K \to \p^k / \p^{k + 1}$
+  by $x \mapsto \gamma x$. Since $\gamma x \in \p^{k + 1}$
+  whenever $x \in \p$, this induces a map
+  $\phi : \OO_K / \p \to \p^k / \p^{k + 1}$, which
+  we prove is an isomorphism in Proposition
+  \ref{prop:isomorphism}.
+\end{proof}
+
+\begin{prop}\label{prop:isomorphism}
+  The map $\phi : \OO_K / \p \to \p^k / \p^{k + 1}$
+  by $x \mapsto \gamma x$ is an isomorphism
+  of abelian groups.
+\end{prop}
+
+\begin{proof}
+  We will show the following claims:
+  \begin{enumerate}
+    \item $(\gamma) + \p^{k + 1} = \p^k$. This
+      implies that $\phi$ is surjective.
+    \item $(\gamma) \cap \p^{k + 1} = \gamma \p$.
+      This means that if $\gamma x \in \gamma \p$,
+      then $x \in \p$, i.e. $\phi$ is injective.
+  \end{enumerate}
+  (1) Let $I = (\gamma) + \p^{k + 1}$. Since we already
+  know that $\p^k | (\gamma)$, we have $\p^k | I$.
+  But $I \supsetneq \p^{k + 1}$, so $I | \p^{k + 1}$,
+  and the containment being strict implies that
+  we must have $I = \p^k$.
+
+  (2) Let $I' = (\gamma) \cap \p^{k + 1}$. Since
+  $\gamma \in \p^k$, we have $\gamma \p \subseteq I'$.
+  This is one containment.
+  Conversely, let $x \in I'$. Write $x = \gamma y$,
+  where $y \in \OO_K$ and $\gamma y \in \p^{k + 1}$.
+  Now note that\footnote{Here $\ord_\p(\alpha) = \ord_\p(\mathfrak{a})$ is the largest integer $m$ such that $\p^m | \mathfrak{a}$, where $\mathfrak{a} = (\alpha)$.}
+  \[
+    \ord_\p(\gamma) + \ord_\p(y) = \ord_\p(\gamma y) \ge k + 1.
+  \]
+  But $\ord_\p(\gamma) = k$ (since $\gamma \in \p^k \setminus \p^{k + 1}$),
+  so $\ord_\p(y) \ge 1$. This implies
+  that $\p | (y)$, so $y \in \p$. Since
+  $x = \gamma y$, this gives $x \in \gamma \p$.
+  This yields the other containment, and so
+  $I' = \gamma \p$.
+\end{proof}
+
+\begin{corollary}
+  Let $[K : \Q] = n$ and $p \in \Z$ be a prime number.
+  Write
+  \[
+    (p) = p\OO_K = \prod_{i = 1}^r \p_i^{e_i},
+  \]
+  where the $\p_i$ are distinct prime ideals. Then
+  $\sum_{i = 1}^r e_i f_i = n$,
+  where $N(\p_i) = p^{f_i}$.
+\end{corollary}
+
+\begin{proof}
+  Since the norm is multiplicative, we have
+  \[
+    p^n = N(p \OO_K) = N(p) = \prod_{i = 1}^n \sigma_i(p)
+  \]
+  since each $\sigma_i$ fixes $p$. Then since
+  $p \OO_K = \prod_{i = 1}^r \p_i^{e_i}$, we have\footnote{Note that $\mathcal{O}_K / \p$ is a finite field and a vector space over $\Z / p$ since $(p) \subseteq \p$. So $\OO_K / \p$ has prime characteristic, hence $N(\p) = |\OO_K / \p| = p^{f}$ for some $f$.}
+  \[
+    p^n = N(p \OO_K) = N(\prod \p_i^{e_i})
+    = \prod (N(\p_i))^{e_i}
+    = \prod (p^{f_i})^{e_i}
+    = \prod p^{e_i f_i}.
+  \]
+  Thus $n = \sum_{i = 1}^r e_i f_i$, which is the
+  desired result.
+\end{proof}
+
+\begin{remark}
+  In the above case, we will say that the
+  $\p_i$ ``lie over'' $p$.
+\end{remark}
+
+\section{Finiteness of the Class Group}
+\begin{theorem}
+  Let $K$ be a number field. Then there exists $M > 0$
+  such that every nonzero ideal $I$ of $\OO_K$ contains
+  a nonzero element $\alpha$ with
+  $|N(\alpha)| \le M \cdot N(I)$. Equivalently,
+  $\alpha$ satisfies
+  \[
+    \inf_{\alpha \in I} \frac{N(\alpha)}{N(I)} \le M,
+  \]
+  and the above infimum is $1$ if and only if $I$ is
+  principal.
+\end{theorem}
+
+\begin{proof}
+  Choose an integral basis $\alpha_1, \dots, \alpha_n$
+  of $\OO_K$, and let $I$ be a nonzero ideal.
+  Choose $m$ such that $m^n \le N(I) < (m + 1)^n$.
+  Then define the set
+  \[
+    \Sigma =
+    \left\{
+      \sum_{i = 1}^n m_j \alpha_j : 0 \le m_j \le m, m_j \in \Z
+    \right\}.
+  \]
+  Note that $\# \Sigma = (m + 1)^n > N(I) = |\OO_K / I|$,
+  so by the pigeonhole principle there exist $x \ne y$
+  in $\OO_K$ such that $\alpha = x - y \in I$, and
+  we can write $\alpha = \sum m_j \alpha_j$ where
+  $|m_j| \le m$ for every $j$. Then
+  \[
+    |N(\alpha)| = \prod_{i = 1}^n |\sigma_i(\alpha)|
+    \le \prod_{i = 1}^n \sum_{j = 1}^n |m_j| |\sigma_i(\alpha_j)|
+    \le m^n \prod_{i = 1}^n \sum_{j = 1}^n |\sigma_i(\alpha_j)|
+    \le N(I) \cdot M,
+  \]
+  where $M = \prod_{i = 1}^n \sum_{j = 1}^n |\sigma_i(\alpha_j)|$
+  is independent of $I$ (but depends on the
+  choice of integral basis).
+\end{proof}
+
+\begin{corollary}
+  Every ideal class in $\OO_K$ contains a nonzero
+  ideal of norm at most $M$.
+\end{corollary}
+
+\begin{proof}
+  Let $C \in \Cl(\OO_K)$, and let $I$ be an ideal
+  with $[I] = C^{-1}$. By the above theorem,
+  choose $\alpha \in I$ such that $|N(\alpha)| \le M \cdot N(I)$.
+  Now $(\alpha) = IJ$ for some $J$, so
+  $[J] = [I]^{-1} = C$, and
+  \[
+    N(J) = \frac{|N(\alpha)|}{N(I)} \le M,
+  \]
+  which proves the desired result.
+\end{proof}
+
+\begin{lemma}
+  The set of ideals with norm bounded by $M$
+  is finite, i.e. $|\{I : N(I) \le M\}| < \infty$.
+\end{lemma}
+
+\begin{proof}
+  One way to proceed is to write $I = \prod \p_i^{e_i}$,
+  and then use $N(\p_i) = p^{f_i}$.
+
+  Another way to prove this is to note that
+  if $|N(I)| = m$, then $mx = 0$ in
+  $\OO_K / I$ for every $x \in \OO_K$. So
+  $I \supseteq m \OO_K$. But
+  $\OO_K / m \OO_K$ is finite, so there are only
+  finitely many ideals containing $m \OO_K$.
+\end{proof}
+
+\begin{corollary}
+  The ideal class group of a number field $\Cl(\OO_K)$ is finite.
+\end{corollary}
+
+\begin{proof}
+  Each ideal class can be represented by an ideal of
+  norm bounded by $M$, and there are only
+  finitely many such ideals. Thus there can only be
+  finitely many ideal classes.
+\end{proof}
+
+\section{Computation of Integral Bases}
+
+\begin{remark}
+  Recall that if $[K : \Q] = n$ and
+  $\alpha_1, \dots, \alpha_n \in K$ are a basis for
+  $K / \Q$, then
+  $\Delta(\alpha_1, \dots, \alpha_n) \in \Q^\times$.
+  Moreover, if $\alpha_1, \dots, \alpha_n \in \OO_K$,
+  then $\Delta(\alpha_1, \dots, \alpha_n) \in \Z$.
+  Also, if $\alpha_1, \dots, \alpha_n$ are a $\Z$-basis
+  for $\OO_K$, then
+  \[
+    \Delta(\alpha_1, \dots, \alpha_n) = \Delta_K = \Delta(\OO_K)
+  \]
+  is independent of the choice of $\Z$-basis. So
+  $\Delta_K$ is an invariant of $K$ (or of $\OO_K$),
+  called its \emph{discriminant}.
+\end{remark}
+
+\begin{prop}
+  Let $\alpha_1, \dots, \alpha_n \in \OO_K$ be a basis
+  for $K / \Q$, and let
+  $d = \Delta(\alpha_1, \dots, \alpha_n)$. Then
+  \[
+    \Z[\alpha_1, \dots, \alpha_n]
+    \subseteq \OO_K \subseteq
+    \Z\left[\frac{\alpha_1}{d}, \dots, \frac{\alpha_n}{d}\right].
+  \]
+\end{prop}
+
+\begin{proof}
+  Suppose $\alpha \in \OO_K$, so we can write
+  (since $\alpha_1, \dots, \alpha_n$ is a basis for
+  $K / \Q$)
+  \[
+    \alpha = c_1 \alpha_1 + \dots + c_n \alpha_n,
+    \quad c_i \in \Q.
+  \]
+  We want to show that $d c_j \in \Z$. Note that
+  $\sigma_i(\alpha) = c_1 \sigma_i(\alpha_1) + \dots + c_n \sigma_i(\alpha_n)$, so
+  \[
+    \begin{bmatrix}
+      \sigma_1(\alpha) \\ \vdots \\ \sigma_1(\alpha)
+    \end{bmatrix}
+    = T
+    \begin{bmatrix}
+      c_1 \\ \vdots \\ c_n
+    \end{bmatrix},
+  \]
+  where $T = (\sigma_i(\alpha_j))$. Multiplying
+  both sides by $\adj T$, we get
+  (note that $T \adj T = \delta I$, where $\delta = \det T$)
+  \[
+    \begin{bmatrix}
+      \beta_1 \\ \vdots \\ \beta_n
+    \end{bmatrix}
+    = \delta
+    \begin{bmatrix}
+      c_1 \\ \vdots \\ c_n
+    \end{bmatrix},
+  \]
+  where the $\beta_i \in \OO_K$. Let
+  $m_j = \delta \beta_j$, and noting that $\delta^2 = d$
+  by definition, we have
+  \[
+    \begin{bmatrix}
+      m_1 \\ \vdots \\ m_n
+    \end{bmatrix} = d
+    \begin{bmatrix}
+      c_1 \\ \vdots \\ c_n
+    \end{bmatrix}.
+  \]
+  This tells us that $d c_i \in \OO_K$ for every $i$.
+  But the $c_i$ were also rational, so in fact
+  $d c_i \in \OO_K \cap \Q = \Z$.
+\end{proof}
+
+\begin{lemma}
+  Let $\alpha_1, \dots, \alpha_n \in \OO_K$ be a basis
+  for $K / \Q$. Let
+  \[
+    M = \text{$\Z$-module spanned by $\alpha_1, \dots, \alpha_n$}.
+  \]
+  Then $\Delta_{K / \Q}(\alpha_1, \dots, \alpha_n) = \Delta_K \cdot |\OO_K / M|^2$.
+\end{lemma}
+
+\begin{proof}
+  Check this as an exercise; it is a calculation
+  involving determinants.
+\end{proof}
+
+\begin{corollary}
+  Let $\alpha_1, \dots, \alpha_n \in \OO_K$ be a
+  basis for $K / \Q$. If
+  $\Delta(\alpha_1, \dots, \alpha_n)$ is
+  square-free, then the $\alpha_1, \dots, \alpha_n$ form
+  an integral basis.
+\end{corollary}
+
+\begin{proof}
+  If the $\alpha_i$ do not form a basis, then
+  the $\Delta$ will contain a
+  $|\OO_K / M|^2$ factor by the lemma.
+\end{proof}
+
+\begin{example}
+  Let $K = \Q(\sqrt{d})$, where $d$ is square-free.
+  Then we can see that
+  \[
+    \Delta_{K / \Q}(1, \sqrt{d}) =
+    \det
+    \begin{bmatrix}
+      1 & \sqrt{d} \\ 1 & -\sqrt{d}
+    \end{bmatrix}^2
+    = 4d.
+  \]
+  Thus $4d = \Delta_{K / \Q} \cdot |\OO_K / M|^2$, where
+  $M = \Z \cdot 1 + \Z \cdot \sqrt{d}$. Since $d$ is
+  square-free, $[\OO_K : M] = 1$ or $2$. Now if
+  we have $|\OO_K / (\Z + \Z \sqrt{d})| = 2$, then at
+  least one of
+  \[
+    \frac{1}{2}, \quad \frac{\sqrt{d}}{2}, \quad
+    \frac{1 + \sqrt{d}}{2}, \quad \frac{1 - \sqrt{d}}{2}
+  \]
+  must be an algebraic integer. The first two are
+  obviously not algebraic integers, and the third is
+  an algebraic integer if and only if the fourth one
+  is (since they are conjugates). So the index is $2$
+  if and only if $(1 + \sqrt{d}) / 2 \in \OO_K$.
+  By looking at the coefficients of the minimal
+  polynomial
+  \[
+    x^2 - x + \frac{1 - d}{4},
+  \]
+  this happens if and only if $(1 - d) / 4 \in \Z$,
+  which is equivalent to $d \equiv 1 \Pmod{4}$.
+\end{example}
