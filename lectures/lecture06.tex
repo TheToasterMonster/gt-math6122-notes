@@ -203,15 +203,16 @@
   $p | a - \sqrt{d}$ also, so $p | 2a$. This is a
   contradiction. Thus $N(\p_i) = p$, which implies
   that $\p_i$ is a prime ideal (otherwise the norm
-  would factor).
+  would also factor). It only remains to show that
+  $\p_1 \ne \p_2$, which is left as an exercise.
 
   $(b)$ It is enough to show that there is no prime
   ideal $\p \subseteq \OO_K$ such that $N(\p) = p$.
-  Equivalently, if $\p$ is a prime ideal, then
-  $\OO_K / \p \ncong \Z / p\Z$.  If not, then $x^2 - d$
-  has a root in $\OO_K / \p \cong \Z / p\Z$, so that
-  $d$ is a square modulo $p$, which is a contradiction
-  with the assumption that $(\frac{d}{p}) = -1$.
+  Equivalently, it suffices to show that if $\p$ is a
+  prime ideal, then
+  $\OO_K / \p \ncong \Z / p\Z$.  Note that $x^2 - d$
+  has a root in $\OO_K$ and thus in $\OO_K / \p$, so $\OO_K / \p \cong \Z / p\Z$ would imply that
+  $d$ is a square modulo $p$, which contradicts $(\frac{d}{p}) = -1$.
 \end{proof}
 
 \begin{exercise}
@@ -229,7 +230,7 @@
   \]
   where $g_i(x) \in \Z[x]$, $\overline{g_i(x)}$ is
   irreducible over $\mathbb{F}_p$, and the
-  $g_i$ are pairwise distinct. Then
+  $\overline{g_i}$ are pairwise distinct.\footnote{Here $\overline{g(x)}$ denotes the reduction of $g(x)$ modulo $p$.} Then
   \[
     p \OO_K = \p_1^{e_1} \dots \p_r^{e_r},
   \]
@@ -241,7 +242,7 @@
 \begin{remark}
   Note that this generalizes the quadratic case:
   $x^2 - d \Mod p$ factors if and only if $d$ is a
-  square modulo $p$, where
+  square modulo $p$, and
   the ideals are $(p, g_i(\theta))$ for
   $g_1 = x - a$ and $g_2 = x + a$.
 \end{remark}
