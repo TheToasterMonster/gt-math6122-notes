@@ -1,0 +1,260 @@
+\chapter{Jan.~28 --- Kummer's Theorem}
+
+\section{Kummer's Theorem}
+
+\begin{lemma}
+  Let $\theta \in \OO_K$ and assume
+  $p \nmid [\OO_K : \Z[\theta]]$. Then
+  \[
+    \OO_K / p \OO_K \cong \Z[\theta] / p \Z[\theta].
+  \]
+\end{lemma}
+
+\begin{proof}
+  Consider the map $\psi: \Z[\theta] \hookrightarrow \OO_K \twoheadrightarrow \OO_K / p \OO_K$.
+  Note that we have $p\Z[\theta] \subseteq \ker \psi$,
+  so $\psi$ induces a map $\overline{\psi}: \Z[\theta] / p \Z[\theta] \to \OO_K / p \OO_K$
+  on the quotient. We will show that
+  $\overline{\psi}$ is an isomorphism, by checking:
+  \begin{enumerate}
+    \item $\ker \psi = p \Z[\theta]$.
+
+  Let $\alpha \in \ker \psi$.
+  Then $\alpha \in \Z[\theta] \cap p \OO_K$, so
+  $\alpha = p \beta$ for some $\beta \in \OO_K$.
+  Then $\overline{\beta} \in \OO_K / \Z[\theta]$
+  has order dividing $p$ since $p \overline{\beta} = \overline{\alpha} = 0$.
+  Therefore $\overline{\beta} = 0$, so
+  $\beta \in \Z[\theta]$. This gives $\alpha \in p\Z[\theta]$, so
+  $\ker \psi = p \Z[\theta]$.
+
+  \item $\psi$ is surjective.
+
+  Note that if $(|G|, p) = 1$ where $G$ is a
+  finite abelian group, then $[p] : G \to G$ is injective
+  implies that it is bijective. So let $\gamma \in \OO_K$,
+  so that $\overline{\gamma} \in \OO_K / \Z[\theta]$ is
+  a multiple of $p$, i.e. $\overline{\gamma} = p \overline{\gamma'}$ for some $\gamma' \in \OO_K$.
+  Then $\gamma - p \gamma' \in \Z[\theta]$,
+  so $\psi(\gamma - p\gamma') = \gamma$.
+  Since $\gamma - p \gamma' \in \Z[\theta]$, this
+  shows that $\psi$ is surjective.
+  \end{enumerate}
+
+  Thus $\overline{\psi}$ is bijective, so it
+  is an isomorphism $\Z[\theta] / p \Z[\theta] \to \OO_K / p \OO_K$.
+\end{proof}
+
+\begin{theorem}[Kummer]
+  Let $K = \Q(\theta)$ and $p$ be a prime.
+  Assume that $p \nmid [\OO_K : \Z[\theta]]$, and let
+  $g(x)$ be the minimal polynomial of $\theta$.
+  Write (let $\overline{g}$ denote the reduction of
+  $g$ modulo $p$)
+  \[
+    \overline{g} = \prod_{i = 1}^r (\overline{g_i})^{e_i},
+  \]
+  where $g_i(x) \in \Z[x]$ and $\overline{g_i} \in \F_p[x]$
+  is irreducible and monic, with
+  $g_1, \dots, g_r$ distinct. Then
+  \[
+    p \OO_K = \p_1^{e_1} \dots \p_r^{e_r},
+  \]
+  where $N(\p_i) = p^{f_i}$ for $f_i = \deg g_i$, and
+  $\p_i = (p, g_i(\theta))$ are distinct prime ideals.
+\end{theorem}
+
+\begin{proof}
+  Let $\p_i = (p, g_i(\theta))$ as in the statement.
+  Then
+  \[
+    \OO_K / \p_i = \OO_K / (p, g_i(\theta))
+    \cong \Z[\theta] / (p, g_i(\theta))
+    \cong \Z[x] / (p, g_i(x))
+  \]
+  The first isomorphism follows from the lemma, which
+  holds only when $p \nmid [\OO_K : \Z[\theta]]$.
+  Note that
+  \[
+    \F_p[\theta] / (\overline{g_i}(\theta)) \cong \Z[\theta] / (p, g_i(\theta))
+    \cong \Z[x] / (p, g_i(x))
+    \cong \F_p[x] / (\overline{g_i}(x)).
+  \]
+  Since $\overline{g_i}$ is irreducible of
+  degree $f_i$, the quotient is a field of size
+  $p^{f_i}$. This proves that $N(\p_i) = p^{f_i}$
+  and also that $\p_i$ is a maximal ideal (so in
+  particular, a prime ideal).
+  Now if $n = [K : \Q]$, then
+  \[
+    \sum_{i = 1}^r e_i f_i = \deg \overline{g} = n.
+  \]
+  Check as an exercise that the $\p_i$ are distinct
+  (use the fact that $\overline{g_i}$ and
+  $\overline{g_j}$ are relatively prime, so that
+  $(\overline{g_i}, \overline{g_j}) = 1$ in $\F_p[x]$).
+  Now we will show that $p \OO_K \cong \p_1^{e_1} \dots \p_r^{e_r}$.
+  First observe that
+  \[
+    \p_1^{e_1} \dots \p_r^{e_r} = (p, g_1(\theta))^{e_1} \dots (p, g_r(\theta))^{e_r}
+    \subseteq (p, g_1(\theta)^{e_1} \dots g_r(\theta)^{e_r}) = (p).
+  \]
+  (Check the above inclusion as an exercise. Note that
+  for $\overline{g}(x) = \overline{g_1}(x) \overline{g_2}(x)$, we can find $h$ such that $g_1 + g_2 = 1 + ph$, so
+  that $(p, g_1(\theta))(p, g_2(\theta)) = (p^2, p g_1(\theta), p g_2(\theta), g_1(\theta) g_2(\theta)) = (p)$ as
+  $p(1 + ph) = p + p^2 h$ and $g(\theta) = 0$).
+  Thus $p \OO_K | \p_1^{e_1} \dots \p_r^{e_r}$, which
+  implies that
+  \[
+    p \OO_K = \p_1^{e_1'} \dots \p_r^{e_r'}
+  \]
+  with $0 \le e_i' \le e_i$. But $n = \sum e_i' f_i = \sum e_i f_i$, so $e_i' = e_i$ for all $i$,
+  which completes the proof.
+\end{proof}
+
+\section{Ramification}
+
+\begin{definition}
+  Let $\p_i, e_i, f_i, r$ be defined as in the statement
+  of the previous
+  theorem. We say that the $\p_i$ are prime ideals
+  \emph{lying over} $p$, and $e_i$ is called
+  the \emph{ramification index} of $\p_i$ over $p$.
+
+  If $e_i = 1$, then we say that $\p_i$ is
+  \emph{unramified} over $p$. Otherwise if
+  $e_i > 1$, we say that $p$ is \emph{ramified}.
+  Finally if $e_i = n$, then we say that $\p$ is
+  \emph{totally ramified}, i.e. $p\OO_K = \p^n$.
+
+  If $p \OO_K$ is prime, then we say that $p$ is
+  \emph{inert}. If $r = n$, i.e. if
+  $p \OO_K = \p_1 \dots \p_n$ for distinct $\p_i$,
+  then we say that $p$ \emph{splits completely} in
+  $\OO_K$ (or in $K$). The $f_i$
+  is called the \emph{residue degree}.
+\end{definition}
+
+\begin{corollary}
+  If the minimal polynomial of $\theta \in \OO_K$ is
+  Eisenstein at $p$ and $K = \Q(\theta)$, then 
+  $p$ is totally ramified in $\OO_K$.
+\end{corollary}
+
+\begin{proof}
+  We have previously shown that
+  $p \nmid [\OO_K : \Z[\theta]]$, so Kummer's theorem
+  applies. Let $g(x)$ be the minimal polynomial of
+  $\theta$. Then $\overline{g(x)} = x^n$ in
+  $\F_p[x]$ since $g(x)$ is Eisenstein at $p$. Thus
+  by Kummer's theorem, we have
+  $p \OO_K = \p^n$ where $\p = (p, \theta)$, i.e.
+  $p$ is totally ramified.
+\end{proof}
+
+\begin{corollary}
+  Only finitely many primes ramify in any number
+  field $K / \Q$. More specifically, if
+  $p \nmid [\OO_K : \Z[\theta]]$ for some $\theta \in \OO_K$, then
+  $p$ ramifies in $K$ if and only if
+  $p | \Delta_K$.
+\end{corollary}
+
+\begin{proof}
+  Note that $p$ ramifies in $\OO_K$ if and only if
+  $\overline{g}$ has a multiple root in $\F_p[x]$,
+  if and only if $\Delta(\overline{g}) = 0$ in $\F_p[x]$.
+  Now recall that we have
+  \[
+    \Delta_K = \frac{\Delta_{\Z[\theta]}}{[\OO_K : \Z[\theta]]^2},
+  \]
+  so $p | \Delta_K$ if and only if
+  $p | \Delta_{\Z[\theta]}$ (since
+  $p \nmid [\OO_K : \Z[\theta]]$ by hypothesis).
+  So we look at $\Delta_{\Z[\theta]}$ instead.
+  Taking $g$ to be the minimal polynomial of $\theta$,
+  this happens if and only if $p | \Delta(g) \equiv \Delta_K$.
+\end{proof}
+
+\begin{remark}
+  The above corollary holds in greater generality
+  (without the hypothesis that $p \nmid [\OO_K : \Z[\theta]]$),
+  but the proof requires some more advanced tools.
+\end{remark}
+
+\section{More Computations of Rings of Integers}
+
+\begin{remark}
+  Recall that $\OO_{\Q(\sqrt[3]{2})} = \Z[\sqrt[3]{2}]$.
+  We will now generalize this result.
+\end{remark}
+
+\begin{theorem}
+  Let $p$ be a prime and $a \ne 0, \pm 1$ be a
+  square-free integer such that $(p, a) = 1$.
+  Let $\theta = \sqrt[p]{a}$. Letting
+  $K = \Q(\theta) = \Q[x] / (x^p - a)$, we have
+  $\OO_K = \Z[\theta]$
+  if and only if $a^{p - 1} \not\equiv 1 \Pmod{p^2}$.
+\end{theorem}
+
+\begin{proof}
+  $(\Leftarrow)$
+  Let $K = \Q(\theta)$ and assume that
+  $a^p \not\equiv a \Pmod{p^2}$. The discriminant
+  of $x^p - a$ is
+  \[
+    \Delta(\theta) = \pm p^p a^{p - 1}
+    = \Delta_K \cdot [\OO_K : \Z[\theta]]^2.
+  \]
+  Note that $x^p - a$ is Eisenstein at every prime
+  dividing $a$. Now observe that
+  \[
+    (x + a)^p - a
+  \]
+  is Eisenstein at $p$ (since $p^2 \nmid (a^p - a)$
+  by hypothesis), and $\Z[\theta] = \Z[\theta - a]$,
+  so $p \nmid [\OO_K : \Z[\theta]]$.
+
+  $(\Rightarrow)$ Suppose that $\OO_K \ne \Z[\theta]$.
+  Kummer's theorem implies that $p \OO_K = \p^p$ where
+  $\p = (p, \theta - a)$. Note that
+  \[
+    x^p - a \equiv (x - a)^p \pmod{p}
+  \]
+  by Fermat's little theorem, and that $N(\p) = p$.
+  Now $\theta - a \in \p$ (and $\theta - a \notin \p^2$), so
+  \[
+    p \in \p^2 = (p^2, p(\theta - a), (\theta - a)^2)
+  \]
+  since $\p^2 | (p) = \p^p$ and $p \ge 2$, so
+  $(p) \subseteq \p^2$. Thus we have
+  $(\theta - a) = \p \mathfrak{a}$
+  for some ideal $\mathfrak{a}$ which is relatively
+  prime to $\p$. Now
+  $(p, N(\mathfrak{a})) = 1$ since
+  $N(\mathfrak{a}) = \prod q_i^{e_i f_i}$ where
+  $\mathfrak{a} = \q_1^{e_1} \dots \q_r^{e_r}$ for
+  $\q_i \ne \p$, so $q_i \ne p$. Then
+  \[
+    a^p - a = |N(\theta - a)| = N(\p \mathfrak{a})
+    = p N(\mathfrak{a})
+  \]
+  where $N(\mathfrak{a})$ is relative prime to $p$,
+  so $p^2$ does not divide $a^p - a$.
+\end{proof}
+
+\begin{remark}
+  Next class, we will show that $\Q(\sqrt{-5})$
+  has class number $2$, which we will use to solve
+  the Diophantine equation $y^2 = x^3 - 5$ in $\Z$
+  via arithemtic in $\Z[\sqrt{-5}]$, by writing
+  \[
+    x^3 = y^2 + 5 = (y + \sqrt{-5})(y - \sqrt{-5}).
+  \]
+  We will fix our previous issue by arguing
+  that if a product of ideals is
+  a cube, then each ideal is a cube when the class
+  number is not a multiple of $3$. This is
+  similar to Kummer's ideas for Fermat's last theorem.
+\end{remark}
