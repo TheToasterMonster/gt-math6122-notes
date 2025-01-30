@@ -1,0 +1,288 @@
+\chapter{Jan.~30 --- Computing Ideal Class Groups and Applications}
+
+\section{Computing Ideal Class Groups}
+
+\begin{example}
+  Let $K = \Q(\sqrt{2})$. We know that
+  $\OO_K = \Z[\sqrt{2}]$. Recall that every ideal
+  class in $\Cl(\OO_K)$ contains an ideal of
+  norm $\le M$, where (if
+  $\OO_K = \Z \alpha_1 \oplus \dots \oplus \Z \alpha_n$
+  as $\Z$-modules)
+  \[
+    M = \prod_{i = 1}^n \sum_{j = 1}^n |\sigma_{i}(\alpha_j)|.
+  \]
+  Thus in this case, we have
+  $M = (1 + \sqrt{2})^2 \approx 5.8 < 6$. Thus
+  every ideal class contains an ideal of norm
+  $\le 5$. We will want to factor the
+  ideals $(2), (3), (5)$ in $\OO_K$ via Kummer's
+  theorem. We need to factor
+  \[
+    x^2 - 2 \Pmod{p}, \quad p = 2, 3, 5.
+  \]
+  Mod $2$, we have $x^2 - 2 \equiv x^2 \Pmod{2}$,
+  so $(2) = \p_2^2$. Now $x^2 - 2$ is irreducible mod
+  both $3$ and $5$ since $2$ is not a quadratic residue
+  mod $3$ or $5$. Thus $(3) = \p_3$ and
+  $(5) = \p_5$ with $f_3 = f_5 = 2$. Thus
+  \[
+    N(\p_2) = 2, \quad N(\p_3) = 9, \quad N(\p_5) = 25.
+  \]
+  So any nonzero ideal in $\OO_K$ is equivalent to
+  $\p_2$ or $(1)$ (since $\p_2^2 = (2)$ is principal).
+  Thus
+  \[
+    \Cl(\OO_K) = \{(1), [\p_2]\},
+  \]
+  which is isomorphic to either
+  $\{1\}$ if $\p_2$ is principal or
+  $\Z / 2\Z$ if $\p_2$ is not principal. But
+  $\p_2 = (\sqrt{2})$, so
+  \[\Cl(\Z[\sqrt{2}]) = \{1\}.\]
+  This also implies that $\Z[\sqrt{2}]$ is a PID,
+  and hence a UFD.
+\end{example}
+
+\begin{example}
+  Let $K = \Q(\sqrt{-5})$, where we have
+  seen that $\OO_K = \Z[\sqrt{-5}]$. By a similar
+  reasoning as above, we have
+  $M = (1 + \sqrt{5})^2 < 11$. So we want to find
+  all nonzero prime ideals of norm $\le 10$. We consider
+  $x^2 + 5 \Pmod{p}$ for $p = 2, 3, 5, 7$, where
+  we can factor
+  \begin{align*}
+    p = 2 & : x^2 + 5 \equiv x^2 + 1 \equiv (x + 1)^2 \Pmod{2}, \\
+    p = 3 & : x^2 + 5 \equiv x^2 - 1 \equiv (x - 1)(x + 1) \Pmod{3}, \\
+    p = 5 & : x^2 + 5 \equiv x^2 \Pmod{5}, \\
+    p = 7 & : x^2 + 5 \equiv (x + 3)(x + 4) \Pmod{7}.
+  \end{align*}
+  Thus we have
+  $(2) = \p_2^2$, $(3) = \p_3 \p_3'$, $(5) = \p_5^2 = (\sqrt{-5})^2 = (\sqrt{-5})$,
+  and $(7) = \p_7 \p_7'$. Since $(5)$ is principal,
+  we only need to consider $(2), (3), (7)$, which
+  each have norm $\le 10$. Thus
+  \[
+    \Cl(\OO_K) = \langle [\p_2], [\p_3], [\p_7] \rangle,
+  \]
+  where we note that $\p_3'$ and $\p_7'$
+  are inverses to $\p_3$ and $\p_7$, respectively,
+  since their product is principal, so we do not
+  need to include them as generators.
+  Note that $\OO_K^\times = \{\pm 1\}$, so we do
+  not need to worry much about units. If
+  any of the $\p_p$ is principal, then it is generated
+  by an element $\alpha = a + b\sqrt{-5}$ with
+  \[
+    p = N(\alpha) = a^2 + 5b^2.
+  \]
+  This cannot happen for $p = 2, 3, 7$, so
+  $\p_2, \p_3, \p_7$ are not principal. Now
+  $N(1 + \sqrt{-5}) = 6$, so
+  \[
+    (1 + \sqrt{-5}) = \p_2 \p_3 \text{ or } \p_2 \p_3'.
+  \]
+  This means that one of $\p_3$ or $\p_3'$ is an
+  inverse to $\p_2$ in $\Cl(\OO_K)$, so in fact
+  \[
+    \Cl(\OO_K) = \langle [\p_2], [\p_7] \rangle.
+  \]
+  Also note that $[\p_2]^2 = 1$ since $\p_2^2 = (2)$
+  is principal. We can also see that
+  $N(3 + \sqrt{-5}) = 14$, so
+  \[
+    (3 + \sqrt{-5}) = \p_2 \p_7 \text{ or } \p_2 \p_7'.
+  \]
+  Thus we also do not need $\p_7$ as a generator, so
+  $\Cl(\OO_K) = \langle [\p_2] \rangle$. Since
+  $[\p_2]^2 = 1$ and $\p_2$ is not principal,
+  \[
+    \Cl(\Z[\sqrt{-5}]) = \Z / 2\Z.
+  \]
+\end{example}
+
+\section{Applications of Class Group Computations}
+
+\begin{theorem}
+  The Diophantine equation $y^2 = x^3 - 5$ has
+  no integer solutions.
+\end{theorem}
+
+\begin{proof}
+  Assume that we have a solution $x, y$ to the
+  above equation. Writing $x^3 = y^2 + 5$, we
+  can factor
+  \[
+    x^3 = (y + \sqrt{-5})(y - \sqrt{-5}).
+  \]
+  in $\Z[\sqrt{-5}]$. By looking at the equation
+  mod $4$, we see that $x$ must be odd.
+  Also, $(x, y) = 1$ since otherwise $(x, y) = 5$
+  and one can derive a contradiction with the
+  equation $y^2 = x^3 - 5$.
+
+  Now we claim that
+  $(y + \sqrt{-5})$ and $(y - \sqrt{-5})$ are
+  coprime (equivalent to comaximal in a Dedekind
+  domain) ideals. To see this, suppose otherwise
+  that $\p$ divides both. Then $\p | (x^3) = (x)^3$,
+  so we must have $\p | (x)$ by unique factorization.
+  Also, $\p | (2y)$. But $\p | (x)$ means that
+  $N(\p)$ is odd, so $\p \nmid (2)$. Thus
+  $\p | (y)$. Then $(x, y) = 1$ implies that
+  $\p | (1)$, a contradiction. Thus
+  $(y + \sqrt{-5})$ and $(y - \sqrt{-5})$ are
+  coprime.
+
+  Thus we may write
+  \[
+    (x)^3 = (y + \sqrt{-5})(y - \sqrt{-5}).
+  \]
+  Since the above ideals are relatively prime,
+  unique factorization implies that each of
+  $(y \pm \sqrt{-5})$ is the cube of some ideal. 
+  Write $(y + \sqrt{-5}) = \mathfrak{a}^3$ for some ideal
+  $\mathfrak{a}$. Then $[\mathfrak{a}]^3 = 1$
+  in $\Cl(\Z[\sqrt{-5}])$, so
+  $\Cl(\Z[\sqrt{-5}]) = \Z / 2\Z$ implies that
+  $[\mathfrak{a}] = 1$. Thus $\mathfrak{a} = (\alpha)$
+  for some $\alpha = a + b \sqrt{-5}$, so
+  \[
+    (a + b \sqrt{-5})^3
+    = \alpha^3 = \pm (y + \sqrt{-5})
+  \]
+  as elements. Finish the proof and derive a
+  contradiction from here as an exercise.
+\end{proof}
+
+\section{Cyclotomic Fields}
+
+\begin{theorem}
+  Let $m = p^k$ for $k \ge 1$. Then the ring of
+  integers of $\Q(\zeta_m)$ is $\Z[\zeta_m]$.
+\end{theorem}
+
+\begin{remark}
+  Recall that the minimal polynomial for
+  $\zeta_m$ over $\Q$ is
+  \[
+    \Phi_m(x) = \frac{x^{p^k} - 1}{x^{p^{k - 1}} - 1}
+    = x^{(p - 1)p^{k - 1}} + x^{(p - 2)p^{k - 1}} + \dots + x^{p^{k - 1}} + 1.
+  \]
+  This polynomial is irreducible
+  over $\Z$ (e.g. $\Phi_m(x + 1)$ is Eisenstein at $p$),
+  with
+  \[
+    \deg \Phi_m(x) = \phi(m) = (p - 1)p^{k - 1}.
+  \]
+  Note that $\Q(\zeta_m) / \Q$ is Galois
+  with Galois group isomorphic to $(\Z / m\Z)^\times$.
+\end{remark}
+
+\begin{lemma}
+  For any $m \ge 1$, the
+  discriminant $\Delta(\zeta_m) = \disc(\Phi_m) = \Delta(1, \zeta_m, \zeta_m^2, \dots)$
+  divides $m^{\phi(m)}$.
+\end{lemma}
+
+\begin{proof}
+  Since $\Phi_m | (x^m - 1)$, we can write
+  $x^m - 1 = \Phi_m(x) g(x)$ for a polynomial $g$.
+  Taking
+  a derivative,
+  \[
+    mx^{m - 1} = \Phi_m'(x) g(x) + \Phi_m(x) g'(x).
+  \]
+  Plugging in $x = \zeta_m^j$ for $(j, m) = 1$ (these
+  are the conjugates of $\zeta_m$),
+  \[
+    m\zeta_m^{j(m - 1)} = \Phi_m'(\zeta_m^j) g(\zeta_m^j)
+  \]
+  since $\Phi_m(\zeta_m^j) = 0$. Taking the norm in
+  $\Q(\zeta_m) / \Q$, we have
+  \[
+    m^{\phi(m)}
+    = N(m \zeta_m^{m - 1})
+    = N(\Phi_m'(\zeta_m^j)) N(g(\zeta_m^j))
+    = \pm \Delta(\zeta_m) N(g(\zeta_m^j)),
+  \]
+  where $N(g(\zeta_m^j)) \in \Z$
+  since an integer polynomial evaluated at an algebraic
+  integer is an algebraic integer, and the norm of
+  an algebraic integer is an integer. Also,
+  $g(\zeta_m^j) \ne 0$, so $\Delta(\zeta_m) | m^{\phi(m)}$.
+\end{proof}
+
+\begin{remark}
+  Using field/Galois theory, we will show
+  that $\OO_{\Q(\zeta_m)} = \Z[\zeta_m]$
+  for all $m \ge 1$ next time.
+\end{remark}
+
+\section{First Case of Fermat's Last Theorem}
+
+\begin{remark}
+  The goal for now is to show that if
+  $p$ is an odd prime and $u \in \Z[\zeta_p]^\times$,
+  then
+  \[
+    \frac{u}{\overline{u}} = \zeta_p^k, \quad
+    \text{for some integer $k$}.
+  \]
+\end{remark}
+
+\begin{lemma}
+  If $m$ is a positive integer, then the roots
+  of unity in $\Q(\zeta_m)$ are
+  \[
+    \begin{cases}
+      \text{primitive $m$th roots of $1$} & \text{if $m$ is even}, \\
+      \text{primitive $(2m)$-th roots of $1$} & \text{if $m$ is odd}.
+    \end{cases}
+  \]
+\end{lemma}
+
+\begin{proof}
+  If $m$ is odd, then $\Q(\zeta_m) = \Q(\zeta_{2m})$.
+  So assume without loss of generality that $m$ is even.
+  Suppose $\zeta \in \Q(\zeta_m)$
+  and $\zeta^k = 1$ for some $k$. We want to show
+  that $k | m$. Assume without loss of generality that
+  $\zeta = e^{2\pi i / k}$. Since
+  $\zeta_k, \zeta_m \in \Q(\zeta_{m})$, one can check
+  as an exercise that
+  $\zeta_r \in \Q(\zeta_{m})$ where $r = \lcm(k, m)$. Then
+  $\Q(\zeta_r) \subseteq \Q(\zeta_m)$, so taking
+  degrees implies that $\phi(r) \le \phi(m)$. Also
+  $m | r$, which one can check
+  implies that $\phi(m) \le \phi(r)$.
+  This means that $\phi(m) = \phi(r)$, so
+  $m = r$ and thus $k | m$.
+\end{proof}
+
+\begin{lemma}
+  If $\alpha \in \C$ is a nonzero algebraic integer,
+  all of whose complex conjugates have absolute value
+  $1$, then $\alpha$ is a root of unity.
+\end{lemma}
+
+\begin{proof}
+  Consider the minimal polynomial $f$ of $\alpha$. Since
+  each of the conjugates of $\alpha$ have absolute
+  value $1$, the coefficients of $f$ are bounded by
+  some constants in terms of binomial coefficients.
+  Thus there are only finitely many choices for
+  possible minimal polynomials of $\alpha$.
+  But the same bound applies to all powers of $\alpha$.
+  Since the finitely many possible minimal polynomials
+  collectively have only finitely many roots,
+  the pigeonhole principle implies that $\alpha^j = \alpha^k$
+  for some $j \ne k$. This means $\alpha$ is
+  a root of unity.
+\end{proof}
+
+\begin{remark}
+  The algebraic integer assumption is necessary, e.g.
+  consider $(3 / 5) + (4 / 5) i$.
+\end{remark}
