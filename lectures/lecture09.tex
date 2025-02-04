@@ -1,0 +1,287 @@
+\chapter{Feb.~4 --- Fermat's Last Theorem}
+
+\section{First Case of Fermat's Last Theorem, Continued}
+
+\begin{theorem}[Kronecker]
+  If $\alpha \in \C$ is a nonzero algebraic integer,
+  all of whose complex conjugates have absolute value
+  $1$, then $\alpha$ is a root of unity.
+\end{theorem}
+
+\begin{proof}
+  Let $f(x) \in \Z[x]$ be the minimal polynomial
+  of $\alpha$ (since $\alpha$ is an algebraic integer,
+  $f$ is monic):
+  \[
+    f(x) = x^n + a_{1} x^{n - 1} + \dots + a_{n - 1} x + a_0.
+  \]
+  Then there exists $C > 0$ such that $|a_i| \le C$
+  for all $i$, where $C$ depends only on $n$ (this is
+  because each $|a_i| = |\sigma_i(\alpha_1, \dots, \alpha_n)| \le 2^n = C$ by the triangle inequality, where $\sigma_i$ is the $i$th elementary
+  symmetric polynomial).  Since the
+  $a_i$ are integers, there are only finitely possible
+  choices for $f$. Then since each $f$ only has finitely
+  many roots, there are only finitely many possible
+  choices for $\alpha$.
+
+  The same argument applies
+  to $\alpha, \alpha^2, \alpha^3, \dots$, so we see that
+  $\{\alpha, \alpha^2, \alpha^3, \dots\}$ is a finite
+  set. Thus there exist $i < j$ such that
+  $\alpha^i = \alpha^j$, which implies
+  that $\alpha^{j - i} = 1$, i.e. $\alpha$ is a
+  root of unity.
+\end{proof}
+
+\begin{remark}
+  The algebraic integer assumption is necessary, e.g.
+  consider $(3 / 5) + (4 / 5) i$.
+\end{remark}
+
+\begin{lemma}
+  If $\alpha \in \Z[\zeta_p]$, then $\alpha^p \equiv a \Pmod{p}$
+  for some $a \in \Z$.
+\end{lemma}
+
+\begin{proof}
+  Let $\zeta = \zeta_p$ and write
+  \[
+    \alpha = a_0 + a_1 \zeta + \dots + a_{p - 2} \zeta^{p - 2}
+  \]
+  with $a_i \in \Z$. By the binomial theorem, we have
+  (all the cross-terms are divisible by $p$)
+  \[
+    \alpha^p \equiv a_0^p + (a_1 \zeta)^p + \dots + (a_{p - 2} \zeta^{p - 2})^p
+    \equiv a_0 + a_1 + \dots + a_{p - 2} \Pmod{p},
+  \]
+  where the second step is by
+  $\zeta^p = 1$ and Fermat's little theorem.
+  So we can take $a = a_0 + \dots + a_{p - 2}$.
+\end{proof}
+
+\begin{theorem}[Kummer]
+  Let $p$ be an odd prime. If $u \in \Z[\zeta_p]$ is
+  a unit, then $u / \overline{u} = \zeta_p^k$ for some
+  $k \in \Z$.
+\end{theorem}
+
+\begin{proof}
+  Let $\alpha = u / \overline{u} \in \Z[\zeta_p] \subseteq \C$.
+  Then all conjugates of $\alpha$ have absolute
+  value $1$ (the key point is that
+  $\Gal(\Q(\zeta_p) / \Q)$ is abelian, so complex
+  conjugation commutes with taking the other conjugates).
+  So $\alpha$ is a root of unity, which implies
+  that $\alpha = \pm \zeta_p^k$ for some $k$. All that
+  remains is to show that the sign is $+$.
+
+  Suppose for sake of contradiction that
+  $u / \overline{u} = -\zeta_p^k$. Then raising
+  both sides to the $k$th power, we find that
+  $u^p = -\overline{u}^p$. By the lemma, 
+  there is $a \in \Z$ such that $u^p \equiv a \equiv \overline{u}^p \Pmod{p}$ (the second congruence
+  comes from taking complex conjugates of both sides).
+  This implies that $2 u^p \equiv 0 \Pmod{p}$, so
+  we get $p | u^p$ since $p$ is an odd prime. This
+  is a contradiction as $u^p$ is a unit.
+\end{proof}
+
+\begin{definition}
+  A prime $p$ is \emph{regular} if
+  $p \nmid |{\Cl(\Z[\zeta_p])}|$, and $p$ is
+  \emph{irregular} otherwise.
+\end{definition}
+
+\begin{remark}
+  Kummer realized that class numbers are related
+  to certain congruences of Bernoulli numbers, which
+  gives a better criterion for a prime to be regular.
+\end{remark}
+
+\begin{remark}
+  It is known that there are infinitely many irregular
+  primes, with the smallest being $p = 37$. Thus the
+  below theorem, due to Kummer, works for all
+  primes $p \le 31$.
+\end{remark}
+
+\begin{theorem}[Fermat's last theorem for regular primes, first case]
+  Let $p \ge 5$ be a regular prime and $p \nmid xyz$.
+  Then the equation
+  $x^p + y^p = z^p$ has no solutions for
+  non-zero integers $x, y, z$.
+\end{theorem}
+
+\begin{proof}
+  Let $\zeta = \zeta_p$ and write
+  (the following equality is on the level of
+  ideals)
+  \[
+    (x + y)(x + \zeta y) \dots (x + y \zeta^{p - 1}) = (z)^p. \tag{$*$}
+  \]
+  Check as an exercise that the ideals on the left-hand
+  side are pairwise relatively prime. Due to
+  unique factorization of ideals into prime ideals,
+  we must have $(x + y \zeta) = I^p$ for some ideal $I$.
+  Now $I$ must be principal since $p$ is regular
+  (since $(x + y \zeta)$ is principal but $p$ does
+  not divide the class number). So
+  \[
+    x + y \zeta = u \cdot \alpha^p \quad \text{for some } \alpha \in \Z[\zeta].
+  \]
+  We claim that $x \equiv y \Pmod{p}$ $(**)$.
+  Assuming $(**)$ for now, we have $x \equiv -z \Pmod{p}$
+  as well (we can use symmetry to apply the same argument
+  to the equation $x^p + (-z)^p = (-y)^p$, since
+  $p$ is odd), so
+  \[
+    2x^p \equiv x^p + u^p \equiv z^p \equiv -x^p \Pmod{p}.
+  \]
+  This implies that $p | 3x^p$, which is a contradiction
+  since $p \ge 5$ and $p \nmid x$.
+
+  Now we prove $(**)$ via the result about
+  $u / \overline{u} = \zeta^p$. We have
+  $\alpha^p \equiv a \Pmod{p}$ for some $a \in \Z$, so
+  \[
+    x + y\zeta \equiv u a \Pmod{p}.
+  \]
+  Then  $\overline{\zeta}_p = \zeta_p^{-1}$
+  implies that
+  \[
+    x + y\zeta^{-1} = \overline{x + y\zeta} \equiv \overline{u} a \Pmod{p}.
+  \]
+  So $(x + y\zeta) \overline{u} \equiv (x + y\zeta^{-1}) u \Pmod{p}$,
+  which implies
+  \[
+    x + y\zeta \equiv (x + y\zeta^{-1}) \frac{u}{\overline{u}} \Pmod{p}.
+  \]
+  Thus $x + y\zeta \equiv x \zeta^k + y\zeta^{k - 1} \Pmod{p}$
+  for some $0 \le k \le p - 1$ (use
+  $u / \overline{u} = \zeta^k$). Show as an exercise
+  that this is only possible if $k = 1$ (note that
+  the powers of $\zeta$ form an integral basis, so
+  a representation in powers of $\zeta$ must be unique).
+  This then implies that $x \equiv y \Pmod{p}$, which
+  completes the proof.
+\end{proof}
+
+\section{More on Cyclotomic Fields}
+
+\begin{definition}
+  If $K \subseteq K_1, K_2 \subseteq L$,
+  then the \emph{compositum} of $K_1$ and $K_2$ is the
+  smallest subfield of $L$ containing both $K_1$ and
+  $K_2$.
+\end{definition}
+
+\begin{remark}
+  If everything is Galois in the above definition,
+  $K = K_1 \cap K_2$, and
+  $K_1, K_2$ are \emph{linearly disjoint}, i.e.
+  that we have
+  $[K_1 K_2 : K] = [K_1 : K] [K_2 : K]$, then
+  one obtains the result
+  \[
+    \Gal(K_1 K_2 / K_2) \cong \Gal(K_1 / K).
+  \]
+\end{remark}
+
+\begin{prop}
+  Let $K, K'$ be number fields of degree $n, n'$,
+  respectively.
+  Assume that
+  \begin{enumerate}
+    \item $K, K'$ are both Galois over $\Q$,
+    \item $K \cap K' = \Q$,
+    \item and $(|\Delta_K|, |\Delta_{K'}|) = 1$.
+  \end{enumerate}
+  Then if $\alpha_1, \dots, \alpha_n$ is an integral
+  basis for $\OO_K$ and $\alpha_1', \dots, \alpha_{n'}'$
+  is an integral basis for $\OO_{K'}$, then
+  $\{\alpha_i \alpha_{j'}\}$ is an integral basis
+  for $\OO_{KK'}$.
+\end{prop}
+
+\begin{proof}
+  Let $\alpha \in \OO_{KK'}$. Field theory shows that
+  $\{\alpha_i \alpha_{j'}\}$ is a basis for
+  $KK'$ over $\Q$, so we can write
+  \[
+    \alpha = \sum_{i, j} a_{ij} \alpha_i \alpha_{j}',
+    \quad a_{ij} \in \Q.
+  \]
+  We need to show that $a_{ij} \in \Z$. Let
+  $d = |\Delta_K|, d' = |\Delta_{K'}|$. We will
+  show that $d a_{ij} \in \Z$ and
+  $d' a_{ij} \in \Z$, which will imply that 
+  $a_{ij} \in \Z$ since $(d, d') = 1$. Let
+  \[
+    \beta_j = \sum_i a_{ij} \alpha_i', \quad j = 1, \dots, n.
+  \]
+  Let $T$ be the $n \times n$ matrix with
+  $T_{\ell j} = \sigma_{\ell}(\alpha_j)$, where
+  $\sigma_1, \dots, \sigma_n$ are the embeddings of
+  $KK'$ over $K'$, i.e. the elements of
+  $\Gal(KK' / K')$ since $K, K'$ are Galois over $\Q$.
+  Let
+  \[
+    a =
+    \begin{bmatrix}
+      \sigma_1(\alpha) \\ \vdots \\ \sigma_n(\alpha)
+    \end{bmatrix}
+    \quad \text{and} \quad
+    b =
+    \begin{bmatrix}
+      \beta_1 \\ \vdots \\ \beta_n
+    \end{bmatrix}.
+  \]
+  Check as an exercise that $a = Tb$. Multiplying
+  this equation by $\adj T$, we find that
+  \[
+    (\adj T) a = (\det T) b.
+  \]
+  Now all the entries of $T$, $\adj T$, and $a$
+  are algebraic integers, so multiplying the above
+  equation by $\det T$ implies that the entries
+  of $db$ are algebraic integers. Thus
+  $d\beta_j \in \OO_{K'}$ for all $j$. But the
+  $\{\alpha_i'\}$ were an integral basis for $\OO_K$
+  over $\Z$ by assumption, so in fact $d a_{i, j} \in \Z$
+  for all $i, j$, completing the proof.
+\end{proof}
+
+\begin{remark}
+  Let $K_m = \Q(\zeta_m)$. If $(m, m') = 1$, then
+  $(|\Delta_{K_m}|, |\Delta_{K_{m'}}|) = 1$.
+  Additionally, some field theory shows that
+  if $(m, m') = 1$,
+  then $K_m \cap K_{m'} = \Q$ and
+  $K_m K_{m'} = K_{mm'}$ in $\C$.
+
+  Using this proposition, along with the previous
+  case that $\OO_{\Q(\zeta_m)} = \Z[\zeta_m]$ for
+  $m = p^k$ and the Chinese
+  remainder theorem,
+  one can show that $\OO_{\Q(\zeta_m)} = \Z[\zeta_m]$
+  for any $m \ge 1$.
+\end{remark}
+
+\begin{corollary}
+  For all $m \ge 1$, we have
+  $\OO_{\Q(\zeta_m)} = \Z[\zeta_m]$.
+\end{corollary}
+
+\section{Geometry of Numbers}
+
+\begin{remark}
+  We will discuss Minkowski's geometry of numbers next.
+  The goals of this are the following:
+  \begin{enumerate}
+    \item Improve the constant $M$ from the class
+      number computations.
+    \item Prove the ``four squares'' theorem, i.e.
+      that every $n \ge 1$ is the sum of $4$ integer
+      squares.
+  \end{enumerate}
+\end{remark}
