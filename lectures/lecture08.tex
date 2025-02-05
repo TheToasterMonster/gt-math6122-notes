@@ -158,7 +158,7 @@
 
 \section{Cyclotomic Fields}
 
-\begin{theorem}
+\begin{theorem}\label{thm:cyclotomic-prime-powers}
   Let $m = p^k$ for $k \ge 1$. Then the ring of
   integers of $\Q(\zeta_m)$ is $\Z[\zeta_m]$.
 \end{theorem}
@@ -214,6 +214,18 @@
   $g(\zeta_m^j) \ne 0$, so $\Delta(\zeta_m) | m^{\phi(m)}$.
 \end{proof}
 
+\begin{proof}[Proof of Theorem \ref{thm:cyclotomic-prime-powers}]
+  Since $\Phi_m(x + 1)$ is Eisenstein at $p$,
+  we have $p \nmid [\OO_{\Q(\zeta_m)} : \Z[\zeta_m]]$.
+  But
+  \[
+    \Delta(\zeta_m) = \Delta(\Q(\zeta_m)) \cdot [\OO_{\Q(\zeta_m)} : \Z[\zeta_m]]^2
+  \]
+  and $\Delta(\zeta_m)$ is a power of $p$ by the
+  lemma, so $[\OO_{\Q(\zeta_m)} : \Z[\zeta_m]]$ is a power of $p$.
+  So $[\OO_{\Q(\zeta_m)} : \Z[\zeta_m]] = 1$.
+\end{proof}
+
 \begin{remark}
   Using field/Galois theory, we will show
   that $\OO_{\Q(\zeta_m)} = \Z[\zeta_m]$
@@ -223,13 +235,10 @@
 \section{First Case of Fermat's Last Theorem}
 
 \begin{remark}
-  The goal for now is to show that if
+  Our current goal is: If
   $p$ is an odd prime and $u \in \Z[\zeta_p]^\times$,
-  then
-  \[
-    \frac{u}{\overline{u}} = \zeta_p^k, \quad
-    \text{for some integer $k$}.
-  \]
+  then $u / \overline{u} = \zeta_p^k$ for some
+  $k \in \Z$.
 \end{remark}
 
 \begin{lemma}
