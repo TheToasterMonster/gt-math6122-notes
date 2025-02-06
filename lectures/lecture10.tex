@@ -1,0 +1,257 @@
+\chapter{Feb.~6 --- Geometry of Numbers}
+
+\section{Complete Lattices and Covolume}
+\begin{remark}
+  Let $K$ be a number field with $[K : \Q] = n$.
+  Recall that $\OO_K \cong \Z^n$ as $\Z$-modules, but
+  we will use a different method.
+  Let $\sigma_1, \dots, \sigma_n : K \hookrightarrow \C$
+  be the $n$ embeddings of $K$ into $\C$.
+  Call an embedding $\sigma$ \emph{real} if $\sigma(K) \subset \R$, and
+  \emph{complex} otherwise. Note that if
+  $\sigma : K \hookrightarrow \C$ is complex, then $\overline{\sigma} : K \hookrightarrow \C$
+  satisfies
+  \[
+    \re(\sigma) = \re(\overline{\sigma}) \quad \text{and} \quad \im(\sigma) = -\im(\overline{\sigma}),
+  \]
+  so $\sigma, \overline{\sigma}$ are kind of dependent.
+  This indicates that we should consider pairs of
+  complex embeddings instead. Suppose we
+  have $r_1$ real embeddings
+  $\sigma_1, \dots, \sigma_{r_1} : K \hookrightarrow \R$ and $r_2$ pairs of complex embeddings
+  $\tau_1, \dots, \tau_{r_2} : K \hookrightarrow \C$,
+  so that $r_1 + 2r_2 = n$. Then we have the
+  embedding
+  \[
+    (\sigma_1, \dots, \sigma_{r_1}, \tau_1, \dots, \tau_{r_2})
+    : K \overset{i}{\hookrightarrow} \R^{r_1} \times \C^{r_2} \cong
+    \R^{r_1} \times (\R^2)^{r_2} \cong \R^{r_1 + 2r_2} \cong \R^n. \tag{$*$}
+  \]
+\end{remark}
+
+\begin{definition}
+  Let $\Lambda$ be a complete lattice in $\R^n$. A
+  \emph{fundamental domain} $F$ is a subset
+  $F \subseteq \R^n$ such that for all
+  $x \in \R^n$, there is a unique $y \in F$ such that
+  $x - y \in \Lambda$.
+\end{definition}
+
+\begin{remark}
+  If $x_1, \dots, x_n$ form a
+  $\Z$-basis for $\Lambda$, i.e.
+  $\Lambda = \Z x_1 + \cdots + \Z x_n$, then
+  \[
+    F = \{a_1 x_1 + \dots + a_n x_n : 0 \le x_i \le 1\}
+  \]
+  is a fundamental domain, and every fundamental
+  domain arises in this way. In particular, this means
+  that if $F, F'$ are fundamental domains,
+  there exists $T \in \GL_n(\Z)$ such that
+  $F' = T(F)$.
+\end{remark}
+
+\begin{definition}
+  The \emph{covolume} of a complete lattice
+  $\Lambda \subseteq \R^n$, denoted
+  $\covol(\Lambda)$, is the volume of any fundamental
+  domain. The above discussion says that $\covol(\Lambda)$
+  is well-defined.\footnote{Note that we can think of $\covol{\Lambda}$ as $\vol(\R^n / \Lambda)$, which motivates the name ``covolume.''}
+\end{definition}
+
+\begin{theorem}
+  Let $i : K \to \R^n$ be defined as in $(*)$. Then
+  \begin{enumerate}
+    \item $i(\OO_K)$ is a complete lattice in $\R^n$, and
+    \item $\covol(i(\OO_K)) = 2^{-r_2} \sqrt{|\Delta_K|}$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  One can show that $i(\OO_K)$ is discrete, so
+  it is a complete lattice in $\R^n$ (since $\OO_K$ is
+  of rank $n$ and $i$ is an embedding).
+  Let $\alpha_1, \dots, \alpha_n$ be an integral
+  basis for $\OO_K$. Let
+  \[
+    B = \begin{bmatrix}
+      \sigma_1(\alpha_1) & \dots & \sigma_1(\alpha_n) \\
+      \vdots & \ddots & \vdots \\
+      \sigma_{r_1}(\alpha_1) & \dots & \sigma_{r_1}(\alpha_n)
+    \end{bmatrix},
+  \]
+  and note that $|{\det B}| = \sqrt{|\Delta_K|}$.
+  Now define the matrix
+  \[
+    A = \begin{bmatrix}
+      \sigma_1(\alpha_1) & \dots & \sigma_1(\alpha_n) \\
+      \vdots & \ddots & \vdots \\
+      \sigma_{r_1}(\alpha_1) & \dots & \sigma_{r_1}(\alpha_n) \\
+      \re \tau_{1}(\alpha_1) & \dots & \re \tau_{1}(\alpha_n) \\
+      \im \tau_{1}(\alpha_1) & \dots & \im \tau_{1}(\alpha_n) \\
+      \vdots & \ddots & \vdots \\
+      \re \tau_{r_2}(\alpha_1) & \dots & \re \tau_{r_2}(\alpha_n) \\
+      \im \tau_{r_2}(\alpha_1) & \dots & \im \tau_{r_2}(\alpha_n)
+    \end{bmatrix},
+  \]
+  and one can compute that $\covol(i(\OO_K)) = |{\det A}| = 2^{-r_2} |{\det B}| = 2^{-r_2} \sqrt{|\Delta_K|}$.
+\end{proof}
+
+\begin{prop}
+  Let $\Lambda' \subseteq \Lambda$ be a finite
+  index sublattice. Then
+  \[
+    \covol(\Lambda') = [\Lambda : \Lambda'] \cdot \covol(\Lambda).
+  \]
+\end{prop}
+
+\begin{proof}
+  A fundamental domain for $\Lambda'$ contains
+  $[\Lambda : \Lambda']$ copies of a fundamental domain
+  for $\Lambda$.
+\end{proof}
+
+\begin{corollary}
+  For an ideal $I \subseteq \OO_K$, we have
+  $\covol(i(I)) = N(I) \cdot 2^{-r_2} \sqrt{|\Delta_K|}$.
+\end{corollary}
+
+\begin{remark}
+  We have seen before that for every ideal $I$, there
+  exists $\alpha \in I$ such that
+  $|N(\alpha)| \le M \cdot N(I)$.
+  We will now try to improve this constant $M$ using
+  the above ideas. To do this, we will need to find a
+  norm function on $\R^n$ which is compatible with
+  $N$ on $\OO_K$.
+\end{remark}
+
+\begin{definition}
+  Define the \emph{norm} $\mathcal{N} : \R^n \to \R$ by
+  \[
+    \mathcal{N}(a_1, \dots, a_{r_1}, x_1, y_1, \dots, x_{r_2}, y_{r_2}) = a_1 \dots a_{r_1} (x_1^2 + y_1^2) \dots (x_{r_2}^2 + y_{r_2}^2),
+  \]
+  for $(a_1, \dots, a_{r_1}) \in \R^{r_1}$ and
+  $(x_1, y_1, \dots, x_{r_2}, y_{r_2}) \in \C^{r_2} \cong \R^{2r_2}$.
+  Note that $N(\alpha) = \mathcal{N}(i(\alpha))$.
+\end{definition}
+
+\section{Minkowski's Theory of the Geometry of Numbers}
+
+\begin{definition}
+  A set $S \subseteq \R^n$ is \emph{(centrally) symmetric} when
+  $x \in S$ if and only if $-x \in S$.
+\end{definition}
+
+\begin{lemma}[Geometric pigeonhole principle]
+  Let $S \subseteq \R^n$ is a bounded measurable
+  set. If $T : S \to \R^n$ is piecewise volume-preserving
+  and $\vol(S) > \vol(T(S))$, then $T$ is not injective.
+\end{lemma}
+
+\begin{proof}
+  Since $T$ is piecewise volume-preserving, we can
+  write $S = \bigsqcup S_i$ (disjoint union) such that
+  \[
+    \vol(T(S_i)) = \vol(S_i) \quad \text{for every } i.
+  \]
+  If $T$ is injective, then $T(S) = \bigsqcup T(S_i)$,
+  which implies that
+  \[\vol(T(S)) = \sum \vol(T(S_i)) = \sum \vol(S_i) = \vol(S),\]
+  which contradicts the hypothesis that
+  $\vol(S) > \vol(T(S))$.
+\end{proof}
+
+\begin{example}\label{example:lattice-map}
+  Let $\Lambda \subseteq \R^n$ be a lattice and
+  $F$ be a fundamental domain for $\Lambda$. Let
+  $T : \R^n \to F$ send $x \in \R^n$ to the
+  unique $y \in F$ such that $x - y \in \Lambda$.
+  Then $T$ is piecewise volume-preserving.
+\end{example}
+
+\begin{theorem}[Minkowski's convex body theorem]
+  Let $\Lambda \subseteq \R^n$ be a complete lattice,
+  and let $S \subseteq \R^n$ be a convex, symmetric,
+  bounded set. If
+  $\vol(S) > 2^n \covol(\Lambda)$, then
+  $S$ contains a nonzero element of $\Lambda$.\footnote{Note from measure theory that any convex set is (Lebesgue) measurable.}
+\end{theorem}
+
+\begin{proof}
+  Consider the lattice $\Lambda' = 2\Lambda \subseteq \Lambda$, so
+  $\covol(\Lambda') = 2^n \covol(\Lambda)$. Let
+  $F'$ be a fundamental domain for $\Lambda'$. Let
+  $T : \R^n \to F'$ be as in Example \ref{example:lattice-map},
+  which is piecewise volume-preserving. Then
+  \[
+    \vol(S) > 2^n \covol(\Lambda) = \covol(\Lambda')
+    = \vol(F') \ge \vol(T(S))
+  \]
+  since $T(S) \subseteq F'$. Thus by the geometric
+  pigeonhole principle, $T$ is not injective, i.e.
+  there exist distinct
+  $x', y' \in S$ such $T(x') = T(y')$.
+  So $p' = x' - y' \in \Lambda'$. Write $p' = 2p$
+  with $p \in \Lambda \setminus \{0\}$. Since
+  $S$ is symmetric, $-y' \in S$, and convexity implies
+  \[
+    p = \frac{1}{2}x' + \frac{1}{2}(-y') \in S.
+  \]
+  Thus $p$ is a nonzero lattice point in $S$, which
+  completes the proof.
+\end{proof}
+
+\begin{remark}
+  The $\vol(S) > 2^n \covol(\Lambda)$ condition is
+  sharp: Consider $\Lambda = \Z^n$ and
+  $S = (-1, 1)^n$. Now if $S$ is closed (so compact since
+  $S$ is bounded), then the same conclusion holds
+  when $\vol(S) = 2^n \covol(\Lambda)$.
+\end{remark}
+
+\section{Applications to Algebraic Number Theory}
+\begin{remark}
+  We will apply Minkowski's convex body theorem
+  to a compact, convex, symmetric
+  \[
+    S \subseteq \{x \in \R^n : |\mathcal{N}(x)| \le 1\}.
+  \]
+  Note that $\{x \in \R^n : |\mathcal{N}(x)| \le 1\}$ is
+  not in general convex. For instance, consider the case
+  where $K / \Q$ is a real quadratic field and
+  $\mathcal{N}(x, y) = xy$. One can try to instead
+  consider a subset $S$ with a
+  diamond shape lying inside the
+  hyperbola shape, and consider homogeneous
+  scalings of $S$. In general, set
+  \[
+    S = \left\{x \in \R^n : |a_1| + \dots + |a_{r_1}| + 2\left(\sqrt{x_1^2 + y_1^2} + \dots + \sqrt{x_{r_2}^2 + y_{r_2}^2} \le n\right)\right\},
+  \]
+  where $x = (a_1, \dots, a_{r_1}, x_1, y_1, \dots, x_{r_2}, y_{r_2})$.
+  One can check that $S \subseteq \{x \in \R^n : |\mathcal{N}(x)| \le 1\}$
+  (via tools like the AM-GM inequality, etc.), and
+  that $S$ is compact, convex, symmetric.
+  One can also explicitly compute via calculus that
+  \[
+    \vol(S) = \frac{n^n}{n!} 2^{r_1} \left(\frac{\pi}{2}\right)^{r_2}.
+  \]
+\end{remark}
+
+\begin{corollary}
+  Let Minkowski's constant be
+  \[
+    M_K = \frac{n^n}{n!} \left(\frac{4}{\pi}\right)^{r_2} \sqrt{|\Delta_K|}.
+  \]
+  Then every ideal class in $\OO_K$ contains
+  a nonzero ideal of norm $\le M_K$. Equivalently,
+  every ideal $I$ in $\OO_K$ contains an element
+  $\alpha \in I$ with $|N(\alpha)| \le M_K \cdot N(I)$.
+\end{corollary}
+
+\begin{remark}
+  This is a significant improvement over the old method.
+  For $\Q(\sqrt{-5})$, the old bound gives
+  $M = 10$, whereas this method gives
+  $M_k = 4\sqrt{5} / \pi < 3$.
+\end{remark}
