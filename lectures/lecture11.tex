@@ -84,11 +84,9 @@
 
 \begin{proof}
   The number of squares in $\F_p = \Z / p\Z$ is
-  (e.g. via the primitive element theorem)
-  \[
-    \frac{p - 1}{2} + 1 = \frac{p + 1}{2}.
-  \]
-  Define the sets
+  (via the primitive element theorem and Euler's criterion)
+  $(p - 1) / 2 + 1 = (p + 1) / 2$.
+  Now define the sets
   \[
     A = \{1 + x^2 : x \in \F_p\} \quad \text{and} \quad
     B = \{-y^2 : y \in \F_p\}.
@@ -131,9 +129,7 @@
 
   So it suffices to
   find such a point $(a, b, c, d) \ne 0$. Let
-  \[
-    B_r = \text{4-dimensional closed ball of radius $r$}.
-  \]
+  $B_r$ be the 4-dimensional closed ball of radius $r$.
   If $\vol(B_r) = 2^4 p^2$, then by Minkowski we
   get a nonzero lattice point in $B_r$. We want $r^2 < 2p$.
   We have
