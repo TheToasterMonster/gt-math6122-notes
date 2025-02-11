@@ -1,0 +1,274 @@
+\chapter{Feb.~11 --- Lagrange's Four Square Theorem}
+
+\section{Lagrange's Four Square Theorem}
+\begin{theorem}[Fermat]
+  If $p \equiv 1 \Pmod{4}$ is a prime, then
+  there exist $a, b \in \Z$ such that $p = a^2 + b^2$.
+\end{theorem}
+
+\begin{proof}[Proof \#1]
+  Recall that by Kummer's theorem, factoring
+  $(p)$ in $\Z[i]$ is reduced to considering
+  $x^2 + 1$ mod $p$. Since $p \equiv 1 \Pmod{4}$,
+  we see that $-1$ is a square mod $p$ (e.g. this follows
+  by Euler's criterion for the Legendre symbol).
+  So $p\Z[i] = \p_1 \p_2$, where each $\p_i$ has norm $p$.
+  Since $\Z[i]$ is a UFD, we have $\p_1 = (a + bi)$
+  and so $p = \N(\p_1) = N(a + bi) = a^2 + b^2$.
+  This proves the theorem.
+\end{proof}
+
+\begin{remark}
+  There is a way to generalize this proof for sums of
+  four squares, but it requires developing unique factorization
+  theory in the integer quaternions $\Z[i, j, k]$.
+  The proof below generalizes more readily.
+\end{remark}
+
+\begin{proof}[Proof \#2]
+  As above, we know that $x^2 \equiv -1 \Pmod{p}$
+  has a solution, call it $u \in \Z$. Define $\Lambda \subseteq \Z^2$ by
+  \[
+    \Lambda = \{(a, b) \in \Z^2 \mid b \equiv au \Pmod{p}\}.
+  \]
+  Then $\Lambda$ is a rank $2$ lattice, and
+  $|\Z^2 / \Lambda| = p$ (e.g. one can write an explicit
+  isomorphism $\Z^2 / \Lambda \to \Z / p\Z$ by mapping
+  $[(a, b)] \in \Z^2 / \Lambda$ to $a \in \Z / p\Z$, noting
+  that $a$ completely determines $b$ mod $p$). Let
+  \[
+    S = \overline{D}(0, r), \quad \text{where } \pi r^2 = 4p.
+  \]
+  Then $\vol(S) = 4p = 2^2 \cdot \vol(\Lambda)$, so
+  by Minkowski's theorem, there exists $(a, b) \ne (0, 0)$
+  in $\Lambda \cap S$. So
+  \[
+    0 < a^2 + b^2 \le r^2 = \frac{4}{\pi} \cdot p < 2p
+  \]
+  since $\pi > 2$. Since $(a, b) \in \Lambda$, we have
+  $b \equiv au \Pmod{p}$, so $b^2 \equiv -a^2 \Pmod{p}$,
+  which implies $p | (a^2 + b^2)$. Then
+  $a^2 + b^2$ is divisible by $p$ but strictly
+  between $0$ an $2p$, so we must have $a^2 + b^2 = p$.
+\end{proof}
+
+\begin{theorem}[Lagrange]\label{thm:lagrange-squares}
+  Every positive integer $n$ is a sum of four squares.
+\end{theorem}
+
+\begin{lemma}
+  It suffices to prove Lagrange's four square theorem
+  when $n = p$ is prime.
+\end{lemma}
+
+\begin{proof}
+  There is an identity that says the product of two numbers,
+  which are each a sum of four squares, is again a sum of
+  four squares. The idea behind the identity is the following:
+  In the ring $\mathbb{H}_\Z$ of integral quaternions, we have
+  $N(\alpha) = N(\alpha) N(\beta)$, where
+  $N(a + bi + cj + dk) = a^2 + b^2 + c^2 + d^2$.
+\end{proof}
+
+\begin{remark}
+  The norm is also multiplicative in $\C$, where
+  $(a + bi)(c + di) = (ac - bd) + (ad + bc)i$
+  implies that $(a^2 + b^2) = (ac - bd)^2 + (ad + bc)^2$.
+  A similar identity happens for the quaternions.
+\end{remark}
+
+\begin{lemma}
+  If $p$ is an odd prime, then there exist $u,v \in \Z$
+  such that $u^2 + v^2 \equiv -1 \Pmod{p}$.
+\end{lemma}
+
+\begin{proof}
+  The number of squares in $\F_p = \Z / p\Z$ is
+  (e.g. via the primitive element theorem)
+  \[
+    \frac{p - 1}{2} + 1 = \frac{p + 1}{2}.
+  \]
+  Define the sets
+  \[
+    A = \{1 + x^2 : x \in \F_p\} \quad \text{and} \quad
+    B = \{-y^2 : y \in \F_p\}.
+  \]
+  Each of these sets contains $(p + 1) / 2$ elements, so
+  $|A| + |B| = p + 1 > \#\F_p$. By the pigeonhole principle,
+  $A \cap B \ne \varnothing$, so there exist $u, v \in \F_p$
+  such that $1 + u^2 \equiv -v^2 \Pmod{p}$, which
+  implies the result.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:lagrange-squares}]
+  By the first lemma, it suffices to let $n = p$ be prime.
+  As
+  $2 = 1^2 + 1^2 + 0^2 + 0^2$,
+  we can assume that $p$ is an odd prime. By the
+  second lemma, choose $u, v$ such that $u^2 + v^2 \equiv -1 \Pmod{p}$.
+  Define $\Lambda \subseteq \Z^4$ by
+  \[
+    \Lambda = \{(a, b, c, d) \in \Z^4 :
+    c \equiv ua + vb, d = ub - va \Pmod{p}\}.
+  \]
+  Note that $\covol(\Lambda) = |\Z^4 / \Lambda| = p^2$
+  (similarly we find an isomorphism $\Z^4 / \Lambda \to (\Z / p\Z)^2$ by $(a, b, c, d) \mapsto (a, b)$).
+  Once we can find $(a, b, c, d) \ne 0$ in $\Lambda$
+  with norm $< 2p$ (claim), we have
+  \begin{align*}
+    a^2 + b^2 + c^2 + d^2
+    &\equiv a^2 + b^2 + (ua + vb) ^2 + (ub - va)^2 \\
+    &\equiv a^2 + b^2 + u^2 a^2 + v^2 b^2 + u^2 b^2 + v^2 a^2 \\
+    &\equiv a^2 + b^2 + (u^2 + v^2)a^2 + (u^2 + v^2)b^2 \\
+    &\equiv a^2 + b^2 - a^2 - b^2 \\
+    &\equiv 0 \Pmod{p},
+  \end{align*}
+  since $u^2 + v^2 \equiv -1 \Pmod{p}$. Then as before,
+  $a^2 + b^2 + c^2 + d^2$ is divisible by $p$ but
+  lands strictly between $0$ and $2p$, so
+  we must have $a^2 + b^2 + c^2 + d^2 = p$. Given the
+  claim, this proves the result.
+
+  So it suffices to
+  find such a point $(a, b, c, d) \ne 0$. Let
+  \[
+    B_r = \text{4-dimensional closed ball of radius $r$}.
+  \]
+  If $\vol(B_r) = 2^4 p^2$, then by Minkowski we
+  get a nonzero lattice point in $B_r$. We want $r^2 < 2p$.
+  We have
+  \[
+    \frac{1}{2}\pi^2 r^4 = \vol(B_r) = 16p^2,
+  \]
+  so $r^2 = \sqrt{32p^2 / \pi^2} = (4\sqrt{2} / \pi) \cdot p$.
+  So we need $4 \sqrt{2} / \pi < 2$, which happens if
+  and only if $\pi > 2\sqrt{2}$. This is true, since
+  $\pi \approx 3.14$ and $2\sqrt{2} \approx 2.83$, which
+  completes the proof of the theorem.
+\end{proof}
+
+\section{Revisiting Minkowski's Theorem}
+
+\begin{remark}
+  Recall that for a number field $K$, every ideal class
+  is represented by an ideal of norm $\le M_K$:
+  \[
+    M_K = \frac{n!}{n^n} \left(\frac{4}{\pi}\right)^{r_2} \sqrt{|\Delta_K|}.
+  \]
+  This implies that $M_K \ge 1$, since an ideal cannot
+  have norm $0$. In the above formula, this gives
+  \[
+    \sqrt{|\Delta_K|} \ge \frac{n^n}{n!} \left(\frac{\pi}{4}\right)^{n / 2},
+  \]
+  which is $> 1$ when $n \ge 2$ and goes to $\infty$ as
+  $n \to \infty$. This implies that if $K \ne \Q$ is
+  any number field, then some $p$ ramifies in $\OO_K$.
+  This then means that $\Z$ has no unramified covers,
+  which means that $\Z$ has trivial
+  ``arithmetic fundamental group.'' The subject discussing
+  this is called \emph{\'etale cohomology}.
+\end{remark}
+
+\begin{theorem}[Tate?]
+  If $E / \Q$ is an elliptic curve, then there is some
+  prime of bad reduction.
+\end{theorem}
+
+\begin{remark}
+  The above theorem from the theory of elliptic curves
+  has a similar flavor to our
+  discussion above. Fontaine greatly generalizes this result to
+  an abelian variety $A / \Q$.
+\end{remark}
+
+\section{Dirichlet's Unit Theorem}
+
+\begin{remark}
+  Let $K$ be a number, $\OO_K$ its ring of integers, and
+  $\OO_K^\times$ the \emph{unit group}.
+\end{remark}
+
+\begin{theorem}[Dirichlet, weak]
+  The unit group $\OO_K^\times$ is finitely generated. In
+  particular,
+  \[
+    \OO_K \cong \Z^r \times (\text{finite abelian group}),
+  \]
+  where the finite abeliain group is the roots of unity in $K$.
+\end{theorem}
+
+\begin{example}
+  Suppose $[K : \Q] = 2$. If $K$ is imaginary, then
+  $K = \Q(\sqrt{-d})$, where $d > 0$ is square free. Then
+  $u \in \OO_K$ is a unit if and only if $N(u) = 1$,
+  Since $u$ is either $a + b \sqrt{-d}$ or $a + b \sqrt{-d} / 2$,
+  One can use $N(a + b\sqrt{-d}) = a^2 + db^2 = 1$ to
+  easily find the units. The conclusion is
+  \[
+    \OO_K^\times =
+    \begin{cases}
+      \{\pm 1, \pm i\}, & \text{if } d = 1, \\
+      \{\pm 1, \pm \omega \pm \omega^2\}, & \text{if } d = 3, \\
+      \{\pm 1\}, & \text{otherwise},
+    \end{cases}
+  \]
+  so $\OO_K$ has rank $0$. Now consider a real
+  quadratic field $K = \Q(\sqrt{d})$.
+  For $\Q(\sqrt{2})$, notice that
+  \[
+    (\sqrt{2} - 1) (\sqrt{2} + 1) = 1.
+  \]
+  In particular, this means that $(\sqrt{2} - 1)^k$ is a
+  unit for each $k \in \Z$, yielding a rank $1$ subgroup.
+  In fact,
+  \[
+    \Z[\sqrt{2}]^\times
+    \cong \{\pm 1\} \times \Z
+    \cong \{\pm 1\} \times \langle \sqrt{2} - 1 \rangle.
+  \]
+  One can also view this from the perspective of Diophantine
+  equations. Note that $a + b\sqrt{2} \in \Z[\sqrt{2}]$
+  is a unit if and only if $a^2 - 2b^2 = \pm 1$. The
+  set of solutions to this equation form a group under
+  multiplication, and that group is of rank $1$.
+  This is the \emph{generalized Pell equation},
+  $a^2 - db^2 = \pm 1$. It is known for certain $d$ modulo
+  $4$, this equation has
+  infinitely many solutions, which are generated by a single
+  fundamental solution. This result follows as a special case
+  of Dirichlet's unit theorem.
+\end{example}
+
+\begin{remark}
+  The above Pell equations are difficult to solve, even for
+  relatively small values of $d$. For instance, the
+  smallest solution to $a^2 - 61 b^2 = 1$ is
+  $a \approx 10^6$, $b \approx 10^8$.
+\end{remark}
+
+\begin{example}
+  Let $K = \Q(\zeta_m)$, where $m = p^k$. Then the unit group
+  $\OO_K^\times$ contains
+  \[
+    \left\{
+      \frac{1 - \zeta_m^a}{1 - \zeta_m} : 1 \le a \le p - 1
+    \right\}.
+  \]
+  This generates a subgroup of rank $\phi(m) / 2 - 1 = r_1 + r_2 - 1$ (here $r_1$ is the number of real embeddings
+  and $r_2$ is $1 / 2$ the number of complex embeddings).
+  Note that this is compatible with the quadratic case,
+  since $r_1 + r_2 - 1$ is $1$ if $K$ is real and $0$ if $K$
+  is complex.
+\end{example}
+
+\begin{theorem}[Dirichlet's unit theorem]
+  For a number field $K$ of degree $n$, we have
+  \[
+    \OO_K^\times \cong \Z^{r} \times (\text{finite abelian group})
+  \]
+  where the finite abelian group is the roots of unity in $K$,
+  and $r = r_1 + r_2 - 1$ ($\le n - 1$, with equality if and
+  only if $K / \Q$ is totally real), where $r_1, r_2$
+  are the number of real and (pairs of) complex embeddings
+  of $K$.
+\end{theorem}
