@@ -48,8 +48,8 @@
   since $\pi > 2$. Since $(a, b) \in \Lambda$, we have
   $b \equiv au \Pmod{p}$, so $b^2 \equiv -a^2 \Pmod{p}$,
   which implies $p | (a^2 + b^2)$. Then
-  $a^2 + b^2$ is divisible by $p$ but strictly
-  between $0$ an $2p$, so we must have $a^2 + b^2 = p$.
+  $a^2 + b^2$ is divisible by $p$ but lies strictly
+  between $0$ and $2p$, so we must have $a^2 + b^2 = p$.
 \end{proof}
 
 \begin{theorem}[Lagrange's four square theorem]\label{thm:lagrange-squares}
@@ -177,7 +177,7 @@
   an abelian variety $A / \Q$.
 \end{remark}
 
-\section{Dirichlet's Unit Theorem}
+\section{Introduction to Dirichlet's Unit Theorem}
 
 \begin{remark}
   Let $K$ be a number, $\OO_K$ its ring of integers, and
@@ -256,15 +256,3 @@
   since $r_1 + r_2 - 1$ is $1$ if $K$ is real and $0$ if $K$
   is complex.
 \end{example}
-
-\begin{theorem}[Dirichlet's unit theorem]
-  For a number field $K$ of degree $n$, we have
-  \[
-    \OO_K^\times \cong \Z^{r} \times (\text{finite abelian group})
-  \]
-  where the finite abelian group is the roots of unity in $K$
-  and $r = r_1 + r_2 - 1$ ($\le n - 1$, with equality if and
-  only if $K / \Q$ is totally real), where $r_1, r_2$
-  are the number of real and (pairs of) complex embeddings
-  of $K$.
-\end{theorem}

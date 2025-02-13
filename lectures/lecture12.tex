@@ -1,0 +1,252 @@
+\chapter{Feb.~13 --- Dirichlet's Unit Theorem}
+
+\section{Dirichlet's Unit Theorem and Proof}
+
+\begin{theorem}[Dirichlet's unit theorem]\label{thm:dirichlet-unit}
+  For a number field $K$ of degree $n$, we have
+  \[
+    \OO_K^\times \cong \Z^{r} \times (\text{finite abelian group})
+  \]
+  where the finite abelian group is the roots of unity in $K$
+  and $r = r_1 + r_2 - 1$ ($\le n - 1$, with equality if and
+  only if $K / \Q$ is totally real), where $r_1, r_2$
+  are the number of real and (pairs of) complex embeddings
+  of $K$.
+\end{theorem}
+
+\begin{remark}
+  The strategy is the following: Let $L : K^\times \to \R^{r_1 + r_2}$ be the
+  homomorphism given by
+  \[
+    L(\alpha) = (\log |\sigma_1(\alpha)|, \ldots, \log |\sigma_{r_1}(\alpha)|, \log |\tau_1(\alpha)|, \ldots, \log |\tau_{r_2}(\alpha)|),
+  \]
+  where $\sigma_1, \dots, \sigma_{r_1} : K \hookrightarrow \R$
+  are the real embeddings and $\tau_1, \dots, \tau_{r_2} : K \hookrightarrow \C$
+  are half of the complex embeddings. We will want
+  to show that $L(\OO_K)$ is a lattice.
+\end{remark}
+
+\begin{lemma}\label{lem:kernel}
+  We have $\ker L|_{\OO_K^\times} = \mu_K$
+  and $L(\OO_K^\times) \subseteq H = \{\sum x_i = 0\}$.
+\end{lemma}
+
+\begin{proof}
+  We can write the kernel of $L_{\OO_K^\times}$ as
+  \[
+  \ker L|_{\OO_K^\times} = \left\{\alpha \in \OO_K^\times : \substack{\displaystyle\text{absolute values of the conjugates} \\ \displaystyle\text{$\alpha_1, \dots, \alpha_m$ of $\alpha$ are all $1$}}\right\}
+    = \mu_K
+  \]
+  by Kronecker's theorem. Now if $\alpha \in \OO_K^\times$,
+  then $|N^K_{\Q} (\alpha)| = 1$, so
+  \[
+    \left| \prod_i \sigma_i(\alpha) \cdot \prod_j \tau_j(\alpha)^2 \right| = 1,
+  \]
+  which implies that $\sum \log |\sigma_i(\alpha)| + \sum \log |\tau_j(\alpha)|^2 = 0$, i.e.
+  $L(\alpha) \in H$.
+\end{proof}
+
+\begin{corollary}
+  We have $\OO_K^\times / \mu_K \subseteq H \cong \R^{r_1 + r_2 - 1}$.
+\end{corollary}
+
+\begin{lemma}\label{lem:intersection-discrete}
+  For any closed ball $B$ around $0$
+  in $\R^{r_1 + r_2}$,
+  $L(\OO_K^\times) \cap B$ is finite,
+  i.e. $L(\OO_K^\times)$ is discrete.
+\end{lemma}
+
+\begin{proof}
+  We can write the intersection via
+  \[
+    L(\OO_K^\times) \cap B = \{\alpha \in \OO_K^\times : \text{all conjugates of $\alpha$ have norm bounded by $C$}\}.
+  \]
+  For any element of the set, there are only finitely
+  many possible minimal polynomials, each with only a
+  finite number of roots, so the set itself must be
+  finite.
+\end{proof}
+
+\begin{lemma}\label{lem:lin-alg}
+  Let $A = (a_{ij})$ be an $r \times r$ real matrix
+  such that:
+  \begin{enumerate}
+    \item the entries in each row sum to $0$,
+    \item the diagonal entries $a_{ii} > 0$, and
+    \item the off-diagonal entries $a_{ij} < 0$
+      for $i \ne j$.
+  \end{enumerate}
+  Then $\rank A = r - 1$.
+\end{lemma}
+
+\begin{proof}
+  It suffices to show that the first $r - 1$ columns
+  $v_1, \dots, v_{r - 1}$ are linearly independent.
+  Suppose otherwise that we can write
+  \[
+    \sum_{i = 1}^{r - 1} c_i v_i = 0,
+  \]
+  where the $c_i$ are not all zero.
+  Without loss of generality, assume $c_k = 1$ and
+  $c_j \le 1$ for all $j \ne k$. Then
+  $a_{kj} < 0$ implies that $c_j a_{jk} \ge a_{jk}$, and
+  $\sum_{j = 1}^{r - 1} a_{kj} > \sum_{j = 1}^r a_{kj}$
+  since $k \ne r$. Then
+  \[
+    0 = \sum_{j = 1}^{r - 1} c_j a_{kj}
+    \ge \sum_{j = 1}^{r - 1} a_{kj}
+    > \sum_{j = 1}^r a_{kj} = 0,
+  \]
+  which is a contradiction. Since
+  $(1)$ imposes one linear condition, we have
+  $\rank A = r - 1$.
+\end{proof}
+
+\begin{lemma}\label{lem:smaller}
+  Fix $k$ with $1 \le k \le r$. Then there is a
+  constant $C$ (depending only on $K$) such that
+  given $\alpha \in \OO_K \setminus \{0\}$, there
+  exists $\beta \in \OO_K \setminus \{0\}$ with:
+  \begin{enumerate}
+    \item $|N(\beta)| \le C$, and
+    \item if $L(\alpha) = (a_1, \dots, a_r)$ and
+      $L(\beta) = (b_1, \dots, b_r)$, then
+      $b_i < a_i$ for all $i \ne k$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  We claim that taking
+  \[
+    C = \left(\frac{2}{\pi}\right)^{r_2} \sqrt{|\Delta_K|}
+  \]
+  works. For convenience, let
+  \[
+    \epsilon_i =
+    \begin{cases}
+      1 & \text{if $1 \le i \le r_1$}, \\
+      2 & \text{if $r_1 + 1 \le i \le r = r_1 + r_2$}.
+    \end{cases}
+  \]
+  Choose $a_1', \dots, a_r'$ with $a_i' < a_i$
+  for each $i$. Define the region
+  \[
+    E = \{
+      x \in \R^{r_1} \times \C^{r_2} : |x_i|^{\epsilon_i} \le C_i
+    \},
+  \]
+  where $C_i = e^{a_i'}$ for $i \ne k$ and $\prod_i C_i = C$.
+  It is clear that $E$ is symmetric, compact, convex,
+  and
+  \[
+    \vol(E) = 2^{r_1} \pi^{r_2} \prod_i C_i
+    = 2^{r_1} \pi^{r_2} C
+    = 2^n \covol{i(\OO_K)}
+  \]
+  So by Minkowski's theorem,
+  $E \cap i(\OO_K) \ne \{0\}$. Thus taking
+  $p \in E \cap i(\OO_K)$ and $\beta = i^{-1}(p)$
+  works.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:dirichlet-unit}]
+  Choose $\alpha_0 \in \OO_K$ arbitrarily and fix $k$. By
+  Lemma \ref{lem:smaller}, we can find a sequence
+  $\alpha_1, \alpha_2, \alpha_3, \dots \in \OO_K \setminus \{0\}$
+  such that if $L(\alpha_j) = (a_1(j), \dots, a_r(j))$,
+  then $|N(\alpha_j)| \le C$ for $j \ge 1$
+  and $a_i(j) < a_i(j - 1)$ for $j \ge 1$, for
+  all $i \ne k$.
+  There are only a finite number of ideals of norm
+  $\le C$, so there exists $j_1 > j_2$ such that
+  $(\alpha_{j_1}) = (\alpha_{j_2})$. So
+  $u^{(k)} = \alpha_{j_1} / \alpha_{j_2} \in \OO_K^\times$.
+  If $L(u^{(k)}) = (a_1, \dots, a_r)$, then
+  $a_i < 0$ for $i \ne k$, since
+  $a_i = a_i(j_1) - a_i(j_2) < 0$.
+  Then $a_k > 0$ since $L(u) \in H$.
+
+  Now applying Lemma \ref{lem:lin-alg} to $u^{(1)}, \dots, u^{(k)}$, we see that
+  $\OO_K^\times / \mu_K$ is full rank in
+  $H \cong \R^{r_1 + r_2 - 1}$.
+\end{proof}
+
+\begin{remark}
+  Next time, we will compute the class group and
+  unit group of $\Q(\sqrt[3]{11})$.
+\end{remark}
+
+\section{Real Quadratic Fields and Continued Fractions}
+
+\begin{example}
+  Let $K = \Q(\sqrt{d})$, where $d > 0$ is square-free.
+  We know that the unit group $\OO_K^\times$ has rank
+  $1$, and (if $d \equiv 2, 3 \Pmod{4}$) the units
+  correspond to the integer solutions
+  to $x^2 - d y^2 = \pm 1$.
+
+  To solve this equation, one computes the continued
+  fraction expansion for $\sqrt{d}$. A \emph{continued
+  fraction} is
+  \[
+    \alpha = a_1 + \frac{1}{a_2 + \displaystyle \frac{1}{a_3 + \dots}}
+  \]
+  for some positive integers $a_i$, also denoted
+  $[a_1, a_2, a_3, \dots]$. The \emph{$n$th convergent}
+  for $[a_1, a_2, a_3, \dots]$ is
+  \[
+    [a_1, a_2, \dots, a_n] =
+    a_1 + \frac{1}{a_2 + \displaystyle \frac{1}{\dots + \displaystyle \frac{1}{a_n}}} = \frac{p_n}{q_n}
+  \]
+  The reason for the name convergent is because
+  $p_n / q_n \to \alpha$ as $n \to \infty$.
+\end{example}
+
+\begin{theorem}
+  Every $\alpha > 1$ has a unique continued fraction
+  expansion.
+\end{theorem}
+
+\begin{theorem}
+  We have the following:
+  \begin{enumerate}
+    \item The continued fraction expansion of $\alpha$
+      is finite if and only if $\alpha \in \Q$.
+    \item The continued fraction expansion of $\alpha$
+      is pre-periodic if and only if
+      $[\Q(\alpha) : \Q] \le 2$.\footnote{A continued fraction expansion is \emph{pre-periodic} if it is periodic after some finite prefix.}
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+  Let $d \equiv 2, 3 \Pmod{4}$ be square-free and
+  positive. Let $\epsilon > 1$ be the
+  fundamental unit of $\Z[\sqrt{d}]$, i.e.
+  the unique unit which generates the unit group
+  and is $> 1$. Let $k$ be the period of the
+  continued fraction expansion of $\sqrt{d}$. Then
+  $\epsilon = p_k + q_k \sqrt{d}$.
+\end{theorem}
+
+\begin{example}
+  Let $K = \Q(\sqrt{19})$. One can compute that
+  \[
+    \sqrt{19} = [4, \overline{2, 1, 3, 1, 2, 8}],
+  \]
+  which has period $6$. The $6$th convergents
+  are $p_6 = 170$ and $q_6 = 39$. This says that
+  \[
+    \sqrt{19} \approx \frac{170}{39}.
+  \]
+  In fact, $170^2 - 19 \cdot 39^2 = 1$. This also
+  means that $170 + 39 \sqrt{19}$ is the fundamental
+  unit in $K$.
+\end{example}
+
+\begin{remark}
+  For $\Q(\sqrt{94})$, the fundamental unit is
+  $2143295 + 221064\sqrt{94}$. Furthermore, in
+  $\Q(\sqrt{9199})$, the first coefficient for
+  the fundamental unit has $88$ decimal digits.
+\end{remark}
