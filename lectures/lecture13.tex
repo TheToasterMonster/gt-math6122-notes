@@ -1,0 +1,264 @@
+\chapter{Feb.~18 --- Computing Unit Groups}
+
+\section{Computing Unit Groups}
+
+\begin{exercise}
+  Show that the sign of $\Delta_K$ is
+  $(-1)^{r_2}$.
+\end{exercise}
+
+\begin{remark}
+  If $n = 3$ and $r_1 = r_2 = 1$, then
+  by Dirichlet's unit theorem we know that
+  $\OO_K^\times$ has rank
+  $1$. The \emph{fundamental unit} is the unique
+  generator $\varepsilon \in \OO_K^\times$ with
+  $\varepsilon > 1$. This means that
+  \[
+    \OO_K^\times = \{\pm \varepsilon^k : k \in \Z\}.
+  \]
+  (Note that when $K$ has a real embedding, the
+  only roots of unity are $\pm 1$.) We want a lower
+  bound for $\varepsilon$.
+\end{remark}
+
+\begin{lemma}
+  Let $K$ be a cubic number field with negative
+  discriminant. Then
+  \[
+    \varepsilon > \sqrt[3]{\frac{|\Delta_K| - 24}{4}}.
+  \]
+  Equivalently, $|\Delta_K| < 4 \varepsilon^3 + 24$.
+\end{lemma}
+
+\begin{proof}
+  Let $\varepsilon = \varepsilon_1$ and
+  $\varepsilon_2, \varepsilon_3$ be its other two
+  conjugates. Since $K$ has a pair of complex embeddings,
+  we have $\varepsilon_3 = \overline{\varepsilon_2}$.
+  Write $\varepsilon = u^2$ with $u > 1$ in $\R$.
+  Then since $N(\varepsilon) = 1$, we have
+  \[
+    |\varepsilon_2|^2 = \frac{1}{\varepsilon} = u^{-2}.
+  \]
+  Thus $\varepsilon_2 = u^{-1} e^{i\theta}$, with
+  $0 \le \theta \le \pi$ (by exchanging the two
+  conjugates, if necessary). Then
+  \[
+    |\Delta(\varepsilon)|^{1 / 2}
+    = |\Delta(1, \varepsilon, \varepsilon^2)|^{1 / 2}
+    =
+    \det
+    \begin{bmatrix}
+      1 & \varepsilon & \varepsilon^2 \\
+      1 & \varepsilon_2 & \varepsilon_2^2 \\
+      1 & \varepsilon_3 & \varepsilon_3^2
+    \end{bmatrix}
+    = 2(u^3 + u^{-3} - 2\cos \theta) \sin \theta.
+  \]
+  Note that $K = \Q(\varepsilon)$, so
+  $|\Delta_K| \le |\Delta(\varepsilon)|$. Thus it
+  suffices to bound $|\Delta(\varepsilon)|$. We claim
+  that
+  \[
+    2(u^3 + u^{-3} - 2\cos \theta) \sin \theta
+    \le (4 \varepsilon^3 + 24)^{1 / 2} = (4u^6 + 24)^{1 / 2},
+  \]
+  which would prove the lemma. Set $2a = u^3 + u^{-3}$,
+  so that
+  \[
+    |\Delta(\varepsilon)|^{1 / 2}
+    = 4(a - \cos \theta) \sin \theta.
+  \]
+  For fixed $a$, this is maximized when
+  $a \cos \theta = 2 \cos^2 \theta - 1$.
+  Let $x = \cos \theta$ and $g(x) = 2x^2 - ax - 1$, so
+  that $\cos \theta$ is a root of $g$.
+  Note that $u > 1$, so $a > 1$ and thus
+  $g(1) = 1 - a < 0$. Clearly, $g(x) > 0$ for $x$
+  sufficiently large, so $g$ has a root $> 1$.
+  But this is not the root we want.
+  We also have $g(-1 / 2u^3) < 0$ and
+  $g(-1) > 0$,
+  where $-1 / 2u^3 \in (-1 / 2, 0)$, so this gives
+  a root $x_0 \in (-1, -1 / 2u^3) \subseteq (0, 1)$. Then
+  \[
+    |\Delta(\varepsilon)|^{1 / 2} \le 4(a - x_0)(1 - x_0^2)^{1 / 2},
+  \]
+  which gives the bound
+  \[
+    |\Delta(\varepsilon)| \le 16(a^2 + 1 - x_0^2 - x_0^{4})
+    < 4u^6 + 24
+  \]
+  since $x_0 \in (-1, -1 / 2u^3)$. This proves the
+  claim.
+\end{proof}
+
+\begin{remark}
+  The smallest value of $|\Delta_K|$ over all cubic
+  number fields $K$ is $23$.
+\end{remark}
+
+\begin{example}
+  We will find the unit group for $K = \Q(\sqrt[3]{2})$.
+  Let $\alpha = \sqrt[3]{2}$, which satisfies
+  \[
+    1 + \alpha + \alpha^2 = \frac{\alpha^3 - 1}{\alpha - 1} = \frac{1}{\alpha - 1}.
+  \] 
+  In particular, $u = 1 + \alpha + \alpha^2 \in \OO_K^\times$,
+  and we claim that
+  $\varepsilon = u$. Note that
+  \[
+    \Delta_K = \Delta(x^3 - 2) = -108.
+  \]
+  So the lemma implies that
+  $\varepsilon^3 > (108 - 24) / 4 = 21$, i.e.
+  $\varepsilon > \sqrt[3]{21}$. One can compute that
+  \[
+    1 < u < 7 < (21)^{2 / 3},
+  \]
+  which implies that $1 < u < \varepsilon^2$.
+  Since $u = \varepsilon^m$ for $m \ge 1$ (as $u$
+  is positive), we must have $m = 1$.
+\end{example}
+
+\begin{example}
+  Let $K = \Q(\sqrt[3]{11})$. We will find
+  $\OO_K^\times$ and $\Cl(\OO_K)$. Note that the
+  calculus argument (lower bound for $\varepsilon$)
+  will not work here: It only tells us that a certain
+  unit $u$ is either $\varepsilon$ or $\varepsilon^2$.
+  Note that
+  \[11^2 \not\equiv 1 \pmod{9},\]
+  so $\OO_K = \Z[\sqrt[3]{11}]$. Also note that
+  $\Delta_K = -3 \cdot 11^2$, so Minkowski's constant is
+  \[
+    M_K = \frac{3!}{3^3} \left(\frac{4}{\pi}\right) \sqrt{3^3 \cdot 11^2}
+    < 17.
+  \]
+  Thus we want to factor $2, 3, 5, 7, 11, 13$ in
+  $\OO_K$. We can factor $x^3 - 11 \Pmod{p}$ by:
+  \begin{center}
+    \begin{tabular}{c|c}
+      $p$ & $x^3 - 11 \Pmod{p}$ \\
+      \hline
+      $2$ & $(x - 1)(x^2 + x + 1)$ \\
+      $3$ & $(x + 1)^3$ \\
+      $5$ & $(x - 1)(x^2 + x + 1)$ \\
+      $7$ & $x^3 - 4$ \\
+      $11$ & $x^3$ \\
+      $13$ & $x^3 - 2$
+    \end{tabular}
+  \end{center}
+  Thus by Kummer's theorem, we have
+  $(2) = \p_2 \p_2'$ with $N(\p_2) = 2$
+  and $N(\p_2') = 4$, $(3) = \p_3^3$,
+  $(5) = \p_5 \p_5'$ with $N(\p_5) = 5$, and
+  $(11) = \p_{11}^3$ where $\p_{11} = (\alpha)$
+  for $\alpha = \sqrt[3]{11}$.
+  Thus the class group is generated via
+  \[
+    \Cl(\OO_K) = \langle [\p_2], [\p_3], [\p_5] \rangle.
+  \]
+  Now we want to find some elements of $\OO_K$ with
+  small norm.
+
+  Note that $\alpha$ has minimal polynomial
+  $x^3 - 11$, so $\alpha - t$ has minimal polynomial
+  $(x - t)^3 - 11$
+  for $t \in \Z$, so $N(\alpha - t) = t^3 - 11$.
+  For $t = 1$,
+  \[
+    N(\alpha - 1) = -10,
+  \]
+  so $(\alpha - 1)$ has norm $10$. Thus
+  $(\alpha - 1) = \p_2 \p_5$, which allows us to remove
+  $\p_5$ as a generator. For $t = 2$,
+  \[
+    N(\alpha - 2) = -3,
+  \]
+  so $(\alpha - 2) = \p_3$ and we can remove
+  $\p_3$ as a generator. So
+  $\Cl(\OO_K) = \langle [\p_2] \rangle$, and it suffices
+  to find the order of $\p_2$. Set $t = -1$, so
+  \[
+    N(\alpha + 1) = -12.
+  \]
+  Thus $(\alpha + 1) = \p_3 \p_2^2$ or
+  $\p_3 \p_2'$. But $\p_2 = (2, \alpha - 1)$
+  contains $\alpha + 1$, so $\p_2$ divides
+  $(\alpha + 1)$. Thus
+  \[
+    (\alpha + 1) = \p_3 \p_2^2,
+  \]
+  so $\p_2^2$ is principal. So $\p_2$ has order
+  dividing $2$, and $\Cl(\OO_K) \cong \Z / 2\Z$
+  or $\{1\}$.
+
+  To see which one it is, we will need some
+  information about the unit group. We begin
+  by finding some nontrivial unit.
+  To do this, note that $\p_3 = (\alpha - 2)$ and
+  $\p_3 \p_2^2 = (\alpha + 1)$. Then $\p_2^2 = (\beta)$
+  for
+  \[
+    \beta = \frac{\alpha + 1}{\alpha - 2} = \alpha^2 + 2\alpha + 5.
+  \]
+  Using $t = 3$ from before, we have
+  $N(\alpha - 3) = 16$, so $(\alpha - 3) = \p_2^4$ or
+  $\p_2^2 \p_2'$ since $\alpha - 3 \in \p_2$.
+  But $\p_2 \p_2' = (2)$ and $2$ does not divide
+  $\alpha - 3$, so we must have $(\alpha - 3) = \p_2^4$.
+  Then $\p_2^4 = (\beta^2)$, so
+  \[
+    u = -\frac{\beta^2}{\alpha - 3} \approx 266.99 > 1
+  \]
+  is a unit. The lower bound gives
+  $\varepsilon > 9.34$, so $\varepsilon^3 > u$.
+  Thus either $u = \varepsilon$ or $\varepsilon^2$.
+
+  The new idea from this point is the following:
+  We will construct a homomorphism
+  $\Z[\alpha] \to \F_p$ for suitable $p$, such that
+  the image of $u$ is not a square (this will imply
+  that $u$ itself cannot be a square). Try
+  \[
+    \p_5 = (5, \alpha - 1)
+  \]
+  with norm $5$, so reduction
+  mod $\p_5$ gives a homomorphism
+  $\Z[\alpha] \to \F_5 = \Z[\alpha] / \p_5$ which
+  maps $\alpha \mapsto 1$. Using
+  $u = -\beta^2 / (\alpha - 3) = -(\alpha^2 + 2\alpha + 5) / (\alpha - 3)$,
+  we have $u \mapsto 2$, which is not a
+  square.
+  So $\epsilon = u$.
+
+  Now we claim that $\p_2$ is not principal.
+  If it were, then $\p_2 = (\gamma)$ and
+  \[
+    (\beta) = \p_2^2 = (\gamma^2).
+  \]
+  Then for $v = u^{-1} = -2\alpha^2 + 4\alpha + 1$,
+  we can write $\pm v^m \beta = \gamma^2$ for some
+  $m$. Without loss of generality, we can assume
+  $m = 0$ or $1$ (by absorbing powers of $v$ into
+  $\gamma$). So one of $\beta$, $-\beta$, $v\beta$, or
+  $-v\beta$ is a square in $\OO_K$.
+  As before, we can find homomorphisms $\Z[\alpha] \to \F_p$ for various
+  $p$ such that each of these elements map to
+  non-squares, which
+  will give a contradiction. Note that $19$ splits
+  completely in $K$, so we get three homomorphisms
+  $\Z[\alpha] \to \F_{19}$, with $\alpha \mapsto \{5, -3, -2\}$.
+  Choose the one which maps $\alpha \mapsto 5$.
+  This one sends $\beta \to 2$ and $v\beta \to -1$,
+  which are non-squares. Choosing the one
+  with $\alpha \mapsto -2$, we find
+  $-\beta \mapsto -5$ and $-v\beta \mapsto -1$,
+  which are non-squares mod $19$. Thus
+  $\p_2$ is not principal, so $\p_2$ has order $2$.
+
+  This shows that $\Cl(\OO_K) \cong \Z / 2\Z$
+  and $\OO_K^\times = \{\pm \langle v \rangle\}$.
+\end{example}
