@@ -1,0 +1,286 @@
+\chapter{Feb.~20 --- Localization}
+
+\section{Motivation for Localization}
+
+\begin{remark}
+So far we have been dealing with the following
+scenario of a number field $K$:
+\begin{center}
+  \begin{tikzcd}
+    K \ar[dash, r] \ar[dash, d, "n"] & \OO_K \ar[dash, d, "n"] \\
+    \Q \ar[dash, r] & \Z
+  \end{tikzcd}
+\end{center}
+We would now like to consider relative extensions,
+for a finite extension $L / K$:
+\begin{center}
+  \begin{tikzcd}
+    L \ar[dash, r] \ar[dash, d, "n"] & \OO_L \ar[dash, d, "n"] \\
+    K \ar[dash, r] & \OO_K
+  \end{tikzcd}
+\end{center}
+For instance, that if prime ideals $\q_1, \dots, \q_r \subseteq \OO_L$ lie
+over $\p \subseteq \OO_K$, then $[L : K] = \sum_{i = 1}^r e_i f_i$.
+One of our goals will be to show that a Noetherian
+domain $R$ is Dedekind if and only if $R_\p$ is a
+PID for every prime ideal $\p$.
+The second goal will be to prove
+``Dirichlet's $S$-unit theorem.''
+\end{remark}
+
+\section{Localization}
+
+\begin{definition}
+  Let $R$ be a domain and $K$ its field of fractions.
+  Let $S$ be a \emph{multiplicative subset} of $R$,
+  i.e. $0 \notin S$, $1 \in S$, and
+  $a, b \in S$ implies $ab \in S$. Then the
+  \emph{localization of $R$ at $S$} is the subring
+  \[
+    S^{-1} R = \left\{ \frac{a}{b} : a \in R, b \in S \right\} \subseteq K.
+  \]
+\end{definition}
+
+\begin{remark}
+  The equivalence relation of $a / b \sim c / d$
+  if $ad = bc$ is not necessary anymore since
+  $S^{-1} R \subseteq K$.
+\end{remark}
+
+\begin{remark}
+  Note that $R \subseteq S^{-1} R \subseteq K$. The
+  idea is that $S^{-1} R$ will have some of the nice
+  properties of $K$ while still retaining enough
+  of the information of $R$.
+\end{remark}
+
+\begin{example}
+  For $S = R \setminus \{0\}$, we have
+  $S^{-1} R = K$, and for $S = \{1\}$, we have
+  $S^{-1} R = R$.
+\end{example}
+
+\begin{example}
+  If $\p \subseteq R$ is a prime ideal, then
+  $S = R \setminus \p$ is a multiplicative subset.
+  Thus we can define $R_\p = S^{-1} R$, which we
+  will call the \emph{localization of $R$ at $\p$}.
+\end{example}
+
+\begin{remark}
+  One can definition localization in a more general
+  context, e.g. for a ring which is not a domain.
+  This is necessary for algebraic geometry, but we do
+  not need this, so we will avoid it.
+\end{remark}
+
+\begin{prop}
+  The prime ideals of $S^{-1} R$ are in
+  (inclusion-preserving) bijection with
+  the prime ideals of $R$ disjoint from $S$.
+\end{prop}
+
+\begin{proof}
+  Denote by $\Spec R$ the set of prime ideals of $R$.
+  We will show the following bijection:
+  \begin{align*}
+    \{\q \in \Spec(R) : \q \cap S = \varnothing\}
+    &\longleftrightarrow \Spec(S^{-1} R) = \Spec(R') \\
+    \q &\longmapsto S^{-1} \q = \left\{\frac{a}{b} : a \in \q, b \in S\right\} \\
+    \q' \cap R &\mathrel{\reflectbox{\ensuremath{\longmapsto}}} \q'
+  \end{align*}
+  First we claim that $S^{-1} \q$ is a prime ideal in
+  $R'$. Note that $\q \cap S = \varnothing$ is
+  equivalent to $1 \notin S^{-1} \q$. Check as an
+  exercise that $S^{-1} \q$ is in fact an ideal
+  in $R'$. To see that it is prime, suppose that
+  $(a_1 / b_1)(a_2 / b_2) \in S^{-1} \q$, where
+  $a_1, a_2 \in R$ and $b_1, b_2 \in S$. Then
+  we can see that
+  \[
+    \frac{a_1 a_2}{b_1 b_2} = \frac{a}{b}, \quad a \in \q, b \in S,
+  \]
+  so $a_1 a_2 b = a b_1 b_2 \in \q$. As
+  $b \in S$ and $q \cap S = \varnothing$, we have
+  $b \notin \q$. Thus $a_1 \in \q$ or $a_2 \in \q$, i.e.
+  $S^{-1} \q$ is prime.
+
+  The other direction is easier and is mostly
+  left as an exercise. To see that
+  $(\q' \cap R) \cap S = \varnothing$, suppose that
+  $s \in S \cap \q'$. Then $s \cdot (1 / s) = 1 \in \q'$,
+  where $s \in \q'$ and $(1 / s) \in R$, which is
+  impossible since $\q' \ne R$.
+
+  It only remains to show that these maps are
+  inverses of each other, which is left as an exercise.
+\end{proof}
+
+\begin{corollary}
+  The prime ideals of $R_\p$ are in bijection
+  with the prime ideals of $R$ contained in $\p$.
+\end{corollary}
+
+\begin{corollary}
+  The localization $R_\p$ is a local ring,
+  i.e. it has a unique maximal ideal.
+\end{corollary}
+
+\begin{example}
+  We can write the localization $\Z_{(2)}$ as
+  \[
+    \Z_{(2)} = \left\{ \frac{a}{b} \in \Q : \text{$b$ is odd} \right\}.
+  \]
+  The unique maximal ideal is $2 \Z_{(2)} = \{2 a / b : \text{$b$ is odd}\}$, and
+  $\Z_{(2)} \setminus 2\Z_{(2)} = \Z_{(2)}^\times$. We
+  also have
+  \[
+    \Z_{(2)} / 2\Z_{(2)} = \Z / 2\Z.
+  \]
+  In general, we will see that
+  $\OO_K / \p^m \OO_K \cong (\OO_K)_\p / \p^m (\OO_K)_\p$,
+  so we can study the localization instead.
+\end{example}
+
+\begin{lemma}
+  Let $R$ be a ring and $\m$ a maximal ideal in $R$.
+  If $s \notin \m$, then $\m^n + (s) = (1)$ for all
+  $n \ge 1$.
+  Equivalently, $\overline{s}$ is a unit in
+  $R / \m^n$ for every $n \ge 1$.
+\end{lemma}
+
+\begin{proof}
+  We induct on $n$. The case $n = 1$ is clear since
+  $\m$ is maximal. Now suppose
+  $(1) = \m^{n - 1} + (s)$, so
+  \[
+    \m = \m^n + s \m \subsetneq \m^n + (s)
+  \]
+  since $s \notin \m$. But $\m$ is a maximal ideal, so
+  we must have $\m^n + (s) = (1)$.
+\end{proof}
+
+\begin{remark}
+  We will denote $\m_\p = \p R_\p$, the unique
+  maximal ideal in the localization $R_\p$.
+\end{remark}
+
+\begin{lemma}
+  Let $R$ be an integral domain and $\p$ a maximal
+  ideal. Then for all $n \ge 1$, the natural map
+  \[
+    \phi : R / \p^n \to R_\p / \m_\p^n
+  \]
+  is an isomorphism. (In particular,
+  $R / \p \cong R_\p / \m_\p$.)
+\end{lemma}
+
+\begin{proof}
+  The natural map is the map induced by the
+  inclusion $R \hookrightarrow R_\p$ on the quotient
+  $R / \p^n$.
+
+  First we show that $\phi$ is injective.
+  Suppose $x \in R \cap \m_\p^n$, and we will show
+  that $x \in \p^n$. Write
+  \[
+    x = \frac{y}{s}, \quad y \in \p^n, s \notin \p.
+  \]
+  By the lemma, we have
+  $\overline{s} \in (R / \p^n)^\times$. But
+  $sx = y \in \p^n$, which implies that $\overline{s} \cdot \overline{x} = 0$
+  in $R / \p^n$. Since $\overline{s}$ is a unit,
+  this means that $\overline{x} = 0$, so $x \in \p^n$.
+  This shows that $\phi$ is injective.
+
+  Now we show that $\phi$ is surjective.
+  Let $r / s \in R_\p$ with $r \in R$ and
+  $s \notin \p$. By the lemma, there exists $r' \in R$
+  such that $r \equiv r' s \Pmod{\p^n}$ (e.g.
+  take $r' = s^{-1} r \in R / \p^n$). Then
+  $r / s \equiv r' \Pmod{\m_\p^n}$, so we have
+  \[
+    \phi(r') = \frac{r}{s} + \m_\p^n.
+  \]
+  Since $r / s \in R_\p$ was arbitrary, this shows
+  surjectivity. Thus $\phi$ is an isomorphism.
+\end{proof}
+
+\section{Dedekind Domains and Localization}
+
+\begin{lemma}
+  If $R$ is a Noetherian domain, then so is
+  $S^{-1} R$.
+\end{lemma}
+
+\begin{proof}
+  The key observation is that every ideal of
+  $S^{-1} R$ is of the form $S^{-1} I$ for some ideal
+  $I$ of $R$ (check this as an exercise).
+  So if $I$ is generated by $x_1, \dots, x_r$,
+  then $S^{-1} I$ is generated by $x_1 / 1, \dots, x_r / 1$.
+\end{proof}
+
+\begin{lemma}
+  If $R$ is integrally closed, then $S^{-1} R$ is also
+  integrally closed.
+\end{lemma}
+
+\begin{proof}
+  Suppose $\alpha = a / b \in K$ satisfies
+  a monic polynomial $f \in (S^{-1} R)[x]$. Then we need
+  to show that $\alpha \in S^{-1} R$. Write
+  \[
+    f(x) = x^n + a_{n - 1} x^{n - 1} + \dots + a_0,
+    \quad a_i = \frac{r_i}{s_i} \in S^{-1} R.
+  \]
+  Let $s = s_0 s_1 \dots s_{n - 1}$ and multiply the
+  equation $f(\alpha) = 0$ by $s^n$ to get
+  \[
+    (s\alpha)^n + a_{n - 1} s (s \alpha)^{n - 1}
+    + \dots + a_1 s^{n - 1} (s\alpha) + a_0 s^n = 0.
+  \]
+  The coefficients $a_{n - 1} s, \dots, a_0 s^n$
+  are in $R$, so $s \alpha$ is integral over $R$.
+  But $R$ is integrally closed, so $s \alpha \in R$.
+  Since $s \in S$, we have $\alpha \in S^{-1} R$, which
+  proves that $S^{-1} R$ is integrally closed.
+\end{proof}
+
+\begin{prop}
+  If $R$ is a Dedekind domain and $S$ is a multiplicative
+  set, then $S^{-1} R$ is either a Dedekind domain or a field.
+\end{prop}
+
+\begin{proof}
+  From the above lemmas, it suffices to show
+  $\dim(S^{-1} R) \le 1$. There is an bijection from
+  chains of prime ideals in $S^{-1} R$ to
+  chains of prime ideals in $R$ disjoint from $S$, so
+  $\dim(S^{-1} R) \le \dim R = 1$.
+\end{proof}
+
+\begin{corollary}
+  If $R$ is Dedekind, then $R_\p$ is a PID
+  for every nonzero prime ideal $\p$.
+\end{corollary}
+
+\begin{proof}
+  Note that $R_\p$ is a local Dedekind ring with
+  prime ideals $(0)$ and $\m_\p$. By unique
+  factorization, every nonzero ideal of $R_\p$ is
+  of the form $\m_\p^k$. So it suffices to show that
+  $\m_\p$ is principal.
+
+  To do this, choose any $\pi \in \p \setminus \p^2$,
+  and we claim that $\m_\p = \pi R_\p$.
+  Since $\pi R_\p$ is an ideal, we have
+  $\pi R_\p = \m_\p^k$ for some $k \ge 1$.
+  If $k \ge 2$, then $\pi \in \m_\p^2 \cap R = (\m_\p \cap R)^2 = \p^2$,
+  a contradiction. So $k = 1$.
+\end{proof}
+
+\begin{definition}
+  A local PID is called a \emph{discrete valuation ring (DVR)}.
+\end{definition}
