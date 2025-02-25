@@ -1,0 +1,272 @@
+\chapter{Feb.~25 --- Localization, Part 2}
+
+\section{Valuations}
+
+\begin{example}
+  Recall that $R_\p$ is a local PID, also known
+  as a discrete valuation ring. Consider
+  \[
+    \Z_{(p)} = \left\{
+      \frac{a}{b} \in \Q : p \nmid b
+    \right\} \subseteq \Q.
+  \]
+  There is a \emph{$p$-adic valuation}
+  $v_p : \Z_{(p)} \to \N \cup \{\infty\}$ given by
+  $v_p(x) = k$ if $x = p^k \cdot a / b$ where
+  $a, b \in \Z$, $p \nmid a$, $p \nmid b$, and
+  $v_p(0) = \infty$.
+  Now $v_p$ extends to $v_p : \Q \to \Z \cup \{\infty\}$,
+  and we can recover $\Z_{(p)}$ as
+  \[
+    \Z_{(p)} = \{x \in \Q : v_p(x) \ge 0\}.
+  \]
+  This is known as the \emph{valuation ring} associated
+  to $v_p$. This is discrete since
+  $\Z \cup \{\infty\}$ is discrete.
+\end{example}
+
+\begin{definition}
+  A \emph{(real) valuation} on a field $k$ is a function
+  $v : k \to \R \cup \{\infty\}$ such that
+  \begin{itemize}
+    \item $v(x) = \infty$ if and only if $x = 0$;
+    \item $v(ab) = v(a) + v(b)$;
+    \item $v(a + b) \ge \min\{v(a), v(b)\}$.
+  \end{itemize}
+\end{definition}
+Given such a valuation $v$, there
+\emph{valuation ring associated to $v$} is
+$\OO_v = \{x \in k : v(x) \ge 0\}$.
+
+\begin{lemma}
+  For all $x \in k$, either $x \in \OO_v$ or
+  $x^{-1} \in \OO_v$.
+\end{lemma}
+
+\begin{definition}
+  A \emph{valuation ring} is a subring $\OO$
+  of a field $k$ such that for all $x \in k$,
+  $x \in \OO$ or $x^{-1} \in \OO$.
+\end{definition}
+
+\section{Dedekind Domains and Localization, Continued}
+
+\begin{lemma}\label{lem:int-int-closed}
+  If $R$ is an integral domain, then
+  \[
+    R = \bigcap_{\p \text{ prime}} R_\p
+    = \bigcap_{\m \text{ maximal}} R_\m.
+  \]
+\end{lemma}
+
+\begin{proof}
+  Since every maximal ideal is prime, we prove
+  the statement for maximal ideals. We need to show that
+  $\bigcap_\p R_\p \subseteq R$. Choose
+  $a / b \in \bigcap_\p R_\p$. Define the ideal
+  \[
+    I = \{y \in R : ay \in bR\}
+  \]
+  We will show that $I = R$, which implies that
+  $a \in b R$ and thus $a / b \in R$ since
+  $1 \in I$. Check as an exercise that $I$ is indeed
+  an ideal. Now since $a / b \in R_\p$, we can
+  write $a / b = x / y$ with $x, y \in R$ and
+  $y \notin \p$. Then $ay = bx$, so $y \in I$.
+  Since $y \notin \p$, this means that $I \nsubseteq \p$.
+  We can do this for every maximal ideal $\p$. But every
+  $I \ne R$ is contained in a maximal ideal, so 
+  we must have $I = R$.
+\end{proof}
+
+\begin{theorem}
+  If $R$ is a Noetherian integral domain, then $R$ is
+  Dedekind if and only if $R_\p$ is a PID for
+  every nonzero prime ideal $\p$ of $R$.
+\end{theorem}
+
+\begin{proof}
+  $(\Rightarrow)$ This was Corollary \ref{cor:local-pid}.
+
+  $(\Leftarrow)$ The tricky part to
+  show is that $R$ is integrally closed. This part
+  follows from Lemma \ref{lem:int-int-closed} since the
+  intersection
+  of integrally closed subrings is again
+  integrally closed.
+\end{proof}
+
+\section{\texorpdfstring{$S$}{S}-Integers and \texorpdfstring{$S$}{S}-Units}
+
+\begin{definition}
+  Let $S$ be a finite set of nonzero prime ideals in
+  a domain $R$ and $K = \Frac R$. Define
+  \[
+    R^S = \left\{
+      \frac{x}{y} \in K : x, y \in R,\, y \notin \p \text{ for all } \p \notin S
+    \right\}
+    = T^{-1} R,
+  \]
+  where $T = \{x \in R : x \notin \bigcup_{\p \notin S} \p\}$.
+\end{definition}
+
+\begin{remark}
+  If $R$ is Dedekind, this means $(y)$ is divisible
+  only by primes in $S$.
+\end{remark}
+
+\begin{example}
+  Let $S = \{(2), (3)\} \subseteq \Spec \Z$. Then
+  \[
+    \Z^S = \left\{
+      \frac{x}{y} \in \Q : x, y \in \Z,\, y = \pm 2^a 3^b
+    \right\}.
+  \]
+  In some sense, $\Z_{(2)}$ is close to $\Q$ while
+  $\Z^{(2)}$ is close to $\Z$. Note that
+  $(\Z^{(2)})^\times = \pm \{2^k\}$, which is of
+  rank $1$.
+\end{example}
+
+\begin{remark}
+  The following are some facts and definitions
+  regarding $R^S$:
+  \begin{itemize}
+    \item $R^S$ is Dedekind.
+    \item $\Cl(R^S)$ is finite.
+    \item $(R^S)^\times$ is finitely generated of
+      rank $|S| + r_1 + r_2 - 1$.
+  \end{itemize}
+\end{remark}
+
+\begin{exercise}
+  Let $K$ be a number field, $R = \OO_K$, and $S$ a
+  finite set of nonzero prime ideals. Show that
+  \begin{center}
+    \begin{tikzcd}
+      1 \ar[r] & R^\times \ar[r] & (R^S)^\times \ar[r] & \bigoplus_{\p \in S} (K^\times / R_\p^\times) \ar[r] & \Cl(R) \ar[r] & \Cl(R^S) \ar[r] & 0
+    \end{tikzcd}
+  \end{center}
+  is an exact sequence, where
+  $K^\times / R_\p^\times \cong \Z$.
+\end{exercise}
+
+\begin{remark}
+  Note that the above shows that $\Cl(R^S)$
+  is in fact a quotient of $\Cl(R)$, hence it must be
+  finite.
+\end{remark}
+
+\begin{prop}
+  If $K$ is a number field, then there exists a finite
+  set $S$ of nonzero prime ideals such that
+  $\OO_K^S$ is a PID (equivalently, $\Cl(\OO_K^S) = \{0\}$).
+\end{prop}
+
+\begin{proof}
+  There is a map $\rho : \Cl(R) \to \Cl(R^S)$ given by
+  $[I] \mapsto [I R^S]$, which one can verify as
+  an exercise is surjective. Let $I_1, \dots, I_t$ be
+  ideals which generate $\Cl(R)$. Define
+  \[
+    S = \text{all prime ideals of $R$ dividing some $I_k$}.
+  \]
+  For $\p \in S$, we have $\p R^S = (1)$. So
+  $\rho([I_k]) = 0$ for all $k$. Thus we must have
+  $\Cl(R^S) = 0$.
+\end{proof}
+
+\begin{remark}
+  The above proposition says that we may get a PID
+  $\OO_K^S$ in place of $\OO_K$ (which is often not a
+  PID), at the cost of increasing the rank of the unit
+  group by $|S|$.
+\end{remark}
+
+\section{Applications to Elliptic Curves}
+
+\begin{theorem}[Siegel]
+  Let $K$ be a number field and $S$ a finite set
+  of nonzero primes in $\OO_K$. Let $f(x) \in K[x]$
+  be a separable polynomial of degree $\ge 3$.
+  Then the Diophantine equation
+  \[
+    Y^2 = f(X)
+  \]
+  has only finitely many solutions with
+  $X, Y \in \OO_K^S$. (As a special case, this holds when
+  $S = \varnothing$, so that $\OO_K^S = \OO_K$. In particular, if $K = \Q$ and $S = \varnothing$, then $\OO_K^S = \Z$. The case $\deg f = 3$ is an elliptic curve.)
+\end{theorem}
+
+\begin{proof}
+  We will use the following result without proof:
+  \begin{quote}
+    \textbf{Theorem} (Siegel, Mahler)\textbf{.}
+    Let $K, S$ as before. Then the equation $x + y = 1$
+    has only finitely many solutions with $x, y \in (\OO_K^S)^\times$.\footnote{For instance, $x + y = 1$ has finitely solutions with $x, y \in \pm \{2^a 3^b\}$. This is not obvious, e.g. $1 = 3^2 - 2^3 = 3 - 2 = 2^2 - 3 = \dots$.}
+  \end{quote}
+  Without loss of generality, assume that $f$ splits over
+  $K$ (by enlarging $K$ if necessary), so
+  \[
+    f(X) = a(X - \alpha_1) \dots (X - \alpha_n), \quad a, \alpha_j \in K
+  \]
+  for distinct $\alpha_1, \dots, \alpha_n$ and
+  $n \ge 3$. Let $K^S = (\OO_K^S)^\times$.
+  By enlarging $S$ if necessary, we
+  can assume:
+  \begin{enumerate}
+    \item $a \in K^S$, $\alpha_1, \dots, \alpha_n \in \OO_K^S$;
+    \item $\alpha_i - \alpha_j \in K^S$ for all $i \ne j$;
+    \item $\OO_K^S$ is a PID.
+  \end{enumerate}
+  By Dirichlet's $S$-unit theorem, $K^S$ is
+  finitely generated, and so $K^S / (K^S)^2$ is finite.
+  So if
+  \[
+    L = \text{compositum of $K(\sqrt{u})$ for all $u \in K^S$},
+  \]
+  then $L / K$ is finite. Now define the set
+  \[
+    T = \text{prime ideals of $\OO_L$ containing some element of $S$}.
+  \]
+  We will work with $\OO_L^T$, the
+  $T$-integers in $\OO_L$. Now suppose
+  $y^2 = f(x)$ with $x, y \in \OO_K^S$, so that
+  \[
+    y^2 = a(x - \alpha_1) \dots (x - \alpha_n).
+  \]
+  Then any prime ideal $\p$ of $\OO_K^S$ divides
+  at most one of these terms (otherwise it divides
+  $\alpha_i - \alpha_j$ for $i \ne j$, which we assumed
+  lies in $K^S$). Since $\p$ must divides $y^2$, it
+  must divide $y^2$ twice, and since
+  \[
+    (x - \alpha_1) \dots (x - \alpha_n) = a^{-1} y^2,
+  \]
+  we must have $x - \alpha_i = u_i a_i^2$
+  for each $i$, where $u_i \in K^S$ and
+  $a_i \in \OO_K^S$. Then
+  $(x - \alpha_i) = \mathfrak{a}_i^2$, where $\mathfrak{a}_i = (a_i)$.
+  Let $u_i = v_i^2$ with $v_i \in L^T$, then
+  \[
+    x - \alpha_i = v_i^2 a_i^2 = w_i^2, \quad w_i \in \OO_L^T.
+  \]
+  The trick is then the following: We can write
+  \[
+    \alpha_j - \alpha_i = w_i^2 - w_j^2
+    = (w_i - w_j)(w_i + w_j).
+  \]
+  Since $\alpha_j - \alpha_i \in K^S$, we must have
+  $w_i - w_j, w_i + w_j \in L^T$. We have the identities
+  \[
+    \frac{w_1 - w_2}{w_1 - w_3} + \frac{w_2 - w_3}{w_1 - w_3} = 1 \quad \text{and} \quad
+    \frac{w_1 + w_2}{w_1 - w_3} - \frac{w_2 + w_3}{w_1 - w_3} = 1.
+  \]
+  All of the above quotients lie in $L^T$, so there
+  are only finitely many choices for the quotients
+  by the theorem of Siegel and Mahler.
+  One can show that there are then only finitely
+  many choices for $w_1$, hence there can only be
+  finitely many choices for $x = \alpha_1 + w_1^2$,
+  since $\alpha_1$ is fixed.
+\end{proof}
