@@ -1,0 +1,253 @@
+\chapter{Mar.~4 --- More Galois Theory}
+
+\section{Frobenius Elements}
+\begin{remark}
+  Recall that last class, we showed that
+  $|D_{\q}| = e_{\q} f_{\q} = ef$,
+  $|I_{\q}| = e_{\q} = e$, and
+  $D_{\q} / I_{\q} \cong \Gal(\ell / k)$.
+  This is
+  useful because $\Gal(L / K)$ is in general a complicated
+  group; in fact, any finite group can
+  arise as $\Gal(L / K)$ for some extension
+  $L / K$. On the other hand, $\ell, k$ are
+  finite fields, and thus $\Gal(\ell / k)$
+  is cyclic. In particular, $\Gal(\ell / k) = \langle \tau \rangle$
+  where $\tau(x) = x^{|k|}$ is the
+  \emph{Frobenius automorphism}.
+\end{remark}
+
+\begin{corollary}
+  If $\q / \p$ is unramified (i.e.
+  $p \nmid \Delta_{L / K}$, or $e_{\q} = 1$), then
+  $D_{\q}$ is cyclic.
+\end{corollary}
+
+\begin{definition}
+  The generator of $D_{\q}$ is called
+  the \emph{Frobenius element} and is denoted
+  $\Frob_{\q}$.\footnote{Note that $\Frob_{\q}$ depends on the choice of $\q$ and only makes sense when $\q$ is unramified.}
+\end{definition}
+
+\begin{remark}
+  What is the dependence of $\Frob_{\q}$ on
+  the choice of $\q / \p$?
+\end{remark}
+
+\begin{lemma}
+  Suppose $\q, \q'$ are prime ideals of $\OO_L$ lying
+  over $\p$. Choose $\sigma \in G$ such that
+  $\sigma \q = \q'$ Then
+  \[
+    D_{\q'} = \sigma D_{\q} \sigma^{-1}
+    \quad \text{and} \quad
+    I_{\q'} = \sigma I_{\q} \sigma^{-1}.
+  \]
+  If $\q / \p$ is unramified, then so is
+  $\q' / \p$ and
+  $\Frob_{\q'} = \sigma \Frob_{\q} \sigma^{-1}$.
+\end{lemma}
+
+\begin{proof}
+  We will prove the statement only for $D_{\q'}$, the
+  rest is left as an exercise. We can write
+  \begin{align*}
+    D_{\q'}
+    = \{\tau \in G : \tau \q' = \q'\}
+    &= \{\tau \in G : \tau \sigma \q = \sigma \q\}
+    = \{\tau \in G : (\sigma^{-1} \tau \sigma) \q = \q\} \\
+    &= \sigma \{\sigma^{-1} \tau \sigma : \tau \in G\} \sigma^{-1}
+    = \sigma D_{\q} \sigma^{-1}.
+  \end{align*}
+  The proof of the other statements are similar.
+\end{proof}
+
+\begin{remark}
+  When $L / K$ is Galois and $\p$ is unramified, the
+  above lemma allows us to define
+  the Frobenius conjugacy class $\Frob_{\p} \subseteq \Gal(L / K)$ (the set of all $\Frob_{\q}$ where $\q / \p$
+  is unramified).
+\end{remark}
+
+\begin{example}
+  Consider $K / \Q$, let $G = \Gal(K / \Q)$ and
+  $\Frob_p$ be the conjugacy class corresponding
+  to a prime $p$ not dividing $\Delta_K$. The
+  \emph{Chebotarev density theorem} then says that
+  if we fix a conjugacy class $C \subseteq G$, then
+  the density of primes $p$ with $\Frob_p = C$ is
+  $|C| / |G|$.
+\end{example}
+
+\begin{example}
+  Consider $K = \Q(\zeta_n)$, so $G \cong (\Z / n\Z)^\times$
+  is abelian (so that the Frobenius conjugacy classes
+  are singletons and can therefore be identified
+  with elements). If we fix $\sigma_a \in G$
+  with $(a, n) = 1$, then we will show shortly
+  that $\Frob_p = \sigma_p$ for $p \nmid n$.
+  So if we fix a conjugacy class (element)
+  $a \in (\Z / n\Z)^\times$, then $\Frob_p = a$
+  if and only if $p \equiv a \Pmod{n}$. The Chebotarev
+  density theorem then says that the density of
+  such $p$ is $1 / \phi(n)$ (this is
+  Dirichlet's theorem on primes in arithmetic
+  progressions).
+\end{example}
+
+\section{Fixed Fields}
+
+\begin{remark}
+  Let $L / K$ be Galois and fix $\q / \p$.
+  Let $D = D_{\q / \p}$ and $I = I_{\q / \p}$. Then for
+  an intermediate field $K \subseteq K' \subseteq L$
+  (e.g. $K = L^H$, the fixed field of some subgroup
+  $H \subseteq G$), we have some $\p'$ lying over $\p$:
+  \begin{center}
+    \begin{tikzcd}
+      L \ar[d, no head] & \q \ar[d, no head] \\
+      L^H = K' \ar[d, no head] & \p' = \q \cap \OO_{K'} \ar[d, no head] \\
+      K & \p
+    \end{tikzcd}
+  \end{center}
+\end{remark}
+
+\begin{lemma}
+  Let $D' = D_{\q / \p'}$ and
+  $I' = I_{\q / \p'}$.
+  Then $D' = D \cap H$ and $I' = I \cap H$.
+\end{lemma}
+
+\begin{proof}
+  We only prove the statement for $D'$, the other for
+  $I'$ is similar. Note that
+  \[
+    D = \text{stabilizer of $\q$ in $G$} \quad \text{and} \quad
+    D' = \text{stabilizer of $\q$ in $H$},
+  \]
+  from which it is clear that $D' = D \cap H$.
+\end{proof}
+
+\begin{remark}
+  The following is a fact from Galois theory that
+  we will use:
+  \begin{quote}
+    If $H, H'$ are subgroups of $G = \Gal(L / K)$,
+    then $L^{H \cap H'} = L^H L^{H'}$.
+  \end{quote}
+  In the above, $L^H L^{H'}$ is compositum of
+  $L^H$ and $L^{H'}$.
+\end{remark}
+
+\begin{prop}
+  Call $L^D$ the \emph{decomposition field} and
+  $L^I$ the \emph{inertia field}. Then
+  \begin{enumerate}
+    \item $L^D$ is the largest intermediate field $K'$
+      such that $e(\p' / \p) = f(\p' / \p) = 1$;
+    \item $L^I$ is the largest intermediate field $K'$
+      such that $e(\p' / \p) = 1$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  Again, we only prove the statement for $L^D$.
+  We first claim that if $K' = L^D$, then we in fact
+  have
+  $e(\p' / \p) = f(\p' / \p) = 1$. By the lemma,
+  we have $D' = D$, so we have
+  \[
+    e(\q / \p') f(\q / \p')
+    = e(\q / \p) f(\q / \p).
+  \]
+  But by a homework problem, $e$ and $f$ are
+  multiplicative in towers, so
+  $e(\p' / \p) = f(\p' / \p) = 1$.
+
+  To see that it is the largest such extension, let
+  $K'$ be any intermediate field with
+  $e(\p' / \p) = f(\p' / \p) = 1$. We want to show
+  that $K' \subseteq L^D$. We can write $K' = L^H$
+  for some $H \le G$. Then $D' = D \cap H$, so
+  \[
+    L^{D'} = L^D K'
+  \]
+  by Galois theory. The hypothesis implies $|D| = |D'|$,
+  which combined with $D' \subseteq D$ implies
+  $D' = D$. Then we have
+  $L^D = L^{D'} = L^D K'$, which implies that
+  $K' \subseteq L^D$.
+  This proves the result.
+\end{proof}
+
+\begin{corollary}
+  Let $\p \subseteq \OO_K \subseteq K \subseteq M, M' \subseteq L$ (not necessarily Galois).
+  Then $\p$ splits completely (resp. is unramified)
+  in both $M$ and $M'$ if and only if
+  $\p$ splits completely (resp. is unramified) in $M M'$.
+\end{corollary}
+
+\begin{proof}
+  Take a Galois closure $L'$ of $L / K$. If
+  $\p$ splits completely in $L$, then $e = 1$ in
+  both $K$ and $L$, so $e = 1$ in $M, M'$ as well since
+  $e$ is multiplicative in towers.
+  On the other hand, if $\p$ splits completely
+  in both $M$ and $M'$, then $(L')^{D}$ contains
+  both $M$ and $M'$, so $M M' \subseteq (L')^{D}$
+  and $\p$ splits completely in $M M'$.
+\end{proof}
+
+\begin{corollary}
+  Suppose $L / K$ is finite (but not necessarily Galois).
+  Let $M$ be the Galois closure of $L / K$.
+  Then $\p$ is unramified (resp. splits completely)
+  in $L$ if and only if $\p$ is unramified (resp. splits
+  completely) in $M$.
+\end{corollary}
+
+\begin{proof}
+  This is because $M$ is the compositum of $L^\sigma$
+  over $\sigma \in \Gal(M / K)$.
+\end{proof}
+
+\begin{remark}
+  The above corollaries imply that we can reduce
+  many questions to the Galois case (many extensions
+  of number fields, e.g. $\Q(\sqrt[3]{2})$, are not
+  Galois, but we can still work with them by embedding
+  them in a Galois closure).
+\end{remark}
+
+\section{A Non-Monogenic Number Ring}
+\begin{remark}
+  We will show that if $K = \Q(\sqrt{7}, \sqrt{10})$,
+  then $\OO_K$ is not monogenic, i.e. there is
+  no $\alpha \in \OO_K$ such that $\OO_K = \Z[\alpha]$.
+  In fact, we will show that for all $\alpha \in \OO_K$
+  such that $K = \Q(\alpha)$, we have
+  $3 \mid [\OO_K : \Z[\alpha]]$. In particular, this
+  means that Kummer's theorem will not help us factor
+  $(3)$ in $\OO_K$, even when trying some change of
+  variables.
+
+  We will actually do this more generally:
+  Let $K_1 = \Q(\sqrt{d_1})$ and $K_2 = \Q(\sqrt{d_2})$
+  with $d_1, d_2 \equiv 1 \Pmod{3}$. Kummer's theorem
+  says that $3$ splits completely in $K_i$ ($i = 1, 2$)
+  if and only if
+  \[x^2 - d_i \equiv x^2 - 1 \Pmod{3}\]
+  splits into linear factors (which it does). By our
+  previous results, this
+  implies that $3$ splits completely in the compositum
+  $K = K_1 K_2$.
+
+  Now suppose otherwise that $\OO_K = \Z[\alpha]$
+  (or even $3 \nmid [\OO_K : \Z[\alpha]]$).
+  Then Kummer's theorem applies to $K$ as well, so
+  the minimal polynomial $f_\alpha$ of $\alpha$
+  over $\Z$ factors into distinct linear factors mod $3$.
+  But $\deg f_{\alpha} = 4$ and there are only
+  $3$ linear polynomials in $\F_3[x]$, so this cannot
+  possibly happen.
+\end{remark}
