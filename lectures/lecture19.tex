@@ -1,0 +1,212 @@
+\chapter{Mar.~11 --- The \texorpdfstring{$p$}{p}-adic Numbers}
+
+\section{The \texorpdfstring{$p$}{p}-adic Absolute Value}
+
+\begin{definition}
+  Let $p$ be a prime number.
+  For $x = a / b \in \Q$ with $a, b \in \Z$, define
+  the \emph{$p$-adic valuation}
+  \[
+    \ord_p(x) = \ord_p(a) - \ord_p(b).
+  \]
+  Recall that $\ord_p(a) = k$ if and only if
+  $a = p^k m$ with $p \nmid m$.
+  This defines a \emph{valuation} $v_p = \ord_p$ on $\Q$:
+  \begin{enumerate}
+    \item $v_p(0) = \infty$ and $v_p(x) \in \Z$ for
+      $x \ne 0$;
+    \item $v_p(xy) = v_p(x) + v_p(y)$;
+    \item $v_p(x + y) \ge \min\{v_p(x), v_p(y)\}$.
+  \end{enumerate}
+  Also define the \emph{$p$-adic absolute value}
+  $| \cdot |_{p} : \Q \to \R_{\ge 0}$ by
+  $|x|_p = p^{-\ord_p(x)}$, which satisfies
+  \begin{enumerate}
+    \item $|0|_p = 0$ and $|x|_p > 0$ for $x \ne 0$;
+    \item $|xy|_p = |x|_p |y|_p$;
+    \item $|x - y|_p \le \max\{|x|_p, |y|_p\}$
+      (the \emph{ultrametric inequality} or
+      \emph{non-Archimedean triangle equality}).
+  \end{enumerate}
+  The above properties define an \emph{ultrametric}, and
+  a set with an ultrametric is called an
+  \emph{ultrametric space}.
+\end{definition}
+
+\begin{example}
+  Let $p = 3$, then
+  $|1 / 54|_{3} = 27$ and
+  $|54|_3 = 1 / 27$.
+\end{example}
+
+\begin{exercise}
+  Check the following properties:
+  \begin{enumerate}
+    \item If $|x|_p \ne |y|_p$, then
+      $|x - y|_p = \max\{|x|_p, |y|_p\}$.
+    \item In any ultrametric space, all triangles
+      are isosceles (in fact, the maximum occurs
+      at least twice).
+    \item Any two closed discs in an ultrametric space
+      are either disjoint or one contains the other.
+  \end{enumerate}
+\end{exercise}
+
+\section{Completion of a Metric Space}
+
+\begin{remark}
+  Recall that if $(X, d)$ is a metric space, a
+  \emph{Cauchy sequence} is a sequence $\{x_n\}$
+  such that for every $\epsilon > 0$, there exists
+  $N$ such that if $n, m \ge N$, then
+  $d(x_n, x_m) < \epsilon$.
+\end{remark}
+
+\begin{definition}
+  A metric space $X$ is \emph{complete} if every
+  Cauchy sequence converges.
+\end{definition}
+
+\begin{definition}
+  Define two Cauchy sequences $\{x_n\}$ and $\{y_n\}$
+  to be \emph{equivalent} if they become arbitrarily
+  close to each other, i.e.
+  $d(x_n, y_n) \to 0$ as $n \to \infty$.
+\end{definition}
+
+\begin{definition}
+  The \emph{completion} $(\widehat{X}, d)$
+  of a metric space $(X, d)$ is the set of
+  equivalence classes of Cauchy sequences in $X$.
+  There is a natural (continuous)
+  embedding $X \hookrightarrow \widehat{X}$ by
+  $x \mapsto [(x, x, x, \dots)]$.
+\end{definition}
+
+\begin{prop}
+  If $X = R$ is a ring and
+  $|\cdot|$ is a norm on $R$ inducing $d$,
+  i.e. $d(x, y) = |x - y|$ and $|xy| = |x| |y|$, then
+  $\widehat{X}$ is naturally a ring $\widehat{R}$
+  and $R \to \widehat{R}$ is a ring homomorphism.
+\end{prop}
+
+\begin{prop}[University property of the completion]
+  Let $X$ be a metric space and $i : X \to \widehat{X}$
+  be the natural embedding. If $Y$ is any complete
+  metric space and $f : X \to Y$ is a continuous map,
+  then there exists a unique continuous map
+  $\widetilde{f} : \widehat{X} \to Y$ such that
+  the following diagram commutes:
+  \begin{center}
+    \begin{tikzcd}
+      & Y \\
+      X \ar[r, swap, "i"] \ar[ur, "f"] & \widehat{X} \ar[u, dashed, swap, "\widetilde{f}"]
+    \end{tikzcd}
+  \end{center}
+\end{prop}
+
+\section{The \texorpdfstring{$p$}{p}-adic Numbers}
+
+\begin{definition}
+  Define $\Z_p = \widehat{(\Z, |\cdot|_p)}$ to be
+  the ring of \emph{$p$-adic integers} and
+  $\Q_p = \widehat{(\Q, |\cdot|_p)}$ to be the
+  field of \emph{$p$-adic numbers}.
+\end{definition}
+
+\begin{theorem}
+  Every $p$-adic integer $x \in \Z_p$ can be written
+  uniquely as
+  \[
+    x = b_0 + b_1 p + b_2 p^2 + \dots, \quad
+    b_i \in \{0, 1, \dots, p - 1\}.
+  \]
+\end{theorem}
+
+\begin{example}
+  Consider
+  \[
+    x = 1 + 1 \cdot 3 + 2 \cdot 3^2 + 2 \cdot 3^4 + O(3^5) \quad \text{and} \quad
+    y = 1 \cdot 3 + 2 \cdot 3^2 + 1 \cdot 3^4 + O(3^5).
+  \]
+  Then we can compute
+  \[
+    x + y = 1 + 2 \cdot 3 + 1 \cdot 3^2 + 1 \cdot 3^3
+    + O(3^5).
+  \]
+  Multiplication is similar:
+  \[
+    xy = (1 + 1 \cdot 3 + 2 \cdot 3^2 + O(3^4))(1 \cdot 3 + 2 \cdot 3^2 + O(3^4))
+    = 1 \cdot 3 + 2 \cdot 3^3 + O(3^4).
+  \]
+\end{example}
+
+\begin{theorem}
+  Every $p$-adic number $x \in \Q_p$ can be written
+  uniquely as
+  \[
+    x = b_{-k} p^{-k} + \dots + b_{-1} p^{-1}
+    + b_0 + b_1 p + b_2 p^2 + \dots,
+    \quad b_i \in \{0, 1, \dots, p - 1\},
+  \]
+  where $k \in \Z$ and $b_{-k} \ne 0$. In this form,
+  we have $v_p(x) = -k$ and $|x|_p = p^k$.
+\end{theorem}
+
+\begin{definition}
+  Consider an \emph{inverse system of homomorphisms}
+  \begin{center}
+    \begin{tikzcd}
+      \cdots \ar[r] & R_3 \ar[r, "f_3"] & R_2 \ar[r, "f_2"] & R_1
+    \end{tikzcd}
+  \end{center}
+  Then the \emph{inverse limit} (or \emph{projective limit}, or \emph{limit}) is the set of
+  \emph{coherent sequences}
+  \[\widehat{R} = \varprojlim R_n
+  = \{\{x_n\}_{n \ge 1} : x_i \in R_i, f_i(x_i) = x_{i - 1}\}.\]
+\end{definition}
+
+\begin{remark}
+  There is also a notion of \emph{direct limit}
+  (or \emph{inductive limit}, or \emph{colimit}),
+  denoted $\varinjlim$.
+\end{remark}
+
+\begin{remark}
+  There is an obvious inverse system of homomorphisms (reduction mod $p^k$)
+  \begin{center}
+    \begin{tikzcd}
+      \cdots \ar[r] & \Z / p^3 \Z \ar[r] & \Z / p^2 \Z \ar[r] & \Z / p \Z
+    \end{tikzcd}
+  \end{center}
+  Then $\Z_p$ (as previously defined) coincides
+  with the inverse limit:
+  $\Z_p = \varprojlim (\Z / p^n \Z)$. We can also
+  define $\Q_p = \Frac(\Z_p) = \Z_p \otimes_{\Z} \Q$,
+  but $\Q_p$ is not an inverse limit.
+\end{remark}
+
+\begin{lemma}
+  $\Z_p = \{x \in \Q_p : |x|_p \le 1\} = \{x \in \Q_p : v_p(x) \ge 0\}$, i.e.
+  $\Z_p$ is the valuation ring of $\Q_p$.
+\end{lemma}
+
+\begin{lemma}
+  $\Z_p$ is a local ring with maximal ideal
+  $p \Z_p = \{x \in \Z_p : |x|_p < 1\} = \{x \in \Z_p : |x|_p \le 1 / p\}$.
+  In particular, $p \Z_p$ is both open and closed
+  (clopen) in $\Z_p$.
+\end{lemma}
+
+\begin{remark}
+  One can think of $\Z_p$ as a tree. For
+  $p = 2$, we can think of $\Z_2$ as an infinite binary
+  tree, where the edges on the $i$th level of the tree
+  corresponds to residues mod $2^i$. The
+  $2$-adic integers are then the \emph{ends} of this
+  tree, i.e. an infinite rooted path. Viewed in
+  this way, the $2$-adic integers are homeomorphic
+  to the (middle-thirds) Cantor set, hence $\Z_2$ is
+  totally disconnected.
+\end{remark}
