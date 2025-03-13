@@ -1,0 +1,283 @@
+\chapter{Mar.~13 --- Absolute Values on \texorpdfstring{$\Q$}{Q}}
+
+\section{Absolute Values}
+
+\begin{definition}
+  Let $K$ be a field. An \emph{absolute value} on $K$
+  is a map $|\cdot| : K \to \R_{\ge 0}$ such that
+  \begin{enumerate}
+    \item $|x| = 0$ if and only if $x = 0$;
+    \item $|xy| = |x| |y|$;
+    \item $|x + y| \le |x| + |y|$.
+  \end{enumerate}
+  If we also have $|x + y| \le \max\{|x|, |y|\}$,
+  then we call $|\cdot|$
+  \emph{non-Archimedean}.
+\end{definition}
+
+\begin{example}
+  We have the usual absolute value $|\cdot|_{\infty}$
+  given by
+  $|x|_{\infty} = \max\{x, -x\}$. More generally, we
+  have absolute values $|\cdot|_{\infty}^t$ for
+  $0 \le t \le 1$. When $t = 0$, we have the
+  trivial absolute value $|\cdot|_0$:
+  \[
+    |x|_0 =
+    \begin{cases}
+      1 & \text{if } x \ne 0, \\
+      0 & \text{if } x = 0.
+    \end{cases}
+  \]
+  For $0 < t \le 1$, the
+  $|\cdot|_{\infty}^t$ are all equivalent, in the
+  sense that they give the same topology on $\Q$.
+\end{example}
+
+\begin{definition}
+  Two absolute values
+  $|\cdot|$ and $|\cdot|'$ on $\Q$ are \emph{equivalent},
+  denoted $|\cdot| \sim |\cdot|'$, if they define the
+  same topology on $\Q$.
+\end{definition}
+
+\begin{example}
+  We have the $p$-adic absolute values $|\cdot|_p$ for
+  some prime $p$, and $|\cdot|_p^t$ for $0 < t < \infty$.
+  Each of the $|\cdot|_p^t$ are equivalent to
+  $|\cdot|_p$.
+\end{example}
+
+\begin{remark}
+  Note that we only have $p$-adic absolute values on
+  $\Q$ for prime $p$, e.g.
+  $\Z_{10} = \varprojlim \Z / 10^k \Z$ is
+  not an integral domain, so we cannot take its
+  field of fractions. In fact,
+  $\Z_{10} \cong \Z_2 \times \Z_5$, so it suffices
+  to study $\Z_2$ and $\Z_5$. There is also no need
+  to consider prime powers, since $\Z_9 = \Z_3$, for
+  instance.
+\end{remark}
+
+\section{Classification of Absolute Values}
+
+\begin{definition}
+  A \emph{place} of $K$,
+  is an equivalence class of non-trivial
+  absolute values on $K$. The set of places
+  of $K$ is denoted $M_K$.
+\end{definition}
+
+\begin{lemma}
+  Let $K$ be a field and
+  $|\cdot|, |\cdot|'$ be two non-trivial absolute values on $K$.
+  Then the following are equivalent:
+  \begin{enumerate}
+    \item $|\cdot| \sim |\cdot|'$;
+    \item $|x| < 1$ if and only if $|x|' < 1$;
+    \item $|\cdot|' = |\cdot|^s$ for some $s > 0$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  $(3 \Rightarrow 1)$ This is clear.
+
+  $(1 \Rightarrow 2)$ Note that
+  $|x| < 1$ if and only if $x^n \to 0$ with respect
+  to $|\cdot|$.
+
+  $(2 \Rightarrow 3)$ Fix some $y \in K^\times$ such
+  that $|y| < 1$ (we can do this since the
+  $|\cdot|$ is multiplicative and non-trivial).
+  Note that for all $x \in K^\times$, we have
+  $|x| = |y|^\alpha$ for some $\alpha \in \R$
+  depending on $x$. Choose $m_i / n_i \to \alpha$
+  from above, with $n_i > 0$. Then
+  $|x| = |y|^\alpha < |y|^{m_i / n_i}$, so by
+  $(2)$, we have
+  \[
+    \left|\frac{x^{n_i}}{y^{m_i}}\right| < 1
+    \implies 
+    \left|\frac{x^{n_i}}{y^{m_i}}\right|'' < 1
+    \implies |x|' < (|y|')^{m_i / n_i}
+    \text{ for all $i$}
+    \implies |x|' \le (|y|')^{\alpha}.
+  \]
+  Letting $m_i / n_i \to \alpha$ from below,
+  we get $|x|' = (|y|')^{\alpha}$. Then setting
+  \[
+    s = \frac{\log |y|'}{\log |y|} = \frac{\log |x|'}{\log |x|},
+  \]
+  we shows that $|x|' = |x|^s$ for all $x$. It is
+  clear that $s > 0$ since $|y|, |y|' < 1$.
+\end{proof}
+
+\begin{remark}
+  Recall the Archimedean property of $|\cdot|_{\infty}$
+  (the completion with respect to which is $\R$):
+  If $x \in \Q^\times$, then the sequence
+  $\{|nx|\}_{n \in \N}$
+  is unbounded. In the $p$-adic norm, however, we have
+  \[
+    |nx|_{p} = |n|_p |x|_p \le |x|_p,
+  \]
+  so this is a bounded sequence for any $x \in \Q^\times$.
+\end{remark}
+
+\begin{definition}
+  We say that an absolute value $|\cdot|$ on a field
+  $K$ is \emph{Archimedean} if $\{|n|\}_{n \in \N}$
+  is unbounded, and we call $|\cdot|$ \emph{non-Archimedean}
+  otherwise.
+\end{definition}
+
+\begin{lemma}
+  An absolute value $|\cdot|$ on $K$ satisfies the
+  ultrametric inequality $|x + y| \le \max\{|x|, |y|\}$
+  if and only if $\{|n|\}_{n \in \N}$ is bounded.
+\end{lemma}
+
+\begin{proof}
+  $(\Rightarrow)$ This is clear by induction, as
+  $|1 + 1| \le \max\{|1|, |1|\} = |1|$.
+
+  $(\Leftarrow)$ Suppose that $|n| \le N$, and
+  note that we always have
+  $|x + y| \le |x| + |y| \le 2 \max\{|x|, |y|\}$. Then
+  \[
+    |x + y|^n
+    = \left|\sum_{k = 0}^n \binom{n}{k} x^k y^{n - k}\right|
+    \le N (n + 1) \max\{|x|, |y|\}^n
+  \]
+  since $\binom{n}{k} \in \N$.
+  Taking $n$th roots and letting $n \to \infty$, we
+  get $|x + y| \le \max\{|x|, |y|\}$.
+\end{proof}
+
+\begin{theorem}[Ostrowski]
+  The set of places of $\Q$ are precisely
+  $|\cdot|_{\infty}$ and $|\cdot|_p$ for prime $p$, i.e.
+  \[
+    M_{\Q}
+    = \{|\cdot|_{\infty}, |\cdot|_{p} \text{ for $p$ prime}\}
+    \longleftrightarrow \{\mathrm{primes}\} \cup \{\infty\}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  Let $|\cdot|$ be a non-trivial absolute value on $\Q$.
+
+  First suppose that $|\cdot|$ is non-Archimedean.
+  Then $|n| \le 1$ for all $n \ge 1$, and there
+  exists a prime $q$ such that $|q| < 1$ (if $|q| = 1$ for
+  all primes $q$,
+  then $|n| = 1$ for all $n \ge 1$ and $|\cdot|$ is
+  trivial). Consider the set
+  \[
+    I = \{n \in \Z : |n| < 1\},
+  \]
+  which is an ideal in $\Z$ (it is obviously closed
+  under multiplication and the ultrametric inequality
+  implies it is closed under addition). Note that
+  $1 \notin I$ and $q \in Z$, so $I = p\Z$ for some prime $p$.
+  For $n = mp^k$ with $p \nmid m$, we have
+  $|m| = 1$ since $m \notin I$, so $|n| = |p|^k$.
+  This gives $|n| = |n|_p^s$ for
+  $s = -\log_p |p|$, so $|\cdot| \sim |\cdot|_p$.
+
+  Now let $|\cdot|$ be Archimedean. Then we can
+  choose $n, m > 1$ such that $|n|, |m| > 1$. Write $m$
+  in base $n$:
+  \[
+    m = a_0 + a_1 n + \dots a_k n^k, \quad a_i \in \{0, \dots, n - 1\},
+  \]
+  where $k \le \log_n m$, and $|a_i| \le a_i |1| < n$
+  since $a_i < n$. So $|n^i| < |n^k|$ for $1 \le i \le k$, and we have
+  \[
+    |m| \le \sum_{i = 1}^k |a_i| |n|^k
+    \le (1 + \log_n m) \cdot n \cdot |n|^{\log_n m}.
+  \]
+  Replacing $m$ by $m^t$, taking $t$th roots and
+  letting $t \to \infty$, one finds
+  $|m| \le |n|^{\log_n m}$. By switching $m$ and $n$,
+  we get $|m| = |n|^{\log_n m}$, so
+  $|m|^{1 / \log m} = |n|^{1 / \log n}$. Thus we can
+  define $s = (\log |n|) / (\log n)$, which is
+  independent of $n$. If $x \in \Q$, write
+  $x = m / n$, where without loss of generality
+  we can assume $|m|, |n| > 1$ (by replacing
+  $m, n$ with $mt, nt$, if necessary). Then we have
+  \[
+    |x|_{\infty}^s = e^{s \log x}
+    = \frac{e^{s \log m}}{e^{s \log n}}
+    = \frac{e^{\log |m|}}{e^{\log |n|}}
+    = \frac{|m|}{|n|} = |x|,
+  \]
+  which shows that $|\cdot| = |\cdot|_{\infty}^s \sim |\cdot|_\infty$.
+\end{proof}
+
+\begin{theorem}[Ostrowski for number fields]
+  Let $K$ be a number field. Then every non-trivial
+  absolute value on $K$ is equivalent to one of the
+  following:
+  \begin{enumerate}
+    \item $\p$-adic absolute value
+      $|\cdot|_\p$ for some prime ideal
+      $\p \subseteq \OO_K$ (defined by
+      $|\alpha|_\p = (N \p)^{-\ord_\p(\alpha)}$);
+    \item the absolute value given by
+      $K \overset{\sigma}{\hookrightarrow} \C \overset{|\cdot|}{\to} \R_{\ge 0}$
+      for some $\sigma$.
+  \end{enumerate}
+  In particular, we have a bijection
+  \[M_K \longleftrightarrow \{\text{nonzero prime ideals of $\OO_K$}\} \cup \{\text{real or pairs of complex embeddings of $K$}\}\]
+\end{theorem}
+
+\begin{theorem}[Product formula]
+  For $x \in \Q^\times$, we have
+  $\prod_{v \in M_{\Q}} |x|_v = 1$. More generally,
+  for a general number field $K$ and $x \in K^\times$,
+  we have $\prod_{v \in M_K} |x|_v = 1$, where
+  $|\cdot|_v = |\cdot|_{\C}^2$ if $v$ is complex.
+\end{theorem}
+
+\begin{theorem}[Weak approximation]
+  Let $K$ be any field with pairwise inequivalent
+  absolute values $|\cdot|_1, \dots, |\cdot|_n$, and
+  let $a_1, \dots, a_n \in K$. Then for all
+  $\epsilon > 0$, there exists $x \in K$ such that
+  \[
+    |x - a_i|_{i} < \epsilon, \quad \text{for all $1 \le i \le n$}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  We only sketch the proof. The idea is the following:
+  We know that there exists $\alpha \in K$ such that
+  $|\alpha|_1 < 1$ and $|\alpha_n| \ge 1$ (since
+  the absolute values are inequivalent). Similarly,
+  there exists $\beta \in K$ such that
+  $|\beta|_n < 1$ and $|\beta|_1 \ge 1$. Let
+  $y = \beta / \alpha$, so that
+  $|y|_1 > 1$ and $|y|_n < 1$.
+
+  Now we induct on $n$: The above argument is the base
+  case, so assume there exists $w \in K$ such that
+  $|w|_1 > 1$, and $|w_j < 1$ for $j = 2, \dots, n - 1$.
+  Then if $|w_n| \le 1$, take $z = w^m y$ with
+  $m \gg 0$, and if $|w_n| > 1$, take $z = w^m y / (1 + w^m)$
+  with $m \gg 0$. This $z$ satisfies
+  $|z|_1 > 1$ and $|z|_j < 1$ for $j = 2, \dots, n$.
+
+  Taking $m \to \infty$, we get
+  \[
+    \frac{z^m}{1 + z^m} \xrightarrow[m \to \infty]{}
+    \begin{cases}
+      1 & \text{in $|\cdot|_1$-norm}, \\
+      0 & \text{in $|\cdot|_j$-norm, $j = 2, \dots, n$}, \\
+    \end{cases}
+  \]
+  Doing this and getting $z_i$ for each $i$, we can take
+  $x = a_1 z_1 + \dots + a_n z_n$.
+\end{proof}
