@@ -1,0 +1,251 @@
+\chapter{Mar.~25 --- Completions of Number Fields}
+
+\section{Absolute Values on Number Fields}
+\begin{remark}
+  Let $K$ be a number field and $\p$ a nonzero
+  prime ideal of $\OO_K$. Then for $\alpha \in K^\times$,
+  we can define the $\p$-adic valuation
+  $v_\p(\alpha) = \ord_\p(\alpha)$, where
+  $\ord_\p(\alpha) = k$ if $(\alpha) = \p^k I$ with
+  $I$ relatively prime to $\p$, i.e. $I + \p = (1)$.
+  We can define the $\p$-adic absolute value
+  by $|\alpha|_\p = (N\p)^{-v_\p(\alpha)}$, which is
+  non-Archimedean.
+
+  If $\sigma$ is a real embedding
+  of $K$, then we can define $|\alpha|_\sigma = |\sigma(\alpha)|_{\R}$,
+  where $|\cdot|_{\R}$ is the usual absolute value on
+  $\R$. Similarly, if $\{\tau, \overline{\tau}\}$
+  is a pair of conjugate complex embeddings, we
+  can define $\|\alpha\|_{\{\tau, \overline{\tau}\}} = |\tau(\alpha)|^2_{\C}$,
+  where $|\cdot|_{\C}$ is the usual absolute value on
+  $\C$.
+
+  Note that $\| \cdot \|_{\{\tau, \overline{\tau}\}}$
+  is not actually an absolute value because
+  it does not satisfy the triangle inequality,
+  we call it the \emph{normalized} absolute value (it
+  is squared so that the product formula works).
+  We will write
+  $\| \cdot \|$ to denote the normalized absolute
+  value corresponding to an absolute value $|\cdot|$.
+
+  Recall the following theorems that we stated last
+  time:
+\end{remark}
+
+\begin{theorem}[Ostrowski for number fields]
+  There is a one-to-one correspondence
+  \[
+    \underbrace{\{\text{places of $K$}\}}_{M_K = M_K^0 \sqcup M_K^\infty} \longleftrightarrow
+    \underbrace{\{\text{nonzero prime ideals}\}}_{M_K^0}
+    \cup \underbrace{\{\text{real embeddings}\}
+    \cup \{\text{pairs of complex embeddings}\}}_{M_K^\infty}.
+  \]
+\end{theorem}
+
+\begin{theorem}[Product formula]
+  For each $v \in M_K$, let $\|\cdot\|_v$ be the
+  corresponding normalized absolute value.
+  Then for each $\alpha \in K^\times$, we have
+  $\prod_{v \in M_K} \|\alpha\|_v = 1$.
+\end{theorem}
+
+\begin{proof}
+  We have
+  \[
+    \prod_{v \in M_K} \|\alpha\|_v
+    = \prod_{v \in M_K^0} \|\alpha\|_{v}
+    \prod_{v \in M_K^\infty} \|\alpha\|_{v}
+    = (|N(\alpha)|)^{-1} |N(\alpha)|
+    = 1.
+  \]
+  Note that this is essentially the result
+  that $|N((\alpha))| = |N(\alpha)|$.
+\end{proof}
+
+\section{Completions of Number Fields}
+
+\begin{remark}
+  We can complete $K$ with respect to any
+  non-Archimedean absolute value $|\cdot|_{\p}$,
+  and we obtain a field $K_\p$ (note that this is not
+  a localization). We also have the
+  valuation ring
+  \[
+    \widehat{\OO}_\p = \{x \in K_\p : |x|_{\p} \le 1\}
+    = \text{$\p$-adic completion of $\OO_K$}
+    = \varprojlim (\OO_K / \p^n).
+  \]
+  Note that $\widehat{\OO}_\p$ is a local ring
+  with unique maximal ideal
+  $\widehat{\m}_\p = \{x \in K_\p : |x|_\p < 1\}$.
+\end{remark}
+
+\begin{theorem}
+  Let $p = \p \cap \Z$. Then we have the following:
+  \begin{enumerate}
+    \item $[K_\p : \Q_p] < \infty$. In fact,
+      $[K_\p : \Q_p] = e(\p / p) f(\p / p)$.
+      Moreover, if $K / \Q$ is Galois, then so is
+      $K_\p / \Q_p$ and
+      $\Gal(K_\p / \Q_p) \cong D_{\p / p}$ in this case.
+    \item $\widehat{\OO}_\p / \widehat{\m}_\p^k \cong \OO_K / \p^k$ for all $k \ge 1$ (a particular case
+      is $\Z_p / p \Z_p \cong \Z / p\Z$).
+  \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+  An ``explicit'' description of $K_\p$ looks like
+  the following: Take the coefficients $S$ to be
+  coset representatives for $\OO_K / \p$
+  (e.g. $\{0, 1, 2, \dots, p - 1\}$). Then for
+  each $x \in K_\p$, we have an expansion
+  \[
+    x = \sum_{m = -n}^\infty a_m \pi^m, \quad a_m \in S,
+  \]
+  where we choose a \emph{uniformizer}
+  $\pi \in \p \setminus \p^2$.
+\end{remark}
+
+\section{Hensel's Lemma}
+
+\begin{prop}
+  The element $2$ is not a square in $\Q_5$.
+\end{prop}
+
+\begin{proof}
+  If $\alpha^2 = 2$ for some $\alpha \in \Q_5$, then
+  $|\alpha|_5^2 = |2|_5 = 1$,
+  so $|\alpha|_5 = 1$ and thus we have $\alpha \in \Z_5$.
+  Then $\overline{\alpha} \in \Z_5 / 5 \Z_5 \cong \Z / 5\Z$
+  satisfies $(\overline{\alpha})^2 = \overline{2}$
+  in $\Z / 5 \Z$, which is a contradiction.
+\end{proof}
+
+\begin{prop}
+  The element $-1$ is a square in $\Q_5$. More
+  precisely, $x^2 + 1$ has $2$ distinct roots in $\Z_5$,
+  where one root in $\Z_5$ is congruent to $2$ mod $5$
+  and the other is congruent to $3$ mod $5$.
+\end{prop}
+
+\begin{proof}
+  Let $\alpha = a_0 + a_1 \cdot 5 + a_2 \cdot 5^2 + \dots$
+  for $a_i \in \{0, 1, \dots, 4\}$, and suppose
+  $\alpha^2 + 1 = 0$. We must have
+  $a_0 = 2$ or $3$ mod $5$ (these are the only solutions
+  to $x^2 + 1 \equiv 0 \Pmod{5}$).
+
+  Suppose $a_0 = 2$ (check $a_0 = 3$ as an exercise).
+  Then $\alpha^2 + 1 \equiv 0 \Pmod{5^2}$ implies
+  \[
+    (2 + 5a_1)^2 + 1 \equiv 5 + 20 a_1 \equiv 0 \pmod{25},
+  \]
+  so $1 + 4 a_1 \equiv 0 \Pmod{5}$, which gives
+  $a_1 = 1$. So $\alpha = 2 + 1 \cdot 5 + O(5^2)$.
+  Then $\alpha^2 + 1 \equiv 0 \Pmod{5^3}$ implies
+  that $(7 + 25 a_2)^2 + 1 \equiv 0 \Pmod{5^3}$,
+  which means that
+  \[
+    50 + 14 \cdot 25 a_2 \equiv 0 \pmod{125},
+  \]
+  so $2 - a_2 \equiv 0 \Pmod{5}$, which gives
+  $a_2 = 2$. So $\alpha = 2 + 1 \cdot 5 + 2 \cdot 5^2 + O(5^3)$, and one can continue.
+
+  In general, let $c_n = a_0 + a_1 \cdot 5^1 + \cdots + a_n \cdot 5^n$.
+  Assume $a_0, a_1, \dots, a_n$ have been computed.
+  Then
+  \[
+    (c_n + a_{n + 1} \cdot 5^{n + 1})^2 + 1 \equiv 0 \Pmod{5^{n + 2}},
+  \]
+  so we get $a_{n + 1} \equiv (1 + c_n^2) / 5^{n + 1} \Pmod{5}$.
+  This defines a solution to $x^2 + 1 = 0$ in $\Z_5$
+  inductively.
+\end{proof}
+
+\begin{prop}[Hensel's lemma, version $2$]
+  Let $K$ be a field which is complete with respect
+  to a non-Archimedean absolute value $|\cdot|$.
+  Suppose $f \in R[x]$, where $R$ is the valuation
+  ring of $K$, and that there exists $\alpha_0 \in R$
+  such that $|f(\alpha_0)| < |f'(\alpha_0)|^2$.
+  Define
+  \[
+    \alpha_{n + 1} = \alpha_n - \frac{f(\alpha_n)}{f'(\alpha_n)}.
+  \]
+  Then $\alpha_n \to \alpha$ for some
+  $\alpha \in K$ with $f(\alpha) = 0$, and
+  $|\alpha - \alpha_0| \le |f(\alpha_0) / f'(\alpha_0)^2| < 1$.
+\end{prop}
+
+\begin{proof}
+  The idea is to check that $\{\alpha_n\}$ is a
+  Cauchy sequence and use the
+  Taylor approximation
+  \[
+    f(\alpha_{n + 1}) = f(\alpha_n - \epsilon_n)
+    = f(\alpha_n) - f'(\alpha_n) \epsilon_n + O(\epsilon_n^2)
+    = O(\epsilon_n^2)
+  ,\]
+  where $\epsilon_n = f(\alpha_n) / f'(\alpha_n)$
+  (note that $f'(\alpha_n) \epsilon_n = f(\alpha_n)$).
+\end{proof}
+
+\begin{remark}
+  In practice, we will often choose $\alpha_0$ so that
+  $|f(\alpha_0)| < 1$ and $|f'(\alpha_0)| = 1$.
+\end{remark}
+
+\begin{example}
+  Let $f(x) = x^2 + 1$, $\alpha_0 = 2$, and
+  $K = \Q_5$. Note that
+  \[
+    |f(\alpha_0)| = 1 / 5
+    \quad \text{and} \quad
+    |f'(\alpha_0)| = |4|_5 = 1,
+  \]
+  so Hensel's lemma gives a root with
+  $\alpha \equiv \alpha_0 \Pmod{5}$ (this holds if and
+  only if $|\alpha - \alpha_0|_5 < 1$).
+\end{example}
+
+\begin{example}
+  We can use Hensel's lemma to show that
+  $\Z_p$ contains $p - 1$ different $(p - 1)$-th
+  roots of unity. We will solve the equation
+  $x^{p - 1} = 1$ in $\Z_p$. Let $f(x) = x^{p - 1} - 1$,
+  so that
+  \[
+    f(x) \equiv (x - 1)(x - 2) \dots (x - (p - 1)) \pmod{p}.
+  \]
+  So by Hensel's lemma, we have $p - 1$ distinct
+  roots of $f(x)$ in $\Z_p$, one for each
+  element of $(\Z / p\Z)^\times$.
+\end{example}
+
+\begin{theorem}[Baker]
+  The world's most complicated group
+  $(\Z / p\Z)^\times$ is cyclic.
+\end{theorem}
+
+\begin{proof}
+  Let $\mu_a$ be the root of unity in $\Z_p$
+  corresponding to $a \in (\Z / p\Z)^\times$.
+  There is a homomorphism
+  \begin{align*}
+    (\Z / p\Z)^\times
+    &\longrightarrow \Q_p^\times \\
+    a &\longmapsto \mu_a.
+  \end{align*}
+  Let the image of this map be
+  $\mu \subseteq \Q_p^\times$. Recall from
+  Algebra I that any two splitting fields for
+  $f(x)$ over $\Q$ are isomorphic, so
+  $\Q(\mu) \subseteq \Q_p$ and
+  $\Q(\zeta_{p - 1}) \subseteq \C$ are isomorphic.
+  Thus $\mu$ is isomorphic to the $p - 1$ roots of
+  unity $\mu_{p - 1} \subseteq \C$.
+  But $\mu_{p - 1} = \langle \zeta_{p - 1} \rangle = \langle e^{2\pi i / (p - 1)} \rangle \subseteq \C$,
+  is cyclic, so $\mu \cong \Z / p\Z$ is also cyclic.
+\end{proof}
