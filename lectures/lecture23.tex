@@ -1,0 +1,231 @@
+\chapter{Apr.~3 --- Applications of \texorpdfstring{$p$}{p}-adic Analysis}
+
+\section{Applications to Diophantine Equations, Continued}
+
+\begin{example}
+  Consider the Diophantine equation
+  $x^3 - 11y^3 = 1$. Let $K = \Q(\alpha)$ for
+  $\alpha = \sqrt[3]{11}$ and
+  \[
+    v = -2\alpha^2 + r\alpha + 1 \in \OO_K^\times,
+  \]
+  where $\OO_K = \Z[\sqrt[3]{11}]$. Note
+  that $v$ is the reciprocal of the fundamental
+  unit in $\OO_K$.
+\end{example}
+
+\begin{prop}
+  If $x - y \sqrt[3]{11} = v^n$ for some $n \in \Z$,
+  then $n = 0$.
+\end{prop}
+
+\begin{proof}
+  We have previously found that there exists
+  $\alpha_1, \dots, \alpha_3 \in \Q_{19}$ and
+  $v_1, \dots, v_3 \in \Q_{19}$ such that
+  \[
+    \alpha_1 v_1^n + \alpha_2 v_2^n + \alpha_3 v_3^n = 0. \tag{$*$}
+  \]
+  (We did this by consider the three embeddings
+  $\sigma_i : K \hookrightarrow \Q_{19}$, and
+  setting $v_i = \sigma_i(v)$, $\alpha_i = \sigma_i(\alpha)$.)
+  Note for $x, t \in \Z_p$, we can expand
+  $(1 + px)^t$ via a power series in $t$:
+  \[
+    (1 + px)^t = \sum_{n = 0}^\infty \gamma_n t^n, \quad \gamma_n \in \Q_p.
+  \]
+  Multiply both sides of $(*)$ by $v_2^n v_3^n$ to
+  get (note that $v_1 v_2 v_3 = N_{K / \Q}(v) = 1$
+  since $v \in \OO_K^\times$)
+  \[
+    \alpha_1 + \alpha_2 \beta_2^n + \alpha_3 \beta_3^n = 0,
+  \]
+  where $\beta_2 \equiv 11 \Pmod{19}$ and
+  $\beta_3 \equiv 1 \Pmod{19}$. Taking the
+  above equation mod $19$, we obtain
+  \[
+    \alpha_1 + \alpha_2 11^n + \alpha_3 \equiv 0 \Pmod{19}
+  \]
+  Recall that
+  $\alpha_1 \equiv -3 \Pmod{19}$,
+  $\alpha_2 \equiv -2 \Pmod{19}$, and
+  $\alpha_3 \equiv 5 \Pmod{19}$, so
+  \[
+    2 - 2 \cdot 11^n \equiv 0 \Pmod{19},
+  \]
+  which gives $11^n \equiv 1 \Pmod{19}$. This
+  implies that $3 | n$. Then we have
+  \[
+    \alpha_1 + \alpha_2 (\beta_2^3)^m + \alpha_3(\beta_3^3)^m = 0. \tag{$**$}
+  \]
+  One can calculate that $\beta_2^3 = 1 + 7 \cdot 19 + O(19^2)$ and
+  $\beta_3^3 = 1 + 11 \cdot 19 + O(19^2)$, so
+  \[
+    \alpha_1 + \alpha_2(\beta_2^3)^m + \alpha_3(\beta_3^3)^m = \sum_{i = 1}^\infty \gamma_i m^i
+    = (-2 \cdot 7 + 5 \cdot 11) \cdot 19m
+    \equiv 3 \cdot 19m \pmod{19^2}.
+  \]
+  This yields $N = 1$ in Strassmann's theorem,
+  so it implies that there is at most one zero
+  in $\Z_{19}$. We know that $m = 0$ is a root,
+  so it must be the only one. So
+  $m = 0$ is the only solution of $(**)$.
+\end{proof}
+
+\begin{example}
+  Consider the equation $2x^2 + 1 = 3^m$.
+  We can observe the solutions
+  \[
+    (x, m) = (\pm 2, 2), (\pm 1, 1), (0, 0), (\pm 11, 5).
+  \]
+\end{example}
+
+\begin{theorem}
+  The above pairs $(x, m)$ are the only integer
+  solutions to $2x^2 + 1 = 3^m$.
+\end{theorem}
+
+\begin{proof}
+  Let $K = \Q(\sqrt{-2})$ and $\alpha = 1 + x \sqrt{-2}$,
+  so the equation becomes $N(\alpha) = 3^m$.
+  Note that $\Z[\sqrt{-2}]$ is a PID, and
+  $(3) = (1 + \sqrt{-2})(1 - \sqrt{-2}) = (\beta_1)(\beta_2)$, where
+  $1 \pm \sqrt{-2}$ are irreducible. Then
+  \[
+    \alpha = \pm \beta_1^{m_1} \beta_2^{m_2}
+  \]
+  since $\alpha \overline{\alpha} = N(\alpha) \in (3)$.
+  Note that we have
+  $\Tr_{K / \Q}(\alpha) = \alpha + \overline{\alpha} = 2$,
+  so
+  \[\beta_1^{m_1} \beta_2^{m_2} + \beta_2^{m_1} \beta_1^{m_2} = 2.\]
+  So by symmetry, we can assume without loss of generality that
+  $m_1 \le m_2$. Factoring out
+  $\beta_1^{m_1} \beta_2^{m_1} = 3^{m_1}$,
+  \[
+    3^{m_1} (\beta_2^{m_2 - m_1} + \beta_1^{m_2 - m_1}) = \pm 2 \in \Z[\sqrt{-2}].
+  \]
+  This implies $m_1 = 0$, so
+  we have the equation $\beta_1^m + \beta_2^m = \pm 2$ with $m = m_2$. Now we want to embed
+  $K$ into a suitable $\Q_p$. Note
+  that $\beta_1, \beta_2$ are roots of the
+  polynomial
+  \[
+    f(y) = y^2 - 2y + 3,
+  \]
+  which splits mod $p$ for $p = 11$.
+  We have $\beta_1 \equiv 9 \Pmod{11}$ and
+  $\beta_2 \equiv 4 \Pmod{11}$, each of which
+  satisfy
+  $\beta_i^5 \equiv 1 \Pmod{11}$.
+  Let $m = 5t + k$ for $k \in \{0, 1, 2, 3, 4\}$,
+  and we get
+  \[
+    \beta_1^k (\beta_1^5)^t + \beta_2^k (\beta_2^5)^t = \pm 2.
+  \]
+  Looking at the equation mod $11$, only
+  $k = 0, 1, 2$ give solutions. Let $\lambda_i = \beta_i^5 - 1 \in 11\Z_{11}$.
+  For $k = 0$,
+  \[
+    (1 + \lambda_1)^t + (1 + \lambda_2)^t - 2 = 0,
+  \]
+  so expanding this as a power series in $t$,
+  we find
+  \begin{align*}
+    0 = (1 + \lambda_1)^t + (1 + \lambda_2)^t - 2
+    &= \left(1 + \lambda_1 + \lambda_1^2 \binom{t}{2} + \cdots\right)
+    + \left(1 + \lambda_2 + \lambda_2^2 \binom{t}{2} + \cdots\right) \\
+    &= (\lambda_1 + \lambda_2)t + (\lambda_1^2 + \lambda_2^2) \binom{t}{2} + \cdots
+  \end{align*}
+  which converges for $|t|_{11} \le 1$. Computing
+  the power series explicitly, we get
+  \[
+    0 = (7 \cdot 11^2 + 10 \cdot 11^3 + 10 \cdot 11^4) \binom{t}{2}
+    + (8 \cdot 11^4) \binom{t}{4} + O(11^5)
+    = \gamma_1 t + \gamma_2 t^2 + \gamma_3 t^3 + \cdots,
+  \]
+  where $|\gamma_1|_{11} = |\gamma_2|_{11} = 11^{-2}$
+  and $|\gamma_n|_{11} \le 11^{-4}$ for $n \ge 3$.
+  The Strassmann bound is $N = 2$, so there are
+  at most $2$ solutions for $k = 0$.
+  This implies $5 | m$,
+  which corresponds to the solutions
+  $(0, 0)$ and $(\pm 11, 5)$.
+
+  One can compute that the Strassmann bounds
+  for $k = 1$ and $k = 2$ are both $N = 1$, so
+  there are at most $4$ solutions in total.
+  We already have solutions with
+  $4$ distinct $m$, so they must be all of them.
+\end{proof}
+
+\section{Applications to Linear Recurrences}
+
+\begin{remark}
+  Note that $\beta_1^n + \beta_2^n = \pm 2$ for
+  $\beta_1, \beta_2$ roots of $x^2 - 2x + 3$ is
+  equivalent to solving the linear recurrence
+  $a_n = \pm 2$ with $a_0 = a_1 = 2$ and
+  $a_{n + 2} = 2a_{n + 1} - 3 a_n$ for $n \ge 2$.
+
+  In general, suppose $a_n$ is a linear
+  recurrence over a field $K$. Choose some
+  $c \in K$, and we want to solve $a_n = c$.
+  Assume that $\Char K = 0$. Then we have the
+  following result:
+\end{remark}
+
+\begin{theorem}[Skolem-Mahler-Lech]
+  In the above setting, either $a_n = c$ has
+  finitely
+  many solutions, or $a_n = c$ for all $n$ in
+  some arithmetic progression.
+\end{theorem}
+
+\begin{proof}
+  We sketch the main idea of the proof.
+  We embed $K$ into a suitable $\Q_p$ using the
+  following result:
+  \begin{quote}
+    \textbf{Theorem} (Cassels-Lech embedding theorem)\textbf{.}
+    Let $K / \Q$ be a finitely generated field
+    extension and $C$ be a finite set of
+    elements of $K^\times$. Then there are
+    infinitely many primes $p$ such that
+    $(1)$ there is an embedding $\sigma : K \hookrightarrow \Q_p$,
+    and $(2)$ $|\sigma(c)|_p = 1$ for all $c \in C$.\footnote{See Cassels's \emph{Local Fields} for a proof of this theorem.}
+  \end{quote}
+  A similar argument as before works in this
+  setting due to the above two properties.
+\end{proof}
+
+\begin{remark}
+  In fact, a stronger result is true:
+  The solutions to $a_n = c$ form a finite
+  union of arithmetic progressions.
+  However, the result does not hold for
+  $\Char K \ne 0$: Consider $K = \F_p(t)$ and
+  \[
+    a_n = (t + 1)^n - t^n,
+  \]
+  then $a_n = 1$ if and only if $n = p^k$ for some
+  $k$.
+\end{remark}
+
+\begin{theorem}[Baker-Demarco]
+  Fix any $a, b \in \C$ with $a \ne \pm b$.
+  Then the set
+  \[
+    \{c \in \C : \text{$a$ and $b$ both have finite orbit under $z \mapsto z^2 + c$}\}.
+  \]
+  is finite.
+\end{theorem}
+
+\begin{theorem}[Monsky]
+  There is no odd equi-area dissection of a square.
+\end{theorem}
+
+\begin{remark}
+  The proof of the two above theorems have similar
+  flavors using $p$-adic analysis.
+\end{remark}
