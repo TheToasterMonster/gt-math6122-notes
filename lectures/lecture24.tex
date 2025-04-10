@@ -1,0 +1,227 @@
+\chapter{Apr.~10 --- Guest Lecture: Gauss Sums}
+
+\section{Quadratic Gauss Sums}
+
+\begin{definition}
+  Let $p$ be a prime. A \emph{quadratic Gauss sum}
+  is a sum of the form
+  \[
+    G_p = \sum_{n = 1}^p \left(\frac{n^2}{p}\right), \quad e(x) = e^{2\pi ix},\, x \in \R.
+  \]
+\end{definition}
+
+\begin{exercise}
+  Show that $|G_{p}|^2 = p$.
+\end{exercise}
+
+\begin{remark}
+  Gauss famously determined that $G_p$
+  only takes two values:
+  \[
+    G_p =
+    \begin{cases}
+      \sqrt{p} & \text{if $p \equiv 1 (4)$}, \\
+      i \sqrt{p} & \text{if $p \equiv 3 (4)$}.
+    \end{cases}
+  \]
+  Note that $G_p$ are really $p$-adic
+  analogues of the Gaussian integral:
+  \[
+    \int_0^\infty e\left(\frac{a}{2} u^2 + bu\right) du, \quad a \in \Z \setminus \{0\},\, b \in \Z.
+  \]
+  The Gaussian integral is at the infinite
+  place, whereas $G_p$ are at the $p$-adic
+  places. Dirichlet used Poisson summation
+  (from Fourier analysis) to evaluate $G_p$
+  using the Gaussian integral.
+\end{remark}
+
+\section{Cubic Gauss Sums}
+
+\begin{definition}
+  Let $p \equiv 1 \Pmod{3}$ be a prime.
+  A \emph{cubic Gauss sum} is a sum of the form
+  \[
+    S_p = \sum_{n = 1}^p e\left(\frac{n^3}{p}\right).
+  \]
+  We work in the Eisenstein fields
+  $\Z[\omega] \subseteq \Q(\omega)$, where
+  $\omega = e^{2\pi i / 3}$ satisfies
+  $\omega^2 + \omega + 1 = 0$. Note that
+  \[
+    p = \pi \overline{\pi}, \quad \pi \text{ a prime in } \Q(\omega).
+  \]
+\end{definition}
+
+\begin{remark}
+  One can see that
+  \[
+    \frac{S_p}{2\sqrt{p}}
+     = \re \widetilde{g}_3(\pi), \quad
+     \widetilde{g}_3(\pi) = \frac{1}{\sqrt{N(\pi)}} \sum_{x \Pmod{\pi}} \left(\frac{x}{\pi}\right)_3 \check{e}\left(\frac{x}{\pi}\right),\, \check{e}(x) = e^{2\pi i (z + \overline{z})}.
+  \]
+  Kummer in 1846 observed that for $p \le 500$,
+  the values of $\widetilde{g}_3(\pi)$
+  are distributed in a ratio of $1 : 2 : 3$
+  for the left quarter of the unit circle,
+  the top and bottom quarters, and the right quarter.
+  After Kummer, however, the problem remained
+  untouched for around 100 years.
+
+  Later on, the ENIAC (a 1700-vacuum tube
+  computer) at the IAS changed the game.
+  In 1953, von Neumann, Goldstine, and Selberg
+  computed the ratio to be $2 : 3 : 4$.
+  Lehmer in 1956 changed this to $3 : 4 : 5$,
+  and Cassels in 1969 led mathematicians
+  to believe that the values were equidistributed.
+\end{remark}
+
+\begin{conjecture}[Folklore]
+  The cubic Gauss sums $\widetilde{g}_3(\pi)$
+  are equidistributed on the unit circle
+  as $N(\pi) \to \infty$, for
+  $\pi \equiv 1 \Pmod{3}$ prime.
+\end{conjecture}
+
+\begin{conjecture}[Patterson, 1978]
+  One has
+  \[
+    \sum_{\substack{\pi \in \Z[\omega] \\ \pi \equiv 1 (3), N(\pi) \le x}} \widetilde{g}_3(\pi)
+    \sim \frac{2(2\pi)^{2 / 3}}{5T(2 / 3)} \cdot \frac{x^{5 / 6}}{\log x}.
+  \]
+\end{conjecture}
+
+\begin{remark}
+  In the same paper, Patterson established
+  the $x^{5 / 6}$-bias over all Eisenstein
+  integers.
+\end{remark}
+
+\section{Automorphic Forms}
+
+\begin{remark}
+  One can see a connection between
+  Gauss sums and automorphic forms. Kubota
+  (1969, 1971) considered
+  automorphic forms on the $3$-fold cover
+  of $\mathrm{SL}_2(\mathbb{A}_{\Q(\omega)})$,
+  i.e. functions $F : \mathbb{H}^3 \to \C$
+  with $\Delta F = \lambda F$ and
+  \[
+    F\left(
+      \begin{pmatrix}
+        a & b \\
+        c & d
+      \end{pmatrix} w
+    \right)
+    \approx \left(\frac{c}{a}\right)_3 F(w), \quad
+    \begin{pmatrix}
+      a & b \\
+      c & d
+    \end{pmatrix} \in \mathrm{SL}_2(\mathbb{Z}[\omega]),
+  \]
+  such that $F$ is an eigenfunction
+  of the Hecke operator:
+  $T_{\pi^3} F = \lambda_{\pi^3} F$.
+  Also let $w = (z, v) \in \mathbb{H}^3$.
+\end{remark}
+
+\begin{example}
+  Consider cubic Eisenstein series $E_3(w, s)$, which
+  have a pole at $s = 4 / 3$, and define
+  \[
+    \Theta_s(w) = \Res_{s = 4 / 3} E_3(w, s)
+  \]
+  to be the \emph{cubic theta function}.
+  One can expand this function via
+  \[
+    \Theta_3(w) = \frac{3^{5 / 2}}{2} v^{2 / 3}
+    + \sum_{\mu \in \Z[\omega]} \tau_3(\mu) v K_{1 / 3} (4\pi |\mu| v) \check{e}(\mu z)
+  \]
+  Patterson (1977) determined that $\tau_3(\mu) = \widetilde{g}_3(\mu)$
+  via a Hecke converse argument. Note that this
+  gives access to a functional equation.
+  The $5 / 6$-bias is a consequence of the
+  translation $4 / 3 - 1 / 2 = 5 / 6$.
+\end{example}
+
+\begin{theorem}[Heath-Brown-Patterson, 1979]
+  The Folklore conjecture is true.
+\end{theorem}
+
+\begin{theorem}[Heath-Brown, 2000]
+  For any $\epsilon > 0$, we have
+  \[
+    \sum_{\substack{\pi \in \Z[\omega] \\ \pi \equiv 1 (3), N(\pi) \le x}} \widetilde{g}_3(\pi)
+    \ll_{\epsilon} x^{5 / 6 + \epsilon}, \quad
+    \text{as $x \to \infty$}.
+  \]
+\end{theorem}
+
+\begin{remark}
+  Note that the Heath-Brown result falls short
+  of the Patterson conjecture by $x^\epsilon$.
+\end{remark}
+
+\begin{theorem}[Dunn-Radziwitt, 2021/2024]
+  Patterson's conjecture is true under GRH
+  for Hecke $L$-functions over $\Q(\omega)$.
+\end{theorem}
+
+\section{Detecting Primes}
+\begin{remark}
+  \emph{Vaughan's identity} says that
+  \[
+    -\frac{\zeta'}{\zeta} = F - \zeta FG - \zeta' G + \left(-\frac{\zeta'}{\zeta} - F\right)(1 - \zeta G),
+  \]
+  where
+  \[
+    F(s) = \sum_{m \le u} \Lambda(m) m^{-s},
+    \quad G(s) = \sum_{d \le v} \mu(d) d^{-s}.
+  \]
+  where $\Lambda$ is the \emph{von-Mangoldt function}.
+  One can use this to write
+  \[
+    \Lambda = \Lambda_{\le u} - u_{\le v} * \Lambda_{\le u} * 1
+    + \mu_{\le v} * \log + \mu_{> v} * \Lambda_{> u} * 1.
+  \]
+  This means that we can convert sums over
+  primes to multilinear sums, i.e. sums of the
+  form
+  \[
+    \sum^*_{\substack{N(a) \sim A \\ N(b) \sim B}} \alpha_a \beta_b \widetilde{g}_3(ab),
+    \quad \alpha_a, \beta_b \in \C,\, |\alpha_a|, |\beta_b| \le 1.
+  \]
+  Note that $\widetilde{g}_3$ is not multiplicative, but we have
+  \[
+    \widetilde{g}_3(ab) = \widetilde{g}_3(a) \widetilde{g}_3(b) \overline{\left(\frac{a}{b}\right)_3}.
+  \]
+  By absorbing $\widetilde{g}_3(a), \widetilde{g}_3(b)$, we can convert the sums to be of the
+  form
+  \[
+    \sum^*_{\substack{N(a) \sim A \\ N(b) \sim B}} \alpha_a \beta_b \left(\frac{a}{b}\right)_3.
+  \]
+  Applying Cauchy-Schwarz, one ends up with a
+  sum of the form
+  \[
+    \sum_{N(a) \sim A}^* \left|\sum_{N(b) \sim B}^* \beta_b \left(\frac{a}{b}\right)_3\right|^2.
+    \tag{$*$}
+  \]
+  One can approach this with a \emph{cubic large sieve}, and
+  Heath-Brown showed that
+  \[
+    \sum_{N(a) \sim A}^* \left|\sum_{N(b) \sim B}^* \beta_b \left(\frac{a}{b}\right)_3\right|^2
+    \ll (AB)^{\epsilon} (A + B + (AB)^{2 / 3}) \|\beta\|_{2}^2,
+  \]
+  where the $A$ in the middle term comes from
+  square-root cancellation and $B$ comes
+  from orthogonality. The $(AB)^{2 / 3}$
+  term was the reason that Heath-Brown was
+  stuck at $5 / 6 + \epsilon$. For a long
+  time, people believed that
+  $(AB)^{2 / 3}$ could be improved, but
+  it turns out that it is actually sharp.
+  Instead, to achieve $5 / 6$, one must
+  remove a main term in the inner sum of $(*)$.
+\end{remark}
