@@ -1,0 +1,286 @@
+\chapter{Apr.~15 --- Class Field Theory}
+
+\section{Introduction to Class Field Theory}
+
+\begin{remark}
+  The following are goals of \emph{class field theory}:
+  \begin{enumerate}
+    \item Classify all (finite) abelian
+      extensions of a number field $K$.
+    \item Describe $\Gal(K^{\mathrm{ab}} / K)$,
+      where $K^{\mathrm{ab}}$ is the maximal
+      abelian extension of $K$ (in some
+      fixed $\overline{K}$).
+  \end{enumerate}
+\end{remark}
+
+\begin{lemma}
+  If $L_1 / K$, $L_2 / K$ are both abelian,
+  then $L_1 L_2 / K$ is also abelian.
+\end{lemma}
+
+\begin{proof}
+  By Galois theory, $\Gal(L_1 L_2 / K) \le \Gal(L_1 / K) \times \Gal(L_2 / K)$,
+  which is abelian.
+\end{proof}
+
+\begin{theorem}[Kronecker-Weber]
+  $\Q^{\mathrm{ab}} = \Q(\zeta_\infty) = \bigcup_m \Q(\zeta_m)$, i.e.
+  every finite abelian extension of $\Q$ is
+  contained
+  in a cyclotomic extension $\Q(\zeta_m)$ for
+  some $m$.
+\end{theorem}
+
+\begin{remark}
+  Part of the motivation for class field theory
+  is to generalize this result to other $K$.
+
+  What is $\Gal(\Q^{\mathrm{ab}} / \Q)$ (this
+  is an infinite extension)?
+  The answer is that it is the inverse limit
+  \[
+    \varprojlim \Gal(\Q(\zeta_m) / \Q)
+    = \varprojlim (\Z / m\Z)^\times
+    = \widehat{\Z}^\times
+    = \prod_{p \text{ prime}} \Z_p^\times.
+  \]
+  Note that $\Z_p^\times \cong \Z / (p - 1)\Z \times \Z_p$
+  for $p$ odd and
+  $\Z_2^\times \cong \Z / 2\Z \times \Z_2$.
+\end{remark}
+
+\begin{example}
+  Hilbert studied unramified abelian
+  extensions of number fields. For
+  $K = \Q$, the maximal unramified (abelian)
+  extension is just $\Q$ itself.
+  For $K = \Q(\sqrt{-1}), \Q(\sqrt{-2}), \Q(\sqrt{-3})$,
+  the maximal unramified abelian extensions
+  are also just $K$ itself. For $K = \Q(\sqrt{-5})$, however,
+  the extension
+  \[
+    \Q(\sqrt{-5}, \sqrt{-1}) / \Q(\sqrt{-5})
+  \]
+  is abelian (it is quadratic) and also
+  unramified everywhere.
+  For $K = \Q(\sqrt{-31})$, one can show
+  $K$ has class number $3$. Letting
+  $\alpha$ be a root of $x^3 + x + 1$ (which
+  has discriminant $-31$), the extension
+  $K(\alpha) / K$
+  is abelian of degree $3$ and unramified
+  everywhere.
+
+  Hilbert conjectured that
+  this is part of a more general phenomenon.
+  However, $K = \Q(\sqrt{3})$
+  has trivial class group, but the extension
+  \[
+    \Q(\sqrt{3}, \sqrt{-1}) / \Q(\sqrt{3})
+  \]
+  is abelian and unramified at $p$ for all
+  primes $p$. This seeming contradiction is
+  resolved by noting that the extension is
+  ``ramified at $\infty$'' (each real embedding
+  of $K$ extends to only a single complex
+  embedding of $L = \Q(\sqrt{3}, \sqrt{-1})$).
+  We want to consider this scenario to have
+  ramification index $e = 2$.
+\end{example}
+
+\begin{definition}
+  An extension $L / K$ is \emph{ramified
+  at an infinite place} $v$ of $K$ if
+  there exists a complex place $w$ of $L$
+  lying over $v$.
+\end{definition}
+
+\begin{theorem}[Hilbert?]
+  If $K$ is a number field, then the maximal
+  abelian extension $H$ of $K$ which is
+  unramified at all places (including the
+  infinite ones)  is finite and
+  $\Gal(H / K) \cong \Cl(K)$.
+\end{theorem}
+
+\begin{definition}
+  The field $H$ in the above theorem is
+  called the \emph{Hilbert class field}.
+\end{definition}
+
+\section{Applications of the Hilbert Class Field}
+\begin{theorem}
+  A prime ideal $\p$ of $\OO_K$ splits
+  completely in $H$ if and only if $\p$ is
+  principal (if and only if
+  the Frobenius element in $\Gal(H / K)$
+  is trivial, i.e. $\Frob_\p = \{1\}$).
+\end{theorem}
+
+\begin{proof}
+  The map (let $I_K$ be the set of fractional
+  ideals of $\OO_K$)
+  \begin{align*}
+    I_K &\longrightarrow \Gal(H / K) \\
+    \p &\longmapsto \Frob_\p
+  \end{align*}
+  is surjective with kernel $P_K$ (the set of
+  principal ideals of $\OO_K$), so
+  $I_K / P_K \cong \Gal(H / K)$.
+\end{proof}
+
+\begin{example}
+  The rational primes that split completely in
+  $L = \Q(\sqrt{-5}, \sqrt{-1})$ are
+  $p \equiv 1, 9 \Pmod{20}$. Let
+  $K = \Q(\sqrt{-5})$, and note that $p$
+  also has to split in $K$. Then for a prime
+  $\p_i$ of $\OO_K$ lying over $p$, we have
+  $N(\p_i) = p$, and if $\p_i$ must be
+  principal since it splits completely in
+  $L$. Writing $\p_i = (x + y \sqrt{5})$,
+  we find that $x^2 + 5y^2 = p$ for some $x, y \in \Z$.
+  This proves the following statement:
+  \begin{quote}
+    Let $p$ be a prime. Then
+    $p \equiv 1, 9 \Pmod{20}$ if and only if
+    $p = x^2 + 5y^2$ for some $x, y \in \Z$.
+  \end{quote}
+  See D. Cox's \emph{Primes of the form $x^2 + ny^2$} for
+  more details.
+\end{example}
+
+\begin{remark}
+  Kummer considered $K = \Q(\zeta_p)$, and
+  the subfield fixed by complex conjugation is
+  \[
+    \Q(\zeta_p)^+ = \Q(\zeta_p + \zeta_p^{-1}).
+  \]
+  This can be shown using \emph{Gaussian periods}.
+  The extension $\Q(\zeta_p)^+ / \Q(\zeta_p)$ is
+  ramified only at $\infty$.
+\end{remark}
+
+\begin{theorem}[Kummer]
+  $h_{K^+} | h_K$, where $h_K$ denotes the
+  class number of $K$ and $K^+$ is the
+  subfield of $K$ fixed by complex
+  conjugation.
+\end{theorem}
+
+\section{Galois Theory for Infinite Extensions}
+
+\begin{definition}
+  Let $L / K$ be normal, separable, and
+  algebraic (but not necessarily finite), i.e.
+  for every $\alpha \in L^\times$, its
+  minimal polynomial $f_\alpha \in K[x]$
+  splits into distinct linear
+  factors. We say $L / K$ is \emph{Galois}, and
+  define its \emph{Galois group} as
+  \[
+    G = \Aut(L / K) = \Gal(L / K)
+  \]
+\end{definition}
+
+\begin{remark}
+  If $L / K$ is finite, then there is a bijection
+  between intermediate extensions
+  $L / K$ and subgroups of $G$. If
+  $[L : K] = \infty$, given
+  an intermediate field $L \subseteq M \subseteq K$,
+  we can still have $H = \Gal(L / M) \le G$
+  and $L^H = M$. But not every subgroup
+  $H$ occurs in this manner.
+
+  The solution is to put a topology on $G$,
+  and then we get a bijection between
+  intermediate fields and closed subgroups
+  of $G$ (the topology is essentially defined
+  to make this true).
+\end{remark}
+
+\begin{definition}
+  A basis of open subsets of $G$ consists of
+  cosets $gH$, where $H$ is a normal subgroup
+  of the form $\Gal(L / M)$ for some
+  finite Galois extension $M / K$. This
+  defines the \emph{Krull topology} on $G$.
+\end{definition}
+
+\begin{remark}
+  In the finite setting, the Krull topology
+  is discrete, which recovers
+  finite Galois theory.
+\end{remark}
+
+\begin{remark}
+  One can show that (in this case, $\cong$
+  denotes homeomorphism)
+  \[
+    \Gal(L / K) \cong \varprojlim_{\substack{M / K \text{ finite Galois,} \\ K \subseteq M \subseteq L}}
+    \underbrace{\Gal(M / K)}_{\text{discrete topological space}}.
+  \]
+  The Krull topology is the smallest one
+  such that the maps
+  $\Gal(L / K) \to \Gal(M / K)$ are continuous.
+\end{remark}
+
+\begin{prop}
+  $G = \Gal(L / K)$ is a compact Hausdorff
+  topological group.
+\end{prop}
+
+\begin{remark}
+  The Galois group $\Gal(L / K)$ is a
+  \emph{profinite group}, i.e. an inverse
+  limit of finite groups. One gets a
+  bijection between intermediate extensions
+  $L \subseteq M \subseteq K$ and closed
+  subgroups of $G$, as well as a bijection
+  between finite extensions $M / K$ and
+  open subgroups of $G$ (which also happen to
+  be precisely the closed subgroups of finite
+  index in $G$).
+
+  Note that if $H \le G$ is open, then
+  $\{gH\}$ is an (disjoint) open cover of $G$.
+  By compactness, we must have
+  $[G : H] < \infty$. Since $H^c$ is the union
+  of non-trivial cosets of $H$ (which are
+  open since $H$ is), we get that $H^c$ is
+  open, hence $H$ is a closed subgroup of
+  finite index.
+\end{remark}
+
+\begin{example}
+  Let $K = \F_q$ and $L = \overline{\F}_q$.
+  Then $\Gal(L / K) \cong \widehat{\Z} = \varprojlim (\Z / n\Z) \cong \prod_{p \text{ prime}} \Z_p$.
+  There is a canonical generator
+  $1 \in \widehat{\Z}$, which corresponds to
+  $\Frob_q$ under the isomorphism. Note that
+  \[
+    \overline{\F}_q = \bigcup_{n = 1}^\infty F_{q^n},
+  \]
+  and open subgroups of $\widehat{\Z}$ (of
+  finite index) are of the form
+  $n\widehat{\Z}$ for $n \ge 1$.
+\end{example}
+
+\begin{remark}
+  Next time, we will generalize this
+  idea to $K$
+  a finite extension of $\Q_p$ (a \emph{local field}).
+  We will define the
+  \emph{Artin homomorphism}
+  \[
+    \Theta : K^\times \longrightarrow \Gal(K^{\mathrm{ab}} / K)
+  \]
+  which is ``almost'' an isomorphism.
+  This will give bijections between
+  open subgroups of $K^\times$ of finite index,
+  open subgroups of $\Gal(K^{\mathrm{ab}} / K)$
+  of finite index, and finite abelian extensions
+  $K \subseteq L \subseteq K^{\mathrm{ab}}$).
+\end{remark}
