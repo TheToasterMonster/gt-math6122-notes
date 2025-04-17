@@ -1,0 +1,279 @@
+\chapter{Apr.~17 --- Class Field Theory, Part 2}
+
+\section{Local Class Field Theory}
+
+\begin{definition}
+  Let $G$ be a topological group. Its
+  \emph{profinite completion} is
+  \[
+    \widehat{G} = \varprojlim_U G / U,
+  \]
+  where $U$ ranges over the open normal
+  subgroups of $G$ of finite index, and
+  $G / U$ is given the discrete topology.
+  The \emph{universal property of the profinite completion}
+  is that any map from $G$ to a profinite
+  group $H$ factors uniquely through the
+  profinite completion $\widehat{G}$.
+\end{definition}
+
+\begin{remark}
+  The finite-index open normal subgroups
+  of $G$ are in bijection with the
+  finite-index open normal subgroups of
+  its profinite completion $\widehat{G}$.
+\end{remark}
+
+\begin{example}
+  We have $\widehat{\Z} = \varprojlim_n (\Z / n\Z)$.
+\end{example}
+
+\begin{theorem}
+  Let $K$ be a local field (i.e. a finite
+  extension $K / \Q_p$ or $K / \R$, or
+  equivalently, $k_v$ for a number field
+  $k$ and a place $v$ of $k$). Then
+  there exists an injective homomorphism
+  \[
+    \Theta : K^\times \longrightarrow
+    \Gal(K^\mathrm{ab} / K)
+  \]
+  which induces an isomorphism
+  $\widehat{K^\times} \overset{\cong}{\longrightarrow} \Gal(K^\mathrm{ab} / K)$.
+\end{theorem}
+
+\begin{remark}
+  What does $\widehat{K^\times}$ look like?
+  If $K$ is Archimedean, then either $K = \C$
+  or $K = \R$. If $K = \C$, then
+  the left-hand side is $\widehat{C^\times} = \varprojlim \C^\times / \C^\times = \{1\}$
+  (since $\C^\times$ has no non-trivial
+  finite-index open subgroups)
+  and the right-hand side is also $\{1\}$
+  (since $\C$ is algebraically closed).
+  For $K = \R$, the left-hand side is
+  $\Z / 2\Z$ (there is a non-trivial
+  open subgroup $\R_{> 0}$), and the
+  right-hand side is $\Gal(\C / \R) \cong \Z / 2\Z$.
+
+  If $K$ is non-Archimedean, then
+  $K^\times \cong \Z \times \OO_K^\times$ since
+  there is a split exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      0 \ar[r] & \OO_K \ar[r] & K^\times \ar[r, "v_p"] & \Z \ar[r] & 0
+    \end{tikzcd}
+  \end{center}
+  where $v_p : K^\times \to \Z$ is the
+  $p$-adic valuation. So we get that
+  (note that $\OO_K^\times$ is already profinite)
+  \[
+    \widehat{K^\times} \cong \widehat{\Z} \times \OO_K^\times
+    \cong \prod_{p} \Z_p \times \OO_K^\times.
+  \]
+  We also have the following:
+  \begin{center}
+    \begin{tikzcd}
+      0 \ar[r] & \OO_K^\times \ar[d, equal] \ar[r] & K^\times \ar[d, "\Theta"] \ar[r, "v_p"] & \Z \ar[d, hook] \ar[r] & 0 \\
+      0 \ar[r] & \Gal(K^{\mathrm{ab}} / K^{\mathrm{unr}})
+      \ar[r] & \Gal(K^{\mathrm{ab}} / K)
+      \ar[r] & \Gal(K^{\mathrm{unr}} / K)
+      \ar[r] & 0
+    \end{tikzcd}
+  \end{center}
+  where $\Gal(K^\mathrm{unr} / K) \cong \Gal(\overline{k} / k) \cong \widehat{\Z}$.
+  For $\pi \in \OO_K$ with
+  $v(\pi) = 1$, i.e. $\pi$ is a uniformizer,
+  $\Theta(\pi)$ is
+  the Frobenius automorphism.
+  Also,
+  $\Theta(\OO_K^\times) = \Gal(K^\mathrm{ab} / K^\mathrm{unr})$,
+  which is the inertia subgroup of $G$.
+\end{remark}
+
+\begin{theorem}
+  Let $L / K$ be a finite abelian extension, and
+  $\Theta_{L / K}$ be the composite map
+  \begin{center}
+    \begin{tikzcd}
+      K^\times \ar[r] & \Gal(K^\mathrm{ab} / K)
+      \ar[r] & \Gal(L / K)
+    \end{tikzcd}
+  \end{center}
+  Then $\Theta_{L / K}$ is surjective, and
+  $\ker \Theta_{L / K} = N_{L / K}(L^\times) \le K^\times$.
+  In particular, $K^\times / N_{L / K}(L^\times) \cong \Gal(L / K)$.
+\end{theorem}
+
+\begin{theorem}[Local class field theory]
+  There is an inclusion-reversing
+  correspondence between the finite
+  abelian extensions of a local field $K$ and
+  finite-index open subgroups of $K^\times$
+  given by
+  \begin{center}
+    \begin{tikzcd}
+      L / K \text{ abelian} \ar[r] &
+      \ar[l] N_{L / K}(L^\times)
+    \end{tikzcd}
+  \end{center}
+\end{theorem}
+
+\section{Adeles and Ideles}
+
+\begin{definition}
+  Let $K$ be a number field. For a place
+  $v$ of $K$, note that the completion $K_v$ is
+  a local field, and
+  let $\OO_v$ is the valuation ring in
+  $K_v$ (in the non-Archimedean case, or
+  $K_v$ itself in the Archimedean case).
+  Define the \emph{adele ring} of $K$ to be
+  ($\prod'$ denotes the \emph{restricted product})
+  \[
+    \mathbb{A}_K = \prod_v' (K_v, \OO_v)
+    = \left\{(a_v) \in \prod_v K_v : a_v \in \OO_v \text{ for all but finitely many } v\right\}.
+  \]
+  Consider the basis of open neighborhoods
+  of $0$ given by $\prod_v U_v$, where
+  $U_v$ is open in $K_v$ and $U_v = \OO_v$
+  for almost all $v$. This turns
+  $\mathbb{A}_K$ into a \emph{topological ring}.
+\end{definition}
+
+\begin{theorem}
+  The adele ring $\mathbb{A}_K$ is locally
+  compact.
+\end{theorem}
+
+\begin{remark}
+  Note that it is important for $\mathbb{A}_K$
+  to be locally compact, e.g. for harmonic
+  analysis. Also,
+  there is an embedding $K \hookrightarrow \mathbb{A}_K$
+  given by
+  $v \mapsto \prod_v \alpha_v$, where
+  $i_v(\alpha) = \alpha_v$ for the inclusion
+  $i_v : K \hookrightarrow K_v$.
+\end{remark}
+
+\begin{theorem}
+  $K$ is discrete in $\mathbb{A}_K$, and
+  $\mathbb{A}_K / K$ is compact.
+\end{theorem}
+
+\begin{example}
+  Consider the case $\Z \hookrightarrow \R$,
+  where $\Z$ is discrete and $\R / \Z$ is compact.
+\end{example}
+
+\begin{definition}
+  The group of \emph{ideles} of $K$ is
+  $J_K = \mathbb{A}_K^\times = \prod_v' (K_v^\times, \OO_v^\times)$.
+  We take a basis of open neighborhoods
+  of $1$ to be $\prod_v U_v$ for
+  open $U_v \subseteq K_v^\times$, such that
+  $U_v = \OO_v^\times$ for almost all $v$. Note that this is \emph{not} the subspace topology
+  from $\mathbb{A}_K^\times \subseteq \mathbb{A}_K$.
+\end{definition}
+
+\begin{theorem}
+  $J_K$ is a locally compact abelian topological
+  group.
+\end{theorem}
+
+\begin{definition}
+  There is a norm $\| \cdot \| : J_K \to \R_{> 0}$
+  given by
+  $\|\alpha\| = \prod_v \|\alpha_v\|_v$,
+  where $\|\cdot\|_v : K_v \to \R_{> 0}$. The
+  product formula says that
+  $K^\times \subseteq J_K^1$ (the ideles of
+  norm $1$). Define the quotient
+  $J_K / K^\times = C_K$ to be the \emph{idele class group} of $K$, and
+  $J^1_K / K^\times = C_K^1 \le C_K$.
+\end{definition}
+
+\begin{theorem}
+  $C_K^1$ is compact.
+\end{theorem}
+
+\begin{proof}
+  This follows from the finiteness of
+  $\Cl(\OO_K)$ and Dirichlet's unit theorem.
+\end{proof}
+
+\section{Global Class Field Theory}
+
+\begin{remark}
+  Chevalley realized that adeles and ideles
+  give a natural way to state global class
+  field theory.
+\end{remark}
+
+\begin{remark}
+  In global class field theory, $C_K$ will
+  play that role that $K^\times$ played in
+  local class field theory.
+\end{remark}
+
+\begin{theorem}[Artin]
+  There exists a homomorphism
+  \[
+    \Theta : C_K \longrightarrow \Gal(K^\mathrm{ab} / K)
+  \]
+  inducing an isomorphism
+  $\widehat{C}_K \overset{\cong}{\longrightarrow} \Gal(K^\mathrm{ab} / K)$.
+\end{theorem}
+
+\begin{remark}
+  How do we define the global
+  Artin map $\Theta$? Pick $L / K$ finite
+  abelian. Define a map
+  \begin{align*}
+    \Theta_{L / K} : J_K
+    &\longrightarrow \Gal(L / K) \\
+    (a_v) &\longmapsto \prod_v \Theta_v(a_v),
+  \end{align*}
+  where $\Theta_v$ is the local Artin map.
+  Note that if $v$ is
+  unramified in $L$ and $a_v \in \OO_v^\times$,
+  then $\Theta_v(a_v) = 1$, so the
+  above product is indeed well-defined. Then
+  take the inverse limit over all such $L$,
+  and we get a map
+  \[
+    \Theta : J_K \longrightarrow \Gal(K^\mathrm{ab} / K).
+  \]
+\end{remark}
+
+\begin{theorem}[Artin's reciprocity law]
+  $K^\times \subseteq \ker \Theta$, i.e.
+  for all $\alpha \in K^\times$, we have
+  $\prod_v \Theta_v(\alpha) = 1$.
+\end{theorem}
+
+\begin{example}
+  Let $p, q$ be distinct odd primes, and
+  $K = \Q$, $L = \Q(\sqrt{p^*})$ for
+  $p^* = p (-1)^{(p - 1) / 2}$. Then for
+  $\alpha = q$, Artin's reciprocity
+  law says
+  \[
+    \left(\frac{p^*}{q}\right)
+    \left(\frac{q}{p^*}\right) = 1,
+  \]
+  which recovers the law of quadratic
+  reciprocity.
+\end{example}
+
+\begin{theorem}[Global class field theory]
+  There is a bijection between the
+  open finite-index subgroups of $C_K$
+  and the finite abelian
+  extensions of $K$
+  given by the correspondence
+  \[
+    N_{L / K}(C_L) \longleftrightarrow L.
+  \]
+\end{theorem}
