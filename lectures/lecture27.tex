@@ -1,0 +1,396 @@
+\chapter{Apr.~22 --- Class Field Theory, Part 3}
+
+\section{Ray Class Fields}
+
+\begin{definition}
+  Let $K$ be a number field.
+  A \emph{modulus} is a formal product
+  \[
+    \m = \prod_{v \in M_K} v^{e_v},
+    \quad e_v \in \Z_{\ge 0},
+  \]
+  where $e_v = 0$ for almost all $v$,
+  $e_v = 0$ for $v$ complex, and
+  $e_v \in \{0, 1\}$ for $v$ real.
+  So $\m$ corresponds to a
+  pair $(I, S)$, where $I = \prod_\p \p^{e_\p}$
+  and $S$ is a subset of the real places.
+\end{definition}
+
+\begin{remark}
+  Fix a modulus $\m$, and we
+  will define a subgroup $U_\m \le J_K$.
+  This will give a subgroup
+  \[
+    U_{\m}' \le C_K = J_K / K^\times,
+  \]
+  which will be an open subgroup of
+  finite index. Thus $U_{\m}'$ corresponds
+  to a finite abelian extension
+  $R_\m / K$, which is called the
+  \emph{Ray class field} of modulus $\m$.
+  By construction, $R_\m / K$ will ramify
+  only at places of $K$ in $\supp(\m)$, and
+  $\Gal(R_\m / K) \cong C_K / U_{\m}'$,
+  which is some kind of \emph{generalized ideal class group}.
+  For $\m = 1$, the Ray class field
+  $R_1$ is just the Hilbert class field,
+  and $C_K / U_1' = \Cl(\OO_K)$.
+\end{remark}
+
+\begin{definition}
+  Let $\m$ be a modulus. Define $U_{\m, v}$
+  as follows:
+  \begin{enumerate}
+    \item if $e_v = 0$, then set
+      $U_{\m, v} = \OO_v^\times$;
+    \item if $e_v > 0$ and
+      $v$ is non-Archimedean, then
+      set $U_{\m, v} = 1 + \p_v^{e_v}$,
+      where $\p_v$ is the maximal ideal
+      in $\OO_v$;
+    \item if $e_v > 0$ and $v$ is
+      Archimedean (so $v$ is real), then
+      set $U_{\m, v} = \R_{> 0} \subseteq K_v^\times = \R^\times$.
+  \end{enumerate}
+  Define $U_\m = \prod_v U_{\m, v}$.
+\end{definition}
+
+\begin{lemma}
+  Every open subgroup of finite index
+  in $C_K$ contains some $U_\m'$.
+\end{lemma}
+
+\begin{corollary}
+  Every finite abelian extension of
+  $K$ is contained in some Ray
+  class field.
+\end{corollary}
+
+\begin{proof}
+  Any finite abelian extension $L / K$
+  corresponds to a subgroup $H \le C_K$.
+  Then $H$ contains $U_\m'$, so
+  $L / K$ lies in the corresponding
+  Ray class field $R_\m / K$.
+\end{proof}
+
+\begin{corollary}[Kronecker-Weber]
+  Every finite abelian extension of $\Q$
+  lies in a cyclotomic field.
+\end{corollary}
+
+\begin{proof}
+  If $\m = m \ge 1$, then
+  $R_\m = \Q(\zeta_m)$, and if
+  $\m = m \cdot \infty$, then
+  $R_\m = \Q(\zeta_m)^+$,
+\end{proof}
+
+\begin{definition}
+  Define $I_\m$ to be the fractional
+  ideals coprime to $\m$ and
+  $P_\m = \{(a) : a \equiv 1 \modstar{\m}\}$,
+  where $a \equiv 1 \modstar{\m}$ means
+  that $a \in U_{\m, v}$ for all $v \in \supp(\m)$.
+  Define $\Cl_\m(\OO_K) = I_\m / P_\m$.
+\end{definition}
+
+\begin{prop}
+  $\Cl_\m(\OO_K) \cong C_K / U_\m'$.
+\end{prop}
+
+\section{Artin Reciprocity}
+
+\begin{definition}
+  Let $K$ be a number field and $L / K$
+  a finite abelian extension. Let
+  $S$ be the set of ramified places, and
+  let $I_S$ be the set of fractional ideals
+  coprime to $S$. Define the \emph{Artin map}
+  by
+  \begin{align*}
+    \Theta_{L / K} : I_S
+    &\longrightarrow \Gal(L / K) \\
+    \p &\longmapsto
+    \Frob_\p
+  \end{align*}
+\end{definition}
+
+\begin{prop}[Artin reciprocity]
+  There exists a modulus $\m = \m(L / K)$
+  with
+  $\supp(\m) = S$ such that
+  $P_\m \subseteq \ker \Theta_{L / K}$.
+\end{prop}
+
+\begin{remark}
+  The primes of $\OO_K$ that split
+  completely in $R_\m$ (i.e. $\Frob_\p$ is
+  trivial) are exactly those
+  in $P_\m$.
+\end{remark}
+
+\begin{prop}[Existence theorem]
+  Given a modulus $\m$ and
+  $P_\m \subseteq H \subseteq I_\m$, then
+  there exists an abelian extension $L / K$
+  which is unramified outside of $\supp(\m)$,
+  such that $\ker \Theta_{L / K} = H$.
+\end{prop}
+
+\begin{example}
+  Let $K$ be a number field and
+  $L / K$ an abelian extension. Then
+  $K \subseteq L \subseteq R_\m$ for some
+  Ray class field $R_\m$, and
+  how a prime $\p$ in $K$ splits in $L$
+  and $R_\m$ can be related to produce
+  a reciprocity law. Note that this is
+  similar to how we proved quadratic
+  reciprocity, where we compared how a
+  prime splits in a quadratic extension and
+  a cyclotomic extension.
+\end{example}
+
+\begin{definition}
+  Let $p$ be a prime or $\infty$, and $a, b \in \Q_p^\times$ (where $\Q_\infty = \R$).
+  Define the \emph{Hilbert symbol}
+  \[
+    (a, b)_p =
+    \begin{cases}
+      1 & \text{if $z^2 = ax^2 + by^2$ has a nontrivial solution in $\Q_p$}, \\
+      -1 & \text{otherwise}.
+    \end{cases}
+  \]
+  This defines a map
+  $(a, b)_p : \Q_p^\times / (\Q_p^\times)^2 \times \Q_p^\times / (\Q_p^\times)^2 \to \{\pm 1\}$.
+  See Serre's \emph{A Course in Arithmetic}.
+\end{definition}
+
+\begin{theorem}
+  The pairing $(a, b)_p$ is bi-multiplicative
+  (i.e. $(a, b_1 b_2)_p = (a, b_1)_p (a, b_2)_p$), symmetric, and non-degenerate (i.e.
+  if $(a, b)_p = 1$ for every $b$,
+  then $a \in (\Q_p^\times)^2$).
+\end{theorem}
+
+\begin{corollary}
+  $b \in \Q_p^\times$
+  is a norm from all quadratic extensions
+  of $\Q_p$ if and only if
+  $b \in (\Q_p^\times)^2$.
+\end{corollary}
+
+\begin{proof}
+  Suppose $b$ is a norm from
+  $\Q_p[\sqrt{a}]$ for all
+  $a \in \Q_p^\times$, so
+  $b = z^2 - ax^2$ has a solution in $\Q_p$.
+  Then
+  \[
+    z^2 = ax^2 + by^2
+  \]
+  has a nonzero solution, which means
+  $(a, b)_p = 1$ for all $a \in \Q_p^\times$.
+  By non-degeneracy, $b \in (\Q_p^\times)^2$.
+\end{proof}
+
+\begin{remark}
+  Using quadratic reciprocity, Serre
+  shows that $\prod_{p \le \infty} (a, b)_p = 1$
+  for all $a, b \in \Q^\times$. In fact,
+  this statement is equivalent to
+  quadratic reciprocity: Suppose
+  $p \ne q$ are distinct odd primes. Then
+  \[
+    (p, q)_p = \left(\frac{q}{p}\right)
+    \quad \text{and} \quad
+    (p, q)_q = \left(\frac{p}{q}\right).
+  \]
+  Furthermore, $(p, q)_\ell = 1$ if
+  $\ell \ne 2, p, q, \infty$,
+  $(p, q)_\infty = 1$, and $(p, q)_2 = (-1)^{(p - 1)(q - 1) / 4}$.
+\end{remark}
+
+\begin{theorem}
+  Let $K$ be a local field containing
+  $\mu_n$. If $b \in K^\times$ is
+  contained in $N_{L / K}(L^\times)$ for
+  every
+  cyclic extension $L / K$ of degree
+  dividing $n$, then $b \in (K^\times)^n$.
+\end{theorem}
+
+\begin{remark}
+  The modern interpretation of the
+  above theorem is that if $L / K$ is
+  cyclic, then
+  \[
+    K^\times / N_{L / K}(L^\times) \cong
+    H^2(\Gal(L / K), L^\times).
+  \]
+\end{remark}
+
+\begin{definition}
+  Let $K$ be a local field and
+  $a, b \in K^\times$. Then define the
+  \emph{local Hilbert symbol}
+  \[
+    (a, b)_K = \frac{\Theta_K(b)(\sqrt[n]{a})}{\sqrt[n]{a}} \in \mu_n,
+  \]
+  where $\Theta_K(b) \in \Gal(K^\mathrm{ab} / K)$.
+\end{definition}
+
+\begin{theorem}
+  The Hilbert symbol $(a, b)_K$
+  satisfies the
+  following properties:
+  \begin{enumerate}
+    \item $(b, a)_K = (a, b)_K^{-1}$;
+    \item $(a, b)_K$ is bi-multiplicative;
+    \item $(a, b)_K$ is non-degenerate.
+  \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+  Let $K$ be a number field.
+  The \emph{global Hilbert symbol} is given
+  by
+  \[
+    (a, b)_K = \prod_v (a, b)_{K_v} \in \mu_n,
+  \quad a, b \in K^\times / (K^\times)^n.
+  \]
+\end{definition}
+
+\begin{theorem}[Hilbert reciprocity]
+  $(a, b)_K = 1$ for all $a, b \in K^\times$,
+  i.e. $\prod_v (a, b)_{K_v} = 1$.
+\end{theorem}
+
+\begin{prop}
+  Let $p$ be an odd prime, $n = 2$, and
+  $a, b \in \Q_p^\times$. Then the
+  following are equivalent:
+  \begin{enumerate}
+    \item $(a, b)_p = 1$ in Serre's sense;
+    \item $X^2 - aY^2 - bZ^2$ represents $0$
+      in $\Q_p$;
+    \item $b$ is a norm from $\Q_p(\sqrt{a})$;
+    \item $\Theta_{\Q_p(\sqrt{a}) / \Q_p}(b) = 1$;
+    \item $X^2 - aY^2 - bZ^2 + abW^2$
+      represents $0$ in $\Q_p$;
+    \item the \emph{quaternion algebra}
+      $A_{-1}(a, b)$ is \emph{split}, i.e.
+      $A_{-1}(a, b) \cong M_2(\Q_p)$.
+  \end{enumerate}
+\end{prop}
+
+\section{Brauer Groups}
+
+\begin{definition}
+  Given $a, b \in K_v^\times$ and a fixed
+  $\zeta \in \mu_n$, define a
+  \emph{central simple algebra} $A_\zeta(a, b)$
+  over $K_v$ with generators
+  $i, j$ and relations $i^n = a$, $j^n = b$,
+  and $ij = \zeta ji$.
+\end{definition}
+
+\begin{example}
+  The algebra $A_{-1}(-1, -1)$ is the
+  usual Hamilton quaternion algebra
+  $\mathbb{H}_\R$.
+\end{example}
+
+\begin{definition}
+  Define the \emph{Brauer group} as
+  $\mathrm{Br}(K_v) = \{\text{central simple algebras over $K_v$}\} / {\sim}$, and
+  \[
+    (a, b)_v = \zeta^{-[A_\zeta(a, b)]}.
+  \]
+\end{definition}
+
+\begin{remark}
+  One has
+  $\mathrm{Br}(K_v) \cong H^2(\Gal(K_v^\mathrm{ab} / K_v), (K_v^\mathrm{ab})^\times)$.
+\end{remark}
+
+\begin{remark}
+  There is a cohomological interpretation
+  of the statement $\prod_v (a, b)_v = 1$
+  via Brauer groups.
+\end{remark}
+
+\section{Applications to Fermat's Last Theorem}
+
+\begin{remark}
+  Let $p$ be an odd prime and
+  $\zeta = \zeta_p$. Factor the
+  equation $x^p + y^p = z^p$ (let
+  $x, y, z$ be coprime and $p \nmid xyz$;
+  recall that this is the first case of
+  Fermat's last theorem) as
+  \[
+    \prod_{i = 0}^{p - 1} (x + \zeta^i y)
+    = (z)^p.
+  \]
+  Then the ideal $(\alpha)$ is a $p$th
+  power, where
+  \[
+    \alpha = \frac{x + \zeta y}{x + y}
+    = 1 - \frac{y\pi}{x + y}, \quad
+    \pi = 1 - \zeta.
+  \]
+\end{remark}
+
+\begin{theorem}
+  If $q | xyz$ is prime, then
+  $q^{p - 1} \equiv 1 \Pmod{p^2}$.
+\end{theorem}
+
+\begin{proof}
+  Let $K = \Q(\zeta_p)$, $\beta = q^{p - 1}$,
+  and $\alpha = 1 - y\pi / (x + y)$.
+  Then the \emph{power reciprocity law}
+  says
+  \[
+    1 = \left(\frac{\beta}{\alpha}\right)_p
+    \left(\frac{\alpha}{\beta}\right)_p^{-1}
+    = \zeta_p^{\Tr_{K / \Q}(\eta)},
+    \quad \eta = \frac{\beta - 1}{p} \cdot \frac{\alpha - 1}{\pi}
+  \]
+  where both symbols are $1$ in this case.
+  One can compute that
+  \[
+    \Tr_{K / \Q}(\eta)
+    = \frac{q^{p - 1} - 1}{p} \cdot (p - 1)\frac{-y}{x + y},
+  \]
+  so $p$ must divide $(q^{p - 1} - 1) / p$,
+  which implies $p^2 | (q^{p - 1} - 1)$.
+\end{proof}
+
+\begin{remark}
+  For $q = 2$, this is
+  \emph{Wieferich's criterion}, and
+  for $q = 3$, this is
+  \emph{Mirimanoff's condition}.
+\end{remark}
+
+\begin{remark}
+  Only two primes ($1093$ and $3511$)
+  below $3 \times 10^9$ satisfy
+  $2^{p - 1} \equiv 1 \Pmod{p^2}$.
+  Neither of these two primes also satisfy
+  the congruence
+  $3^{p - 1} \equiv 1 \Pmod{p^2}$.
+\end{remark}
+
+\begin{remark}
+  Class field theory can also be
+  considered as studying $1$-dimensional
+  representations of the Galois group
+  $G_K = \Gal(\overline{K} / K)$. The Langlands
+  program studies $n$-dimensional
+  representations of $G_K$.
+\end{remark}
